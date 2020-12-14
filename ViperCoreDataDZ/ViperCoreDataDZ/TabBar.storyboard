@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jnQ-Zf-37Y">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="3V3-zi-hD5">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="jnQ-Zf-37Y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="5df-cR-Wmb">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="bQa-4S-gzy" kind="relationship" relationship="viewControllers" id="2Lu-4h-UlW"/>
+                        <segue destination="k2z-av-W6n" kind="relationship" relationship="viewControllers" id="1lk-9f-o56"/>
+                        <segue destination="lkj-ri-XhJ" kind="relationship" relationship="viewControllers" id="dJg-UM-Kl0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZOf-jK-TTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-924" y="-8"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="fGM-dP-dM8">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UsersReference" storyboardName="Users" referencedIdentifier="UsersReference" id="bQa-4S-gzy" userLabel="Users" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="0Mz-9C-To1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhK-1Z-rGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-238" y="-145"/>
+        </scene>
+        <!--Courses-->
+        <scene sceneID="RqH-Wf-aw4">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CoursesReference" storyboardName="Courses" referencedIdentifier="CoursesReference" id="k2z-av-W6n" userLabel="Courses" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ygp-6G-lVT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-MB-VN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-238" y="-77"/>
+        </scene>
+        <!--Prepods-->
+        <scene sceneID="oMQ-84-Mvm">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PrepodsReference" storyboardName="Prepods" referencedIdentifier="PrepodsReference" id="lkj-ri-XhJ" userLabel="Prepods" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="MLR-eM-pdF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oo2-mT-NtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-238" y="-3"/>
+        </scene>
+    </scenes>
+</document>

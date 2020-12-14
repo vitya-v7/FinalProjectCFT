@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Prepods-->
+        <scene sceneID="pzF-Lc-Gyq">
+            <objects>
+                <navigationController storyboardIdentifier="PrepodsReference" id="gCX-67-wRA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Prepods" id="Omd-i9-gGB"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jXa-p4-0b7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lI2-qn-ctX" kind="relationship" relationship="rootViewController" id="DFY-cQ-uNs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UA1-ow-VM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="17" y="693"/>
+        </scene>
+        <!--View Controller Prepod-->
+        <scene sceneID="qSg-6V-i1X">
+            <objects>
+                <viewController storyboardIdentifier="PrepodList" id="lI2-qn-ctX" customClass="ViewControllerPrepod" customModule="ViperCoreDataDZ" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="owi-Cz-rke">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.43221092220000001" green="0.81343233589999997" blue="0.86259680989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="i2d-ns-lYY"/>
+                    <connections>
+                        <outlet property="tableView" destination="owi-Cz-rke" id="UXP-2D-KYx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZC-vi-dUM" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="786" y="671"/>
+        </scene>
+    </scenes>
+</document>
