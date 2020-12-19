@@ -2,8 +2,8 @@
 //  CustomDataSourse.swift
 //  VDDZCoreData
 //
-//  Created by Андрей Белкин on 23.07.17.
-//  Copyright © 2017 Viktor Deryabin. All rights reserved.
+//  Created by Admin on 09.12.2020.
+//  Copyright © 2020 Admin. All rights reserved.
 //
 
 import UIKit

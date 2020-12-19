@@ -2,8 +2,8 @@
 //  ViewControllerCheck.swift
 //  ViperCoreDataDZ
 //
-//  Created by Андрей Белкин on 01.08.17.
-//  Copyright © 2017 Viktor Deryabin. All rights reserved.
+//  Created by Admin on 18.12.2020.
+//  Copyright © 2020 Admin. All rights reserved.
 //
 
 import UIKit
