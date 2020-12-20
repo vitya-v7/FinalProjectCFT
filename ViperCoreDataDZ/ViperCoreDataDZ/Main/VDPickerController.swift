@@ -2,8 +2,8 @@
 //  VDPickerController.swift
 //  VDDZCoreData
 //
-//  Created by Admin on 05.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 05.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit

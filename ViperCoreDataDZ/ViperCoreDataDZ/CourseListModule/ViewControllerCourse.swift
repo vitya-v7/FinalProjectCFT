@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 16.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 16.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,8 @@ import UIKit
 class ViewControllerCourse: ViewController {
 	
 	var output: PresenterCourse?
-	
+	var viewModels = [CourseListViewModel]()
+
 	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.identifier = "CourseCell"
@@ -56,9 +57,14 @@ class ViewControllerCourse: ViewController {
     	output?.callDetailViewController(myIndexPath: nil)
 	}
 	
-	override func setNewCells(cells:[String:[configuringCell]], keys: [String]) {
-    	dataSource.setDataDictionary(data: cells, keys: keys)
+	func setViewModels(viewModels: [CourseListViewModel]) {
+		self.viewModels = viewModels
 	}
+
+	func updateViewModels() {
+		output?.getCourses()
+	}
+
 	override func viewWillAppear(_ animated: Bool) {
     	output?.updateDB()
     	output?.updateCells()

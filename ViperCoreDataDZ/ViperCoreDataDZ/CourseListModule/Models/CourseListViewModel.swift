@@ -1,5 +1,5 @@
 //
-//  UserListViewModel.swift
+//  CourseListViewModel.swift
 //  ViperCoreDataDZ
 //
 //  Created by Viktor Deryabin on 20.12.2020.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct UserListViewModel {
-	var adress: String
-	var firstName: String
-	var lastName: String
+struct CourseListViewModel {
+	var name: String
+	var predmet: String
+	var prepod: String
 }

@@ -10,6 +10,7 @@
 		844509A5258F678A005056AA /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509A4258F678A005056AA /* UserListViewModel.swift */; };
 		844509AD258FBCE7005056AA /* CustomDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509AB258FBCE7005056AA /* CustomDataSourse.swift */; };
 		844509B5258FC28D005056AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* ViewController.swift */; };
+		844509B8258FCC6D005056AA /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B7258FCC6D005056AA /* CourseListViewModel.swift */; };
 		84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */; };
 		84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */; };
 		84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */; };
@@ -64,6 +65,7 @@
 		844509A4258F678A005056AA /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		844509AB258FBCE7005056AA /* CustomDataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSourse.swift; sourceTree = "<group>"; };
 		844509B4258FC28D005056AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		844509B7258FCC6D005056AA /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
 		84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDPickerController.swift; sourceTree = "<group>"; };
 		84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepodCheck.swift; sourceTree = "<group>"; };
 		84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDetailCourse.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		84E1E5BA258E85AF00B242E9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				844509B7258FCC6D005056AA /* CourseListViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				84D6D7B825873DEF00FFCAE7 /* VDCourse+CoreDataClass.swift in Sources */,
 				84D6D79125873D7400FFCAE7 /* PresenterDetailCourse.swift in Sources */,
 				844509A5258F678A005056AA /* UserListViewModel.swift in Sources */,
+				844509B8258FCC6D005056AA /* CourseListViewModel.swift in Sources */,
 				D7B208441F2E262000B5787E /* Special.swift in Sources */,
 				84D6D7AC25873DA900FFCAE7 /* InteractorUser.swift in Sources */,
 				84D6D7A225873D9800FFCAE7 /* ViewControllerDetailUser.swift in Sources */,

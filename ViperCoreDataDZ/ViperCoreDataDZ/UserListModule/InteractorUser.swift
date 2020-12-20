@@ -2,8 +2,8 @@
 //  InteractorUser.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 16.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 16.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
@@ -26,9 +26,7 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 	func addEmptyUser() -> VDUserSpecial {
 		return VDDataManager.sharedManager.addEmptyUser()
 	}
-	func getUserByID( id: NSManagedObjectID) -> VDUserSpecial{
-		return VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: id)!]
-	}
+	
 	func deleteObjectFromDB(object: VDUserSpecial) {
 		guard let id = object.ID else {
 			return

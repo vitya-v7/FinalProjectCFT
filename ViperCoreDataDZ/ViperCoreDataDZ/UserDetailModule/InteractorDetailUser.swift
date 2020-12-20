@@ -2,12 +2,14 @@
 //  InteractorDetailUser.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 17.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 17.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
 import CoreData
+
+
 class InteractorDetailUser: NSObject, TextFieldChanged{
 	var temporaryUserID: NSManagedObjectID?
 

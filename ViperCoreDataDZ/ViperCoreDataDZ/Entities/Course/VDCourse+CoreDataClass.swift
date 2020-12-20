@@ -2,8 +2,8 @@
 //  VDCourse+CoreDataClass.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 16.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 16.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import Foundation

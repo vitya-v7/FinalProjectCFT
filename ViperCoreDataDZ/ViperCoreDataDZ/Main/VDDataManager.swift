@@ -2,8 +2,8 @@
 //  VDDataManager.swift
 //  
 //
-//  Created by Admin on 28.11.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 28.11.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
@@ -98,12 +98,12 @@ class VDDataManager: NSObject {
         
     }
     
-    func addEmptyCourse() -> NSManagedObjectID
+    func addEmptyCourse() -> VDCourseSpecial
     {
         let course:VDCourse = insertObject(name:"VDCourse")
-        VDCourseSpecial.addNewObjectFromEntity(entity: course)
+        let courseModel = VDCourseSpecial.addNewObjectFromEntity(entity: course)
         
-        return course.objectID
+        return courseModel
     }
     
 

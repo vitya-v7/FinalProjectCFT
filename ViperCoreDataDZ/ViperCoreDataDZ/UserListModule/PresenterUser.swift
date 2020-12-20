@@ -2,8 +2,8 @@
 //  PresenterUser.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 16.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 16.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,6 @@ class PresenterUser: PresenterGeneralCheck {
 	weak var viewController: ViewControllerUser?
 	var wireFrame: RouterToDetailController?
 	var interactor: InteractorUserListProtocol?
-	var keys = [String]()
 	var models = [VDUserSpecial]()
 	var viewModels = [UserListViewModel]()
 	var delegate: AssignmentProtocol?

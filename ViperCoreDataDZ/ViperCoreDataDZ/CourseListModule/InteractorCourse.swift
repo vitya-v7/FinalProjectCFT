@@ -2,45 +2,44 @@
 //  Interactorcourse.swift
 //  ViperCoreDataDZ
 //
-//  Created by Admin on 16.12.2020.
-//  Copyright © 2020 Admin. All rights reserved.
+//  Created by Viktor Deryabin on 16.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
 import UIKit
 import CoreData
 class InteractorCourse: NSObject {
-	
+	var courses = [VDCourseSpecial]()
 	func updateDataBase() {
     	
     	VDDataManager.sharedManager.updateCourseBD()
     	VDDataManager.sharedManager.updateCourseBD()
 	}
-	
-	func createDict() -> [String: [Special]]{
-    	
-    	return ["Courses":VDCourseSpecial.courses]
+
+	func returnData() -> [VDCourseSpecial] {
+		courses = VDCourseSpecial.courses
+		courses.sortingBy(parameters: ["name"])
+		return courses
 	}
 	
-	func getData(updateCell:(_ data:[String:[Special]])->()) {
-    	
-    	updateCell(createDict())
+	func getData(getCourses:([VDCourseSpecial])->()) {
+		getCourses(returnData())
 	}
 	
-	func addEmptyCourse() -> NSManagedObjectID {
+	func addEmptyCourse() -> VDCourseSpecial {
     	
     	return VDDataManager.sharedManager.addEmptyCourse()
 	}
 	
-	func getCourseByID( id: NSManagedObjectID) -> VDCourseSpecial{
+	/*func getCourseByID( id: NSManagedObjectID) -> VDCourseSpecial{
     	
     	return VDCourseSpecial.courses[VDCourseSpecial.getCourseIndexByID(id: id)!]
+	}*/
+	
+	func deleteObjectFromDB(object: VDCourseSpecial) {
+		guard let id = object.ID else {
+			return
+		}
+		VDDataManager.sharedManager.deleteByID(id: id)
 	}
-	
-	func deleteObjectWithIDFromDB(id: NSManagedObjectID) {
-    	
-    	VDDataManager.sharedManager.deleteByID(id: id)
-	}
-	
-   
-	
 }
