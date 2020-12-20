@@ -15,17 +15,18 @@ protocol changeCoursesOfStudents {
 
 class PresenterUser: PresenterGeneralCheck {
 	var temporaryUserID: NSManagedObjectID?
-	weak var viewController: ViewController?
+	weak var viewController: ViewControllerUser?
 	var wireFrame: RouterToDetailController?
 	var interactor: InteractorUserListProtocol?
-	var interactorData = [String:[Special]]()
 	var keys = [String]()
+	var models = [VDUserSpecial]()
+	var viewModels = [UserListViewModel]()
 	var delegate: AssignmentProtocol?
 	func updateDB() {
     	interactor?.updateDataBase()
 	}
-	override func updateCells() {
-    	interactor?.getData(updateCell: { [weak self] (data: [String:[Special]]) -> () in
+	/*override func updateCells() {
+    	interactor?.getData(updateCell: { [weak self] (data: [Special]) -> () in
 	    	self?.interactorData = data
 	    	self?.keys = [String]()
 	    	for key in data.keys {
@@ -45,24 +46,40 @@ class PresenterUser: PresenterGeneralCheck {
 	    	}
 	    	self?.viewController?.setNewCells(cells: cells,keys: self!.keys)
     	})
+	}*/
+
+	func getUsers() {
+		interactor?.getData(getUsers: { [weak self] (data: [VDUserSpecial]) -> () in
+			self?.models = data
+			self?.setViewModels(users: data)
+			viewController?.setViewModels(viewModels: viewModels)
+		})
+
 	}
+
+	func setViewModels(users: [VDUserSpecial]) {
+		for index in 0 ..< users.count {
+			viewModels[index].firstName = users[index].firstName!
+			viewModels[index].lastName = users[index].lastName!
+			viewModels[index].adress = users[index].adress!
+		}
+	}
+
 	func deleteObjectWithIndexPath(indexPath: IndexPath) {
-    	let id = interactorData[keys[indexPath.section]]![indexPath.row].ID
-    	interactor?.deleteObjectWithIDFromDB(id: id!)
+		interactor?.deleteObjectFromDB(object: models[indexPath.row])
 	}
 	
 	func callDetailViewController( myIndexPath: NSIndexPath?) {
-    	//var vc = VDUserDetailControllerTableViewController()
     	var user: VDUserSpecial
     	var isTemporary = false
     	if myIndexPath == nil {
-    	    	let id = interactor!.addEmptyUser()
-    	    	user = interactor!.getUserByID(id: id)
+    	    	user = interactor!.addEmptyUser()
     	    	isTemporary = true
     	}
     	else {
-	    	user = interactorData[keys[myIndexPath!.section]]![myIndexPath!.row] as! VDUserSpecial
+			user = models[myIndexPath!.row]
     	}
+
     	wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
 	}
 	func showAll(_ but: UIBarButtonItem) {

@@ -25,7 +25,6 @@ class VDMyCell: UITableViewCell,configuringCell {
 	
 	
 	func configureCell(withObject object: Special) {
-    	//cell.textLabel!.text = event.timestamp!.description
     	
     	let user = object as! VDUserSpecial
     	firstName?.text = user.firstName

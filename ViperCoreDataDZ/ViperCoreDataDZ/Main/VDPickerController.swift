@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VDPickerController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+class VDPickerController: ViewController,UIPickerViewDelegate,UIPickerViewDataSource {
 	@IBOutlet var picker: UIPickerView?
 	@IBOutlet var button: UIButton?
 	var cellMeaning: String?

@@ -11,12 +11,13 @@ import CoreData
 
 class PresenterCourse: PresenterGeneralCheck {
 	var temporaryCourseID: NSManagedObjectID?
-	weak var viewController: ViewController?
+	weak var viewController: ViewControllerCourse?
 	var wireFrame: RouterToDetailCourseController?
 	var interactor: InteractorCourse?
 	var interactorData = [String:[Special]]()
 	var keys = [String]()
 	var delegate: AssignmentProtocol?
+	
 	func updateDB() {
     	interactor?.updateDataBase()
 	}

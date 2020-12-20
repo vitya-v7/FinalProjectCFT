@@ -1,17 +1,18 @@
 //
-//  ViewController.swift
+//  ViewControllerUser.swift
 //  ViperCoreDataDZ
 //
 //  Created by Admin on 16.12.2020.
 //  Copyright © 2020 Admin. All rights reserved.
 //
-
+import Foundation
 import UIKit
 
 class ViewControllerUser: ViewController {
 	
 	var output: PresenterUser?
-	
+	var viewModels = [UserListViewModel]()
+
 	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.identifier = "UserCell"
@@ -35,9 +36,14 @@ class ViewControllerUser: ViewController {
     	// Do any additional setup after loading the view, typically from a nib.
 	}
 	
+	func setViewModels(viewModels: [UserListViewModel]) {
+		self.viewModels = viewModels
+	}
 	
-	
-	
+	func updateViewModels() {
+		output?.getUsers()
+	}
+
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     	output?.callDetailViewController(myIndexPath: indexPath as NSIndexPath)
     	self.tableView?.reloadData()

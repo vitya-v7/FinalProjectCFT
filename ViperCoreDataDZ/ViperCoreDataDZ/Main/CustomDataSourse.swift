@@ -15,7 +15,7 @@ enum cellType {
 
 class CustomDataSourse: NSObject, UITableViewDataSource {
 
-	var sourceDictionary: [String: [configuringCell]] = [:]
+	var viewModels = [String: [configuringCell]]
 	var keys: [String] = []
 
 	

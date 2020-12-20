@@ -9,7 +9,7 @@
 import UIKit
 
 class RouterToCheckCourseController: NSObject {
-	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> UIViewController
+	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> ViewController
 	{
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "CheckController") as! ViewControllerCheck
@@ -37,7 +37,7 @@ class RouterToCheckCourseController: NSObject {
 	///////////////////////////////
 	
 	
-	class func setupCheckPrepodModule(delegate: AssignmentProtocol, checked: NSInteger) -> UIViewController
+	class func setupCheckPrepodModule(delegate: AssignmentProtocol, checked: NSInteger) -> ViewController
 	{
     	let storyBoard = UIStoryboard.init(name: "Courses", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "PrepodCheck") as! ViewControllerPrepodCheck

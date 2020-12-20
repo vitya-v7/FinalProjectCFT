@@ -9,7 +9,7 @@
 import UIKit
 
 class RouterToCheckController: NSObject {
-	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> UIViewController
+	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> ViewController
 	{
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "CheckController") as! ViewControllerCheck

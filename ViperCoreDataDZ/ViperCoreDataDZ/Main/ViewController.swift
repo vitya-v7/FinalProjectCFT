@@ -12,14 +12,13 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate  {
 
-	var info = ["1","2","3","4","5"]
 	internal var identifier = "UserCell"
 	var dataSource = CustomDataSourse()
 
 	@IBOutlet var tableView: UITableView?
 
 
-	override func viewDidLoad() {
+	public override func viewDidLoad() {
 		super.viewDidLoad()
 
 

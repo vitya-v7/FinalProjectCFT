@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 class RouterToDetailCourseController: NSObject {
-	class func setupDetailModule(course: VDCourseSpecial, isTemporary: Bool) -> UIViewController
+	class func setupDetailModule(course: VDCourseSpecial, isTemporary: Bool) -> ViewController
 	{
     	let course = course
     	let storyBoard = UIStoryboard.init(name: "Courses", bundle: nil)

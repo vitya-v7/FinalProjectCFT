@@ -70,7 +70,7 @@ class VDUserSpecial: Special {
 	}
 	
 
-	static func fetchFromEntities( entity: VDUser) {
+	static func addNewObjectFromEntity( entity: VDUser) -> VDUserSpecial {
     	if getUserIndexByID(id: entity.objectID) == nil {
     	let uSpecial = VDUserSpecial()
     	uSpecial.firstName = entity.firstName
@@ -93,9 +93,10 @@ class VDUserSpecial: Special {
 	    	}
 	    	uSpecial.courses.sortingBy(parameters: ["name"])
 	    	uSpecial.coursesForTeaching.sortingBy(parameters: ["name"])
-    	//uSpecial.sortCoursesForTeachingByName()
-    	//uSpecial.sortCoursesByName()
+
     	users.append(uSpecial)
+		return uSpecial
     	}
+		return VDUserSpecial()
 	}
 }

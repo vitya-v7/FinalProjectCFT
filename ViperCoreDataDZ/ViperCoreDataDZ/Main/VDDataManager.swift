@@ -77,7 +77,7 @@ class VDDataManager: NSObject {
         course.predmet = VDDataManager.coursePredmet[Int(arc4random())%5]
         try? persistentContainer.viewContext.save()
         
-        VDCourseSpecial.fetchFromEntities(entity: course)
+        VDCourseSpecial.addNewObjectFromEntity(entity: course)
         VDCourseSpecial.courses.sortingBy(parameters: ["name"])
         
         let users = getAllObjectsByEntity(name: "VDUser")
@@ -101,7 +101,7 @@ class VDDataManager: NSObject {
     func addEmptyCourse() -> NSManagedObjectID
     {
         let course:VDCourse = insertObject(name:"VDCourse")
-        VDCourseSpecial.fetchFromEntities(entity: course)
+        VDCourseSpecial.addNewObjectFromEntity(entity: course)
         
         return course.objectID
     }
@@ -131,17 +131,17 @@ class VDDataManager: NSObject {
         let arr = getAllObjectsByEntity(name: "VDCourse")
         
         for case let obj as VDCourse in arr {
-            VDCourseSpecial.fetchFromEntities(entity: obj)
+            VDCourseSpecial.addNewObjectFromEntity(entity: obj)
         }
     }
     
     
     /////////////USERS//////////////
     //////////////// MARK: USERS
-    func addEmptyUser() -> NSManagedObjectID {
+    func addEmptyUser() -> VDUserSpecial {
         let user:VDUser = insertObject(name:"VDUser")
-        VDUserSpecial.fetchFromEntities(entity: user)
-        return user.objectID
+        let userModel = VDUserSpecial.addNewObjectFromEntity(entity: user)
+        return userModel
     }
     
     func addUser()
@@ -152,7 +152,7 @@ class VDDataManager: NSObject {
         user.adress = adresses[Int(arc4random())%adressesCount] as String
         try? persistentContainer.viewContext.save()
         
-        VDUserSpecial.fetchFromEntities(entity: user)
+        VDUserSpecial.addNewObjectFromEntity(entity: user)
         
     }
     
@@ -179,7 +179,7 @@ class VDDataManager: NSObject {
         VDUserSpecial.users.removeAll()
         let arr = getAllObjectsByEntity(name: "VDUser")
         for case let obj as VDUser in arr {
-            VDUserSpecial.fetchFromEntities(entity: obj)
+            VDUserSpecial.addNewObjectFromEntity(entity: obj)
         }
     }
     

@@ -10,10 +10,10 @@ import UIKit
 import CoreData
 protocol InteractorUserListProtocol {
 	func updateDataBase()
-	func createDict() -> [String: [Special]]
-	func getData(updateCell:(_ data:[String:[Special]])->())
-	func addEmptyUser() -> NSManagedObjectID
+	func addEmptyUser() -> VDUserSpecial
 	func getUserByID( id: NSManagedObjectID) -> VDUserSpecial
-	func deleteObjectWithIDFromDB(id: NSManagedObjectID)
-	
+	func deleteObjectFromDB(object: VDUserSpecial)
+	func returnData() -> [VDUserSpecial]
+	func getData(getUsers:([VDUserSpecial])->())
 }
+

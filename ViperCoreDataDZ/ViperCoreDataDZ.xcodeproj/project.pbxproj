@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844509A5258F678A005056AA /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509A4258F678A005056AA /* UserListViewModel.swift */; };
+		844509AD258FBCE7005056AA /* CustomDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509AB258FBCE7005056AA /* CustomDataSourse.swift */; };
+		844509B5258FC28D005056AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* ViewController.swift */; };
 		84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */; };
 		84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */; };
 		84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */; };
@@ -47,8 +50,6 @@
 		D7B208411F2E260500B5787E /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2083F1F2E260500B5787E /* Sorting.swift */; };
 		D7B208421F2E260500B5787E /* VDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B208401F2E260500B5787E /* VDDataManager.swift */; };
 		D7B208441F2E262000B5787E /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B208431F2E262000B5787E /* Special.swift */; };
-		D7B208C51F2E2E2800B5787E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B208C31F2E2E2800B5787E /* ViewController.swift */; };
-		D7B208C61F2E2E2800B5787E /* CustomDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B208C41F2E2E2800B5787E /* CustomDataSourse.swift */; };
 		D7B209121F2E2E7700B5787E /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7B208EE1F2E2E7700B5787E /* TabBar.storyboard */; };
 		D7B209131F2E2E7700B5787E /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7B208EF1F2E2E7700B5787E /* Courses.storyboard */; };
 		D7B209141F2E2E7700B5787E /* Prepods.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7B208F01F2E2E7700B5787E /* Prepods.storyboard */; };
@@ -60,6 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		844509A4258F678A005056AA /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		844509AB258FBCE7005056AA /* CustomDataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSourse.swift; sourceTree = "<group>"; };
+		844509B4258FC28D005056AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDPickerController.swift; sourceTree = "<group>"; };
 		84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepodCheck.swift; sourceTree = "<group>"; };
 		84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDetailCourse.swift; sourceTree = "<group>"; };
@@ -102,8 +106,6 @@
 		D7B2083F1F2E260500B5787E /* Sorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		D7B208401F2E260500B5787E /* VDDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDDataManager.swift; sourceTree = "<group>"; };
 		D7B208431F2E262000B5787E /* Special.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Special.swift; sourceTree = "<group>"; };
-		D7B208C31F2E2E2800B5787E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D7B208C41F2E2E2800B5787E /* CustomDataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSourse.swift; sourceTree = "<group>"; };
 		D7B208EE1F2E2E7700B5787E /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		D7B208EF1F2E2E7700B5787E /* Courses.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		D7B208F01F2E2E7700B5787E /* Prepods.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Prepods.storyboard; sourceTree = "<group>"; };
@@ -125,9 +127,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84E1E5B8258E850C00B242E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				844509A4258F678A005056AA /* UserListViewModel.swift */,
+			);
+			name = Models;
+			path = UserListModule/Models;
+			sourceTree = "<group>";
+		};
+		84E1E5B9258E851500B242E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		84E1E5BA258E85AF00B242E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84E1E5BB258E85B600B242E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D7A121D31F30F51100315803 /* CourseListModule */ = {
 			isa = PBXGroup;
 			children = (
+				84E1E5BA258E85AF00B242E9 /* Models */,
 				84D6D79625873D8800FFCAE7 /* InteractorCourse.swift */,
 				84D6D79525873D8800FFCAE7 /* PresenterCourse.swift */,
 				84D6D79325873D8700FFCAE7 /* RouterToDetailCourseController.swift */,
@@ -139,6 +172,7 @@
 		D7A121D41F30F51F00315803 /* CourseDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				84E1E5BB258E85B600B242E9 /* Models */,
 				84D6D78B25873D7400FFCAE7 /* InteractorDetailCourse.swift */,
 				84D6D78C25873D7400FFCAE7 /* PresenterDetailCourse.swift */,
 				84D6D78A25873D7400FFCAE7 /* RouterToCheckCourseController.swift */,
@@ -239,6 +273,7 @@
 		D7E1C30A1F2F2AD30079D54D /* UserListModule */ = {
 			isa = PBXGroup;
 			children = (
+				84E1E5B8258E850C00B242E9 /* Models */,
 				84D6D7A825873DA800FFCAE7 /* InteractorUser.swift */,
 				84D6D7A625873DA800FFCAE7 /* PresenterUser.swift */,
 				84D6D7A725873DA800FFCAE7 /* RouterToDetailController.swift */,
@@ -250,6 +285,7 @@
 		D7E1C30B1F2F2B0B0079D54D /* UserDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				84E1E5B9258E851500B242E9 /* Models */,
 				84D6D79C25873D9800FFCAE7 /* InteractorDetailUser.swift */,
 				84D6D79D25873D9800FFCAE7 /* PresenterDetailUser.swift */,
 				84D6D79F25873D9800FFCAE7 /* RouterToCheckController.swift */,
@@ -270,10 +306,10 @@
 		D7F2B8B81F333019006B54C1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				844509B4258FC28D005056AA /* ViewController.swift */,
+				844509AB258FBCE7005056AA /* CustomDataSourse.swift */,
 				D7C744811F31F7910063FD84 /* PresenterGeneralCheck.swift */,
 				D7F2B8B61F331DF9006B54C1 /* InteractorUserListProtocol.swift */,
-				D7B208C41F2E2E2800B5787E /* CustomDataSourse.swift */,
-				D7B208C31F2E2E2800B5787E /* ViewController.swift */,
 				D7B208401F2E260500B5787E /* VDDataManager.swift */,
 				84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */,
 				D7B208431F2E262000B5787E /* Special.swift */,
@@ -380,7 +416,7 @@
 				D7F2B8B51F331818006B54C1 /* InteractorPrepod.swift in Sources */,
 				84D6D7B825873DEF00FFCAE7 /* VDCourse+CoreDataClass.swift in Sources */,
 				84D6D79125873D7400FFCAE7 /* PresenterDetailCourse.swift in Sources */,
-				D7B208C61F2E2E2800B5787E /* CustomDataSourse.swift in Sources */,
+				844509A5258F678A005056AA /* UserListViewModel.swift in Sources */,
 				D7B208441F2E262000B5787E /* Special.swift in Sources */,
 				84D6D7AC25873DA900FFCAE7 /* InteractorUser.swift in Sources */,
 				84D6D7A225873D9800FFCAE7 /* ViewControllerDetailUser.swift in Sources */,
@@ -401,13 +437,14 @@
 				D7B208251F2E07A600B5787E /* AppDelegate.swift in Sources */,
 				D72F89C61F30873400926958 /* ViewControllerCheck.swift in Sources */,
 				84D6D79725873D8800FFCAE7 /* RouterToDetailCourseController.swift in Sources */,
+				844509B5258FC28D005056AA /* ViewController.swift in Sources */,
 				D7C744821F31F7910063FD84 /* PresenterGeneralCheck.swift in Sources */,
+				844509AD258FBCE7005056AA /* CustomDataSourse.swift in Sources */,
 				84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */,
 				84D6D7B925873DEF00FFCAE7 /* VDCourseSpecial.swift in Sources */,
 				84D6D7AA25873DA900FFCAE7 /* PresenterUser.swift in Sources */,
 				84D6D79925873D8800FFCAE7 /* PresenterCourse.swift in Sources */,
 				84D6D7A325873D9800FFCAE7 /* RouterToCheckController.swift in Sources */,
-				D7B208C51F2E2E2800B5787E /* ViewController.swift in Sources */,
 				84D6D7C225873E0400FFCAE7 /* VDDetailCell.swift in Sources */,
 				84D6D7A025873D9800FFCAE7 /* InteractorDetailUser.swift in Sources */,
 			);

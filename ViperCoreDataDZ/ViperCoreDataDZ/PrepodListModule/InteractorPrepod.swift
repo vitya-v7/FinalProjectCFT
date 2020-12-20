@@ -14,7 +14,7 @@ class InteractorPrepod: NSObject, InteractorUserListProtocol{
     	VDDataManager.sharedManager.updateUserBD()
     	VDDataManager.sharedManager.updateCourseBD()
 	}
-	func createDict() -> [String: [Special]]{
+	/*func createDict() -> [String: [Special]]{
     	
     	nameCourse = [String]()
     	var dict: [String: [VDUserSpecial]] = [:]
@@ -36,13 +36,13 @@ class InteractorPrepod: NSObject, InteractorUserListProtocol{
     	}
     	return dict
     	
+	}*/
+
+	func getData(getUsers:([VDUserSpecial])->()) {
+		getUsers(returnData())
 	}
 
-	func getData(updateCell:(_ data:[String:[Special]])->()) {
-    	
-    	updateCell(createDict())
-	}
-	func addEmptyUser() -> NSManagedObjectID {
+	func addEmptyUser() -> VDUserSpecial {
     	
     	return VDDataManager.sharedManager.addEmptyUser()
 	}
@@ -50,8 +50,17 @@ class InteractorPrepod: NSObject, InteractorUserListProtocol{
     	
     	return VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: id)!]
 	}
-	func deleteObjectWithIDFromDB(id: NSManagedObjectID) {
+	func deleteObjectFromDB(object: VDUserSpecial) {
     	
-    	VDDataManager.sharedManager.deleteByID(id: id)
+		VDDataManager.sharedManager.deleteByID(id: object.ID!)
 	}
+
+	func returnData() -> [VDUserSpecial] {
+		var users = VDUserSpecial.users
+		users.sortingBy(parameters: ["firstName", "lastName"])
+		return users
+	}
+
 }
+
+
