@@ -31,6 +31,14 @@ class InteractorDetailUser: NSObject{
     	VDDataManager.sharedManager.updateCourseBD()
 	}
 
+	func getCoursesOfUserForLearning() -> [VDCourseSpecial]? {
+		return user?.courses
+	}
+
+	func getCoursesOfUserForTeaching() -> [VDCourseSpecial]? {
+		return user?.coursesForTeaching
+	}
+
 	func updateUserWithObject(userIn: VDUserSpecial) {
     	temporaryUserID = nil
 		user = userIn

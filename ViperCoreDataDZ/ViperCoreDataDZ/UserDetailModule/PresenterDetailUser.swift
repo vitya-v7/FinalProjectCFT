@@ -23,50 +23,56 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 
 
 	/*func getUser() {
-		modelForUser = interactor?.getUserModel() ?? VDUserSpecial()
-		viewModelForUser = modelToViewModel(model: modelForUser)
+	modelForUser = interactor?.getUserModel() ?? VDUserSpecial()
+	viewModelForUser = modelToViewModel(model: modelForUser)
 	}*/
 
 	/*func getTFcount() -> Int {
-    	return interactor!.nameData.count
+	return interactor!.nameData.count
 	}*/
 
 	func isTemporaryUser() -> Bool {
-    	if interactor?.temporaryUserID != nil {
-	    	return true
-    	}
-    	return false
+		if interactor?.temporaryUserID != nil {
+			return true
+		}
+		return false
 	}
 	func daleteTemporaryUser() {
-    	interactor?.deleteTemporaryUserFromDB()
+		interactor?.deleteTemporaryUserFromDB()
 	}
 	func changeCoursesOfStud(checkedCourses: [Bool]) {
-	   interactor!.changeCoursesOfStud(checkedCourses: checkedCourses)
+		interactor!.changeCoursesOfStud(checkedCourses: checkedCourses)
 	}
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
-	   interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
+		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
 	}
 
 	func callCheckViewController( myIndexPath: IndexPath?) {
-    	//var vc = VDUserDetailControllerTableViewController()
-    	var type: typeOfCourse = .learning
-    	var boolArray = [Bool](repeating: false, count: VDCourseSpecial.courses.count)
-    	if myIndexPath?.row == 0 {
-    	if myIndexPath!.section == 1 {
-	    	for obj in (interactor?.user?.courses)! {
-    	    	boolArray[VDCourseSpecial.getCourseIndexByID(id: obj.ID!)!] = true
-	    	}
-	    	type = .learning
-    	}
-    	if myIndexPath!.section == 2 {
-	    	for obj in (interactor?.user?.coursesForTeaching)! {
-    	    	boolArray[VDCourseSpecial.getCourseIndexByID(id: obj.ID!)!] = true
-	    	}
-	    	type = .teaching
-    	}
-    	
-    	wireFrame?.presentParticipantChecksModule(delegate: self,checked: boolArray, type: type, fromView: viewController!)
-    	}
+		//var vc = VDUserDetailControllerTableViewController()
+		var type: typeOfCourse = .learning
+		var boolArray = [Bool](repeating: false, count: VDCourseSpecial.courses.count)
+		if myIndexPath?.row == 0 {
+			if myIndexPath!.section == 1 {
+				let courses = interactor?.getCoursesOfUserForLearning()
+				if courses != nil {
+					for obj in courses! {
+						boolArray[VDCourseSpecial.getCourseIndexByID(id: obj.ID!)!] = true
+					}
+				}
+				type = .learning
+			}
+			if myIndexPath!.section == 2 {
+				let courses = interactor?.getCoursesOfUserForTeaching()
+				if courses != nil {
+					for obj in courses! {
+						boolArray[VDCourseSpecial.getCourseIndexByID(id: obj.ID!)!] = true
+					}
+				}
+				type = .teaching
+			}
+
+			wireFrame?.presentParticipantChecksModule(delegate: self,checked: boolArray, type: type, fromView: viewController!)
+		}
 	}
 
 	func updateUser(viewModel: UserViewModel) {
@@ -87,13 +93,13 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	}
 
 	func updateDBAndGetUserViewModel() -> UserViewModel {
-    	interactor?.updateDataBase()
+		interactor?.updateDataBase()
 		self.modelForUser = interactor?.getUserModel() ?? VDUserSpecial()
 		self.viewModelForUser = modelToViewModel(model: self.modelForUser)
 		return self.viewModelForUser
 	}
 
 	func dismissView() {
-    	viewController?.navigationController?.popViewController(animated: true)
+		viewController?.navigationController?.popViewController(animated: true)
 	}
 }
