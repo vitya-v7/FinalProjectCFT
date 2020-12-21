@@ -13,7 +13,10 @@ class VDMyCell: UITableViewCell {
 	@IBOutlet var firstName: UILabel?
 	@IBOutlet var lastName: UILabel?
 	@IBOutlet var adress: UILabel?
+	
 	static let cellIdentifier = "UserCell"
+	static let nibName = "userDescriptionCell"
+
 	override func awakeFromNib() {
     	super.awakeFromNib()
     	adress?.adjustsFontSizeToFitWidth = true

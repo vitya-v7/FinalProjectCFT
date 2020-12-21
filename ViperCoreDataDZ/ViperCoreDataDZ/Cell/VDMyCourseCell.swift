@@ -18,6 +18,8 @@ class VDMyCourseCell: UITableViewCell {
     	// Initialization code
 	}
 	static let cellIdentifier = "CourseCell"
+	static let nibName = "courseDescriptionCell"
+	
 	override func setSelected(_ selected: Bool, animated: Bool) {
     	super.setSelected(selected, animated: animated)
 

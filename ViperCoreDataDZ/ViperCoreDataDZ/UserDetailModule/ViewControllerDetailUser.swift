@@ -22,9 +22,9 @@ class ViewControllerDetailUser: UIViewController
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
-		var nib = UINib.init(nibName: "detailcell", bundle: nil)
-		self.tableView?.register(nib, forCellReuseIdentifier: "UserDetailCell")
-		nib = UINib.init(nibName: "courseDescriptionCell", bundle: nil)
+		var nib = UINib.init(nibName: VDDetailCell.nibName, bundle: nil)
+		self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifierForUser)
+		nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
 		nib = UINib.init(nibName: "VDCourseCheckViewController", bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: "CoursesCheck")
@@ -32,10 +32,6 @@ class ViewControllerDetailUser: UIViewController
 		self.tableView?.dataSource = self
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))
 	}
-	
-
-	
-
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
@@ -43,7 +39,7 @@ class ViewControllerDetailUser: UIViewController
 	}
 
 	@objc func saveData(_ but: UIBarButtonItem) {
-		for i in 0..<output!.getTFcount() {
+		for i in 0..<3 {
 			if let cell = tableView?.cellForRow(at: IndexPath.init(row: i, section: 0)) as? VDDetailCell {
 				cell.txtField!.resignFirstResponder()
 			}
@@ -56,8 +52,6 @@ class ViewControllerDetailUser: UIViewController
 
 	}*/
 
-
-
 	override func viewWillDisappear(_ animated: Bool) {
 
 		if (self.isMovingFromParent){
@@ -66,8 +60,8 @@ class ViewControllerDetailUser: UIViewController
 			}
 		}
 	}
-	override func viewWillAppear(_ animated: Bool) {
 
+	override func viewWillAppear(_ animated: Bool) {
 		output?.updateDB()
 		self.tableView?.reloadData()
 	}
@@ -78,16 +72,63 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of rows
 		switch section {
-		case 0: return output!.getTFcount()
-		case 1: return output!.getCoursesCount() + 1
-		case 2: return output!.getCoursesForTeachingCount() + 1
+		case 0: return 3
+		case 1: return viewModelsForCoursesForLearning.count + 1
+		case 2: return viewModelsForCoursesForTeaching.count + 1
 		default: return 0
 		}
 	}
 
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		return (output?.getCellAtIndexPath(indexPath: indexPath))!
+		switch indexPath.section {
+		case 0: let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifierForUser) as! VDDetailCell
+
+		cell.delegate1 = self
+			switch indexPath.row {
+			case 0:
+				cell.label?.text = "firstName"
+				cell.txtField?.text = viewModelForUser.firstName
+			case 1:
+				cell.label?.text = "lastName"
+				cell.txtField?.text = viewModelForUser.lastName
+			case 2:
+				cell.label?.text = "adress"
+				cell.txtField?.text = viewModelForUser.adress
+			default:
+				fatalError("\(self.description)" + " - cellForRow Func: index out of range")
+			}
+		return cell
+		case 1,2:
+			let row = indexPath.row - 1
+			var cell = VDMyCourseCell()
+			let identifier = VDMyCourseCell.cellIdentifier
+			cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! VDMyCourseCell
+			if indexPath.row == 0 {
+				cell.name?.text = " "
+				cell.predmet?.text = " "
+				cell.prepod?.text = "Add Course"
+				return cell
+			}
+
+			if indexPath.section == 1
+			{
+				cell.name?.text = viewModelsForCoursesForLearning[row].name
+				cell.predmet?.text = viewModelsForCoursesForLearning[row].predmet
+				cell.prepod?.text = viewModelsForCoursesForLearning[row].prepod
+			}
+			else if indexPath.section == 2
+			{
+				cell.name?.text = viewModelsForCoursesForTeaching[row].name
+				cell.predmet?.text = viewModelsForCoursesForTeaching[row].predmet
+				cell.prepod?.text = viewModelsForCoursesForTeaching[row].prepod
+			}
+			return cell
+		default: break
+		}
+
+
+		return  UITableViewCell()
 	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -152,6 +193,12 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 		cell.selectionStyle = .none
 	}
 
+}
+
+extension ViewControllerDetailUser: TextFieldChanged {
+	func textFieldDataChanged(tag: Int, value: String) {
+
+	}
 }
 
 

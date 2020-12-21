@@ -12,10 +12,17 @@ class UserListViewModel {
 	var adress: String
 	var firstName: String
 	var lastName: String
+	var textFieldTag: Int?
+
 	init(adress: String, firstName: String, lastName: String) {
 		self.adress = adress
 		self.firstName = firstName
 		self.lastName = lastName
 	}
-	init() {}
+
+	init() {
+		self.adress = ""
+		self.firstName = ""
+		self.lastName = ""
+	}
 }

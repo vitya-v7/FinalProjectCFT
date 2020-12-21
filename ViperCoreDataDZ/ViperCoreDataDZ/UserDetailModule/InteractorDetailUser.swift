@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class InteractorDetailUser: NSObject, TextFieldChanged{
+class InteractorDetailUser: NSObject{
 	var temporaryUserID: NSManagedObjectID?
 
 	var user: VDUserSpecial? {

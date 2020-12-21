@@ -8,7 +8,7 @@
 
 import UIKit
 protocol TextFieldChanged {
-	func changeDictionaryData(name: String, value: String)
+	func textFieldDataChanged(tag: Int, value: String)
 }
 
 protocol CallingPopoverByPicker {
@@ -16,15 +16,18 @@ protocol CallingPopoverByPicker {
 }
 class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	@IBOutlet var label: UILabel?
-	var cellMeaning: String?
+	@IBOutlet var txtField: UITextField?
+	
 	var delegate1: TextFieldChanged?
 	var delegate2: CallingPopoverByPicker?
+	static let cellIdentifierForUser = "UserDetailCell"
+	static let cellIdentifierForCourse = "CourseDetailCell"
+	static let nibName = "detailcell"
 
-	@IBOutlet var txtField: UITextField?
    
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		//textField.resignFirstResponder()
-		delegate1?.changeDictionaryData(name: cellMeaning!, value: textField.text!)
+		delegate1?.textFieldDataChanged(tag: textField.tag, value: textField.text!)
 	}
 
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

@@ -26,7 +26,7 @@ class ViewControllerDetailCourse: UIViewController, UITableViewDelegate, UITable
     	self.tableView?.estimatedRowHeight = 300
     	self.tableView?.rowHeight = UITableView.automaticDimension
     	var nib = UINib.init(nibName: "detailcell", bundle: nil)
-    	self.tableView?.register(nib, forCellReuseIdentifier: "UserDetailCell")
+    	self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifierForCourse) // ??????
     	nib = UINib.init(nibName: "userDescriptionCell", bundle: nil)
     	self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
     	
@@ -143,4 +143,12 @@ class ViewControllerDetailCourse: UIViewController, UITableViewDelegate, UITable
 	func changePredmetTextField(value: String) {
 		(tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell).txtField!.text = value
 	}
+}
+
+extension ViewControllerDetailCourse: TextFieldChanged {
+	func textFieldDataChanged(tag: Int, value: String) {
+		<#code#>
+	}
+
+
 }

@@ -70,6 +70,7 @@ class ViewControllerUser: UIViewController {
 
 
 }
+
 extension ViewControllerUser: IListViewController {
 	func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [UserListViewModel]

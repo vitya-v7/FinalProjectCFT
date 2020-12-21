@@ -12,18 +12,21 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	weak var viewController: ViewControllerDetailUser?
 	var interactor: InteractorDetailUser?
 	var wireFrame: RouterToCheckController?
-	let identifier2 = "UserDetailCell"
 
-	func getCoursesCount() -> Int {
-    	return interactor!.user!.courses.count
-	}
+	var viewModelForUser = UserListViewModel()
+	var viewModelsForCoursesForLearning = [CourseListViewModel]()
+	var viewModelsForCoursesForTeaching = [CourseListViewModel]()
 
-	func getCoursesForTeachingCount()  -> Int {
-    	return interactor!.user!.coursesForTeaching.count
-	}
-	func getTFcount() -> Int {
+	var modelForUser = VDUserSpecial()
+	var modelsForCoursesForLearning = [VDCourseSpecial]()
+	var modelsForCoursesForTeaching = [VDCourseSpecial]()
+
+
+
+	/*func getTFcount() -> Int {
     	return interactor!.nameData.count
-	}
+	}*/
+
 	func isTemporaryUser() -> Bool {
     	if interactor?.temporaryUserID != nil {
 	    	return true
@@ -61,42 +64,8 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
     	wireFrame?.presentParticipantChecksModule(delegate: self,checked: boolArray, type: type, fromView: viewController!)
     	}
 	}
-	func getCellAtIndexPath(indexPath: IndexPath) -> UITableViewCell {
-    	switch indexPath.section {
-    	case 0: let cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier2) as! VDDetailCell
-    	cell.cellMeaning = interactor!.getNameOfTF(at: indexPath.row)
-		cell.delegate1 = interactor
-    	cell.label?.text = cell.cellMeaning
-    	cell.txtField?.text = interactor!.getValueOfTF(at: indexPath.row) ?? ""
-    	return cell
-    	case 1,2:
-	    	let row = indexPath.row - 1
-	    	var cell = VDMyCourseCell()
-			let identifier = VDMyCourseCell.cellIdentifier
-	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCourseCell
-	    	if indexPath.row == 0 {
-    	    	cell.name?.text = " "
-    	    	cell.predmet?.text = " "
-    	    	cell.prepod?.text = "Add Course"
-    	    	
-    	    	return cell
-	    	}
-	    	
-	    	if indexPath.section == 1
-	    	{
-    	    	cell.configureCell(withObject:  interactor!.user!.courses[row])
-	    	}
-	    	else if indexPath.section == 2
-	    	{
-    	    	cell.configureCell(withObject: interactor!.user!.coursesForTeaching[row])
-	    	}
-	    	return cell
-    	default: break
-    	}
-    	
-    	
-    	return  UITableViewCell()
-	}
+	
+	
 	
 	func updateUser() {
     	

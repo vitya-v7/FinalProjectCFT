@@ -15,7 +15,15 @@ enum typeOfCourse {
 	case students
 }
 
-class ViewControllerCheck: ViewController {
+class ViewControllerCheck: UIViewController, IListViewController {
+	func setViewModels(viewModels: [IListViewModel]) {
+
+	}
+
+	func updateViewModels() {
+		
+	}
+
 	var output: PresenterGeneralCheck?
 	var checked : [Bool]?
 	var type: typeOfCourse = .learning

@@ -19,7 +19,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
 	weak var viewController: ViewControllerDetailCourse?
 	var interactor: InteractorDetailCourse?
 	var wireFrame: RouterToCheckCourseController?
-	let identifier2 = "CourseDetailCell"
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
     	interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
 	}
@@ -116,7 +115,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
 	    	
 	    	//cell.cellIndex = indexPath.row
 	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDDetailCell
-	    	cell.cellMeaning = interactor!.getNameOfTF(at: indexPath.row) 
 			cell.delegate1 = interactor
 	    	if indexPath.row == 0 {
 				cell.label?.text = interactor!.getNameOfTF(at: indexPath.row)

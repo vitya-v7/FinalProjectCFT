@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class InteractorDetailCourse: NSObject, TextFieldChanged {
+class InteractorDetailCourse: NSObject {
 	var temporaryCourseID: NSManagedObjectID?
 	var delegate1: TableViewReloaded?
 	var course: VDCourseSpecial? {
