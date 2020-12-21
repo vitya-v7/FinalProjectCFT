@@ -25,6 +25,9 @@ class ViewControllerCheck: ViewController {
 		super.viewDidLoad()
 		tableView?.delegate = self
 		tableView?.dataSource = self
+		let nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
+		tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
+		tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
 		self.navigationItem.rightBarButtonItems = []
 		self.navigationItem.leftBarButtonItems = []
 		let but = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: "") , style: .plain, target: self, action: #selector(saveChoice(_:)))
@@ -114,9 +117,18 @@ extension ViewControllerCheck: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCourseCell.cellIdentifier, for: indexPath) as? VDMyCourseCell
-		guard let cellIn = cell, let vModels = viewModels else { return UITableViewCell() }
-		cellIn.configureCell(withObject: vModels[indexPath.row] as! CourseViewModel)
-		return cellIn
+		if type == .learning || type == .teaching {
+			let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCourseCell.cellIdentifier, for: indexPath) as? VDMyCourseCell
+			guard let cellIn = cell, let vModels = viewModels else { return UITableViewCell() }
+			cellIn.configureCell(withObject: vModels[indexPath.row] as! CourseViewModel)
+			return cellIn
+		}
+		if type == .students {
+			let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier, for: indexPath) as? VDMyCell
+			guard let cellIn = cell, let vModels = viewModels else { return UITableViewCell() }
+			cellIn.configureCell(withObject: vModels[indexPath.row] as! UserViewModel)
+			return cellIn
+		}
+		return UITableViewCell()
 	}
 }

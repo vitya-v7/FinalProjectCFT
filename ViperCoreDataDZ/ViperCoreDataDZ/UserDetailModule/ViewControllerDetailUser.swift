@@ -73,6 +73,8 @@ class ViewControllerDetailUser: UIViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		self.viewModelForUser = output?.updateDBAndGetUserViewModel() ?? UserViewModel()
+		self.viewModelsForCoursesForTeaching = output?.getCoursesVMForTeaching() ?? [CourseViewModel]()
+		self.viewModelsForCoursesForLearning = output?.getCoursesVMForLearning() ?? [CourseViewModel]()
 		self.tableView?.reloadData()
 	}
 }

@@ -47,6 +47,20 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		interactor?.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
 	}
 
+
+	func getCoursesVMForLearning() -> [CourseViewModel] {
+		modelsForCoursesForLearning = interactor?.getCoursesOfUserForLearning() ?? [VDCourseSpecial]()
+		viewModelsForCoursesForLearning = convertModelsToViewModels(models: modelsForCoursesForLearning)
+		return viewModelsForCoursesForLearning
+	}
+
+	func getCoursesVMForTeaching() -> [CourseViewModel] {
+		modelsForCoursesForTeaching = interactor?.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
+		viewModelsForCoursesForTeaching = convertModelsToViewModels(models: modelsForCoursesForTeaching)
+		return viewModelsForCoursesForTeaching
+	}
+
+
 	func callCheckViewController( myIndexPath: IndexPath?) {
 		//var vc = VDUserDetailControllerTableViewController()
 		var type: typeOfCourse = .learning
@@ -90,6 +104,18 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		model.adress = viewModel.adress
 		model.firstName = viewModel.firstName
 		model.lastName = viewModel.lastName
+	}
+
+	func convertModelsToViewModels(models: [VDCourseSpecial]) -> [CourseViewModel] {
+		var viewModels = [CourseViewModel]()
+		for item in models {
+			let vm = CourseViewModel()
+			vm.name = item.name ?? ""
+			vm.prepod = (item.prepod?.firstName ?? "") + " " + (item.prepod?.lastName ?? "")
+			vm.predmet = item.predmet ?? ""
+			viewModels.append(vm)
+		}
+		return viewModels
 	}
 
 	func updateDBAndGetUserViewModel() -> UserViewModel {
