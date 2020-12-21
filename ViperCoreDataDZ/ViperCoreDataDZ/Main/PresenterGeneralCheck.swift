@@ -21,6 +21,6 @@ class PresenterGeneralCheck: NSObject, AssignmentProtocol {
 	func changeStudsOfCourse(checkedStudents: [Bool]) {}
 	func changePrepodOfCourse(checkedStudent: NSInteger) {}
 	func dismissView() {}
-	func updateCells() {}
+	//func updateCells() {}
 
 }

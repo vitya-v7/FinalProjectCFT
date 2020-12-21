@@ -76,8 +76,6 @@ class ViewControllerUser: ViewController {
 
 }
 
-
-
 extension ViewControllerUser: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

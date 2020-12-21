@@ -60,6 +60,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 					}
 				}
 				type = .learning
+				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModelsForCoursesForLearning, checked: boolArray, type: type, fromView: viewController!)
 			}
 			if myIndexPath!.section == 2 {
 				let courses = interactor?.getCoursesOfUserForTeaching()
@@ -69,9 +70,8 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 					}
 				}
 				type = .teaching
+				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModelsForCoursesForTeaching, checked: boolArray, type: type, fromView: viewController!)
 			}
-
-			wireFrame?.presentParticipantChecksModule(delegate: self,checked: boolArray, type: type, fromView: viewController!)
 		}
 	}
 

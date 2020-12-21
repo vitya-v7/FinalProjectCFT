@@ -19,7 +19,7 @@ class ViewControllerPrepod: ViewController {
     	output?.wireFrame = RouterToDetailUserController()
     	let interactor: InteractorPrepod = InteractorPrepod()
     	output?.interactor = interactor
-    	output!.updateCells()
+    	//output!.updateCells()
 	}
 	
 
@@ -33,7 +33,7 @@ class ViewControllerPrepod: ViewController {
 	override func viewWillAppear(_ animated: Bool) {
  
     	output?.updateDB()
-    	output?.updateCells()
+    	//output?.updateCells()
     	tableView?.reloadData()
 	}
 	

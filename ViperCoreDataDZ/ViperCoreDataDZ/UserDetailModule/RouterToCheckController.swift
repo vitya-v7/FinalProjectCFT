@@ -9,14 +9,15 @@
 import UIKit
 
 class RouterToCheckController: NSObject {
-	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> UIViewController
+	class func setupCheckModule(delegate: AssignmentProtocol, viewModels: [IListViewModel], checked: [Bool], type: typeOfCourse) -> UIViewController
 	{
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "CheckController") as! ViewControllerCheck
-    	let interactor: InteractorCourse = InteractorCourse()
-    	let presenter: PresenterCourse = PresenterCourse()
+    	let interactor: InteractorUser = InteractorUser()
+    	let presenter: PresenterUser = PresenterUser()
     	vc.checked = checked
     	vc.type = type
+		vc.viewModels = viewModels
     	presenter.viewController = vc
     	presenter.delegate = delegate
     	presenter.interactor = interactor
@@ -25,9 +26,9 @@ class RouterToCheckController: NSObject {
     	return vc
 	}
 	
-	func presentParticipantChecksModule(delegate: AssignmentProtocol,checked: [Bool], type: typeOfCourse, fromView: ViewControllerDetailUser) {
+	func presentParticipantChecksModule(delegate: AssignmentProtocol, viewModels: [IListViewModel], checked: [Bool], type: typeOfCourse, fromView: ViewControllerDetailUser) {
     	
-    	let destinationVC = RouterToCheckController.setupCheckModule(delegate:delegate, checked:checked,type:type) as! ViewControllerCheck
+		let destinationVC = RouterToCheckController.setupCheckModule(delegate:delegate,viewModels:viewModels,checked:checked,type:type) as! ViewControllerCheck
     	
     	fromView.navigationController?.pushViewController(destinationVC, animated: true)
     	
