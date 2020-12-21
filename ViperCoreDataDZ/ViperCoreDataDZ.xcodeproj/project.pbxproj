@@ -238,8 +238,8 @@
 		D7B2089C1F2E27F500B5787E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				D7B208971F2E27F500B5787E /* User */,
 				D7B2089B1F2E27F500B5787E /* Course */,
+				D7B208971F2E27F500B5787E /* User */,
 			);
 			name = Entities;
 			sourceTree = "<group>";

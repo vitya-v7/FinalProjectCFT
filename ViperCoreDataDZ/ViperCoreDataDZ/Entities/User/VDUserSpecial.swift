@@ -103,7 +103,6 @@ class VDUserSpecial: Special {
 		uSpecial.courses.sortingBy(parameters: ["name"])
 		uSpecial.coursesForTeaching.sortingBy(parameters: ["name"])
 
-		users.append(uSpecial)
 		return uSpecial
 	}
 

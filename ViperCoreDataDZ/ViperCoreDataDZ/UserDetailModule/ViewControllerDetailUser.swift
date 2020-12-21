@@ -66,7 +66,7 @@ class ViewControllerDetailUser: UIViewController
 
 		if (self.isMovingFromParent){
 			if output!.isTemporaryUser() {
-				output!.daleteTemporaryUser()
+				output!.deleteTemporaryUser()
 			}
 		}
 	}

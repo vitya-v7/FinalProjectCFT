@@ -36,7 +36,7 @@ class PresenterUser: PresenterGeneralCheck {
 	func setViewModels(users: [VDUserSpecial]) {
 		viewModels = [UserViewModel]()
 		for index in 0 ..< users.count {
-			var vm = UserViewModel()
+			let vm = UserViewModel()
 			vm.firstName = users[index].firstName!
 			vm.lastName = users[index].lastName!
 			vm.adress = users[index].adress!
@@ -60,17 +60,18 @@ class PresenterUser: PresenterGeneralCheck {
     	else {
 			user = models[myIndexPath!.row]
     	}
-
     	wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
 	}
+
 	func showAll(_ but: UIBarButtonItem) {
     	VDDataManager.sharedManager.showAllObjects()
 	}
+
 	override func dismissView() {
     	viewController?.navigationController?.popViewController(animated: true)
     	
 	}
-	
+
 	override func changeStudsOfCourse(checkedStudents: [Bool]) {
     	delegate?.changeStudsOfCourse?(checkedStudents: checkedStudents)
 	}

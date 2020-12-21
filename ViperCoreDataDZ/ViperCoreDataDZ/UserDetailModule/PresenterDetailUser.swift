@@ -37,7 +37,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		}
 		return false
 	}
-	func daleteTemporaryUser() {
+	func deleteTemporaryUser() {
 		interactor?.deleteTemporaryUserFromDB()
 	}
 	func changeCoursesOfStud(checkedCourses: [Bool]) {
