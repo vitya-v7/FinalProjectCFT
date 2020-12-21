@@ -19,6 +19,7 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	var cellMeaning: String?
 	var delegate1: TextFieldChanged?
 	var delegate2: CallingPopoverByPicker?
+
 	@IBOutlet var txtField: UITextField?
    
 	func textFieldDidEndEditing(_ textField: UITextField) {
@@ -28,7 +29,6 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     	if delegate2 != nil  {
-    	
 	    	delegate2?.callPopover(cell: self)
 	    	return false
     	}

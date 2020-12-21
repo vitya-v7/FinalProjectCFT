@@ -72,7 +72,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
 	func callPopover(cell: VDDetailCell) {
 		let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
 		let pv = storyboard.instantiateViewController(withIdentifier: "PickerController") as! VDPickerController
-		pv.cellMeaning = cell.cellMeaning
+		pv.cellMeaning = "predmet" 
 		pv.delegate1 = interactor
 		if cell.txtField?.text != nil {
 			pv.initialTitle = cell.txtField?.text

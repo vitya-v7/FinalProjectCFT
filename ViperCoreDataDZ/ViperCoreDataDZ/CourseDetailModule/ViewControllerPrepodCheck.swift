@@ -11,7 +11,7 @@ protocol changePrepodOfCourse {
 	
 	func changePrepodOfCourse(checkedStudent: Int?)
 }
-class ViewControllerPrepodCheck: ViewController {
+class ViewControllerPrepodCheck: UIViewController {
    
 	var output: PresenterGeneralCheck?
     	var prepodIndex: NSInteger = -1

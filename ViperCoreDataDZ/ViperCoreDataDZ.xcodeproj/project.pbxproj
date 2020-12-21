@@ -11,6 +11,7 @@
 		844509B5258FC28D005056AA /* IListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* IListViewController.swift */; };
 		844509B8258FCC6D005056AA /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B7258FCC6D005056AA /* CourseListViewModel.swift */; };
 		844509C325901F2A005056AA /* IListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509C225901F2A005056AA /* IListViewModel.swift */; };
+		844509C725902BDC005056AA /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509C625902BDC005056AA /* UserDetailViewModel.swift */; };
 		84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */; };
 		84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */; };
 		84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */; };
@@ -66,6 +67,7 @@
 		844509B4258FC28D005056AA /* IListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IListViewController.swift; sourceTree = "<group>"; };
 		844509B7258FCC6D005056AA /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
 		844509C225901F2A005056AA /* IListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IListViewModel.swift; sourceTree = "<group>"; };
+		844509C625902BDC005056AA /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDPickerController.swift; sourceTree = "<group>"; };
 		84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepodCheck.swift; sourceTree = "<group>"; };
 		84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDetailCourse.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		84E1E5B9258E851500B242E9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				844509C625902BDC005056AA /* UserDetailViewModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */,
 				D7B208251F2E07A600B5787E /* AppDelegate.swift in Sources */,
 				D72F89C61F30873400926958 /* ViewControllerCheck.swift in Sources */,
+				844509C725902BDC005056AA /* UserDetailViewModel.swift in Sources */,
 				84D6D79725873D8800FFCAE7 /* RouterToDetailCourseController.swift in Sources */,
 				844509B5258FC28D005056AA /* IListViewController.swift in Sources */,
 				D7C744821F31F7910063FD84 /* PresenterGeneralCheck.swift in Sources */,
