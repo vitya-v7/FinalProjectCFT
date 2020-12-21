@@ -11,50 +11,40 @@ import CoreData
 
 
 class InteractorDetailUser: NSObject{
+
 	var temporaryUserID: NSManagedObjectID?
 
-	var user: VDUserSpecial? {
-    	didSet(userOld) {
-	    	for i in 0..<nameData.count {
-    	    	newData[nameData[i]] = user?[nameData[i]]
-	    	}
-    	}
-	}
+	var user: VDUserSpecial?
+
 	func deleteTemporaryUserFromDB() {
     	VDDataManager.sharedManager.deleteByID(id: temporaryUserID!)
 	}
-	var nameData = ["firstName","lastName","adress"]
-	var newData = [String:String]()
-	func getNameOfTF(at row: Int) -> String {
-    	return nameData[row]
-	}
-	func getValueOfTF(at row: Int) -> String? {
-    	return newData[nameData[row]]
-	}
+
 	func updateDataBase() {
     	VDDataManager.sharedManager.updateUserBD()
     	VDDataManager.sharedManager.updateCourseBD()
-    	updateDetailUserObject()
+		updateDetailUserObjectFromDB()
 	}
+
 	func updateUserInDB() {
     	VDDataManager.sharedManager.updateUser(user: user!)
     	VDDataManager.sharedManager.updateCourseBD()
 	}
-	func updateUserWithDictionary() {
+
+	func updateUserWithObject(userIn: VDUserSpecial) {
     	temporaryUserID = nil
-    	user?.firstName = newData[nameData[0]]
-    	user?.lastName = newData[nameData[1]]
-    	user?.adress = newData[nameData[2]]
+		user = userIn
     	updateUserInDB()
-    	
 	}
-	func changeDictionaryData(name: String, value: String) {
-    	newData[name] = value
-	}
-	func updateDetailUserObject() {
+
+	func updateDetailUserObjectFromDB() {
     	if user?.ID != nil {
 	    	user = VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: user!.ID!)!]
     	}
+	}
+
+	func getUserModel() -> VDUserSpecial {
+		return user ?? VDUserSpecial()
 	}
 	///////////////
 	func changeCoursesOfStud(checkedCourses: [Bool]) {

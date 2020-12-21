@@ -71,15 +71,7 @@ class ViewControllerUser: UIViewController {
 
 }
 
-extension ViewControllerUser: IListViewController {
-	func setViewModels(viewModels: [IListViewModel]) {
-		self.viewModels = viewModels as! [UserViewModel]
-	}
 
-	func updateViewModels() {
-		output?.getUsers()
-	}
-}
 
 extension ViewControllerUser: UITableViewDelegate {
 	
@@ -120,5 +112,15 @@ extension ViewControllerUser: UITableViewDataSource {
 		guard let cellIn = cell else { return UITableViewCell() }
 		cellIn.configureCell(withObject: viewModels[indexPath.row])
 		return cellIn
+	}
+}
+
+extension ViewControllerUser: IListViewController {
+	func setViewModels(viewModels: [IListViewModel]) {
+		self.viewModels = viewModels as! [UserViewModel]
+	}
+
+	func updateViewModels() {
+		output?.getUsers()
 	}
 }

@@ -14,6 +14,7 @@ import CoreData
 class ViewControllerDetailUser: UIViewController
 {
 	var viewModelForUser = UserViewModel()
+	var temporaryUserViewModel = UserViewModel()
 	var viewModelsForCoursesForLearning = [CourseViewModel]()
 	var viewModelsForCoursesForTeaching = [CourseViewModel]()
 	
@@ -45,7 +46,8 @@ class ViewControllerDetailUser: UIViewController
 				cell.txtField!.resignFirstResponder()
 			}
 		}
-		output?.updateUser()
+		viewModelForUser = temporaryUserViewModel
+		output?.updateUser(viewModel: viewModelForUser)
 		output?.dismissView()
 	}
 
@@ -201,11 +203,11 @@ extension ViewControllerDetailUser: TextFieldChanged {
 	func textFieldDataChanged(tag: Int, value: String) {
 		switch tag {
 		case 0:
-			viewModelForUser.firstName = value
+			temporaryUserViewModel.firstName = value
 		case 1:
-			viewModelForUser.lastName = value
+			temporaryUserViewModel.lastName = value
 		case 2:
-			viewModelForUser.adress = value
+			temporaryUserViewModel.adress = value
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}

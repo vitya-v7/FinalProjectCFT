@@ -22,6 +22,9 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	var modelsForCoursesForTeaching = [VDCourseSpecial]()
 
 
+	func getUser() {
+		modelForUser = interactor?.updateDetailUserObjectFromDB() ?? VDUserSpecial()
+	}
 
 	/*func getTFcount() -> Int {
     	return interactor!.nameData.count
@@ -64,21 +67,30 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
     	wireFrame?.presentParticipantChecksModule(delegate: self,checked: boolArray, type: type, fromView: viewController!)
     	}
 	}
-	
-	
-	
-	func updateUser() {
-    	
-    	interactor?.updateUserWithDictionary()
-    	}
+
+	func updateUser(viewModel: UserViewModel) {
+		self.viewModelForUser = viewModel
+		updateModelByViewModel(model: self.modelForUser, viewModel: self.viewModelForUser)
+		interactor?.updateUserWithObject(userIn: modelForUser)
+	}
+
+	func modelToViewModel(model: VDUserSpecial) -> UserViewModel {
+		let userVM = UserViewModel(adress: model.adress ?? "", firstName: model.firstName ?? "", lastName: model.lastName ?? "")
+		return userVM
+	}
+
+	func updateModelByViewModel(model: VDUserSpecial, viewModel: UserViewModel) {
+		model.adress = viewModel.adress
+		model.firstName = viewModel.firstName
+		model.lastName = viewModel.lastName
+	}
+
+
 	func updateDB() {
     	interactor?.updateDataBase()
 	}
+
 	func dismissView() {
     	viewController?.navigationController?.popViewController(animated: true)
-    	
 	}
-	
-	
-
 }
