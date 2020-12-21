@@ -20,11 +20,10 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	
 	var delegate1: TextFieldChanged?
 	var delegate2: CallingPopoverByPicker?
-	static let cellIdentifierForUser = "UserDetailCell"
-	static let cellIdentifierForCourse = "CourseDetailCell"
+	static let cellIdentifier = "DetailCell"
 	static let nibName = "detailcell"
 
-   
+
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		//textField.resignFirstResponder()
 		delegate1?.textFieldDataChanged(tag: textField.tag, value: textField.text!)
@@ -37,10 +36,10 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
     	}
     	return true
 	}
+
 	func textFieldDidBeginEditing(_ textField: UITextField) {
     	
 	}
-	
 	
 	
 	 override func awakeFromNib() {

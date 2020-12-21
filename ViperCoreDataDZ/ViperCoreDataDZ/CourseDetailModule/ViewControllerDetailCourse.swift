@@ -26,7 +26,7 @@ class ViewControllerDetailCourse: UIViewController, UITableViewDelegate, UITable
     	self.tableView?.estimatedRowHeight = 300
     	self.tableView?.rowHeight = UITableView.automaticDimension
     	var nib = UINib.init(nibName: "detailcell", bundle: nil)
-    	self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifierForCourse) // ??????
+    	self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifier) // ??????
     	nib = UINib.init(nibName: "userDescriptionCell", bundle: nil)
     	self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
     	

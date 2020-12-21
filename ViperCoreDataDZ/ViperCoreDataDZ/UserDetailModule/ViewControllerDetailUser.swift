@@ -23,7 +23,7 @@ class ViewControllerDetailUser: UIViewController
 		
 		super.viewDidLoad()
 		var nib = UINib.init(nibName: VDDetailCell.nibName, bundle: nil)
-		self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifierForUser)
+		self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifier)
 		nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
 		nib = UINib.init(nibName: "VDCourseCheckViewController", bundle: nil)
@@ -82,19 +82,22 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		switch indexPath.section {
-		case 0: let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifierForUser) as! VDDetailCell
+		case 0: let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifier) as! VDDetailCell
 
 		cell.delegate1 = self
 			switch indexPath.row {
 			case 0:
 				cell.label?.text = "firstName"
 				cell.txtField?.text = viewModelForUser.firstName
+				cell.txtField?.tag = 0
 			case 1:
 				cell.label?.text = "lastName"
 				cell.txtField?.text = viewModelForUser.lastName
+				cell.txtField?.tag = 1
 			case 2:
 				cell.label?.text = "adress"
 				cell.txtField?.text = viewModelForUser.adress
+				cell.txtField?.tag = 2
 			default:
 				fatalError("\(self.description)" + " - cellForRow Func: index out of range")
 			}
@@ -197,7 +200,16 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 
 extension ViewControllerDetailUser: TextFieldChanged {
 	func textFieldDataChanged(tag: Int, value: String) {
-
+		switch tag {
+		case 0:
+			viewModelForUser.firstName = value
+		case 1:
+			viewModelForUser.lastName = value
+		case 2:
+			viewModelForUser.adress = value
+		default:
+			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
+		}
 	}
 }
 
