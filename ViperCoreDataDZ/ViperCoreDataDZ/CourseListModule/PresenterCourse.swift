@@ -13,7 +13,7 @@ class PresenterCourse: PresenterGeneralCheck {
 	var temporaryCourseID: NSManagedObjectID?
 	weak var viewController: ViewControllerCourse?
 	var wireFrame: RouterToDetailCourseController?
-	var interactor: InteractorCourse?
+	var interactor: InteractorCourseListProtocol?
 	var models = [VDCourseSpecial]()
 	var viewModels = [CourseListViewModel]()
 	var delegate: AssignmentProtocol?
@@ -22,28 +22,6 @@ class PresenterCourse: PresenterGeneralCheck {
 		interactor?.updateDataBase()
 	}
 	
-	/*override func updateCells() {
-	interactor?.getData(updateCell: { [weak self] (data: [String:[Special]]) -> () in
-	self?.interactorData = data
-	self?.keys = [String]()
-	for key in data.keys {
-	self?.keys.append(key)
-	}
-	self?.keys.sort(by: <)
-	var cells = [String:[configuringCell]]()
-	for key in (self!.keys) {
-	for object in self!.interactorData[key]! {
-	let cell = self?.viewController?.tableView?.dequeueReusableCell(withIdentifier: "CourseCell") as! configuringCell
-	cell.configureCell(withObject: object)
-	if cells[key] == nil {
-	cells[key] = [configuringCell]()
-	}
-	cells[key]!.append(cell)
-	}
-	}
-	self?.viewController?.setNewCells(cells: cells,keys: self!.keys)
-	})
-	}*/
 	
 	func deleteObjectWithIndexPath(indexPath: IndexPath) {
 		interactor?.deleteObjectFromDB(object: models[indexPath.row])
@@ -61,7 +39,7 @@ class PresenterCourse: PresenterGeneralCheck {
 	func getCourses() {
 		interactor?.getData(getCourses: { [weak self] (data: [VDCourseSpecial]) -> () in
 			self?.models = data
-			self?.setViewModels(users: data)
+			self?.setViewModels(courses: data)
 			viewController?.setViewModels(viewModels: viewModels)
 		})
 	}

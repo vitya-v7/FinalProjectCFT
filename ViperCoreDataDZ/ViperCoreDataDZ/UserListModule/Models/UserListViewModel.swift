@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct UserListViewModel {
+class UserListViewModel {
 	var adress: String
 	var firstName: String
 	var lastName: String
+	init(adress: String, firstName: String, lastName: String) {
+		self.adress = adress
+		self.firstName = firstName
+		self.lastName = lastName
+	}
 }

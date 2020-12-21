@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 class RouterToDetailCourseController: NSObject {
-	class func setupDetailModule(course: VDCourseSpecial, isTemporary: Bool) -> ViewController
+	class func setupDetailModule(course: VDCourseSpecial, isTemporary: Bool) -> UIViewController
 	{
     	let course = course
     	let storyBoard = UIStoryboard.init(name: "Courses", bundle: nil)
@@ -30,7 +30,7 @@ class RouterToDetailCourseController: NSObject {
     	return vc
 	}
 	
-	func presentParticipantDetailsModule(course: VDCourseSpecial, isTemporary: Bool, fromView: ViewControllerCourse) {
+	func presentParticipantDetailsModule(course: VDCourseSpecial, isTemporary: Bool, fromView: IListViewController) {
     	
     	let destinationVC = RouterToDetailCourseController.setupDetailModule(course: course,isTemporary:isTemporary) as! ViewControllerDetailCourse
     	

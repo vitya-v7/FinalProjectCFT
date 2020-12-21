@@ -22,7 +22,7 @@ class ViewControllerDetailUser: UIViewController, UITableViewDelegate, UITableVi
 		var nib = UINib.init(nibName: "detailcell", bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: "UserDetailCell")
 		nib = UINib.init(nibName: "courseDescriptionCell", bundle: nil)
-		self.tableView?.register(nib, forCellReuseIdentifier: "CourseCell")
+		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
 		
 		nib = UINib.init(nibName: "VDCourseCheckViewController", bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: "CoursesCheck")

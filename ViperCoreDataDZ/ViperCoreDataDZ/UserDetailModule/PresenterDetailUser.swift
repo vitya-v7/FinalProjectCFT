@@ -72,7 +72,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
     	case 1,2:
 	    	let row = indexPath.row - 1
 	    	var cell = VDMyCourseCell()
-	    	let identifier = "CourseCell"
+			let identifier = VDMyCourseCell.cellIdentifier
 	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCourseCell
 	    	if indexPath.row == 0 {
     	    	cell.name?.text = " "

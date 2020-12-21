@@ -45,10 +45,7 @@ class ViewControllerCheck: ViewController {
     	
 	}
    
-	override func setNewCells(cells:[String:[configuringCell]], keys: [String]) {
-    	
-    	dataSource.setDataDictionary(data: cells, keys: keys)
-	}
+	
 	
 	override func viewWillLayoutSubviews() {
     	

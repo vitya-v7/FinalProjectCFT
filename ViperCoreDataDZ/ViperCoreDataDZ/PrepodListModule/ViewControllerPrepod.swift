@@ -29,9 +29,7 @@ class ViewControllerPrepod: ViewController {
 	}
 	
 	
-	override func setNewCells(cells:[String:[configuringCell]], keys: [String]) {
-    	dataSource.setDataDictionary(data: cells, keys: keys)
-	}
+	
 	override func viewWillAppear(_ animated: Bool) {
  
     	output?.updateDB()

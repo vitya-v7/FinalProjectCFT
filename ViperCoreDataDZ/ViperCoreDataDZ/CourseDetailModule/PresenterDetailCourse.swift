@@ -97,7 +97,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	switch indexPath.section {
     	case 0: if indexPath.row == 2 {
 	    	var cell = VDMyCell.init()
-	    	identifier = "UserCell"
+	    	identifier = VDMyCell.cellIdentifier
 	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCell
 	    	if interactor?.course?.prepod != nil {
     	    	cell.firstName?.text = interactor?.course?.prepod?.firstName
@@ -133,7 +133,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	case 1:
 	    	let row = indexPath.row - 1
 	    	var cell = VDMyCell()
-	    	identifier = "UserCell"
+			identifier = VDMyCell.cellIdentifier
 	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCell
 	    	if indexPath.row == 0 {
     	    	cell.firstName?.text = " "

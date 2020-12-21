@@ -28,8 +28,8 @@ class RouterToDetailController: NSObject {
     	return vc
 	}
 	
-	func presentParticipantDetailsModule(user: VDUserSpecial, isTemporary: Bool, fromView: ViewController) {
-    	
+	func presentParticipantDetailsModule(user: VDUserSpecial, isTemporary: Bool, fromView: IListViewController) {
+
     	let destinationVC = RouterToDetailController.setupDetailModule(user: user,isTemporary:isTemporary) as! ViewControllerDetailUser
     	
     	fromView.navigationController?.pushViewController(destinationVC, animated: true)

@@ -39,9 +39,7 @@ class ViewControllerPrepodCheck: ViewController {
 	    	super.didReceiveMemoryWarning()
 	    	// Dispose of any resources that can be recreated.
     	}
-	override func setNewCells(cells:[String:[configuringCell]], keys: [String]) {
-    	dataSource.setDataDictionary(data: cells, keys: keys)
-	}
+	
 	
 	override func viewWillAppear(_ animated: Bool) {
     	

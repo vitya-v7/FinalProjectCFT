@@ -24,34 +24,12 @@ class PresenterUser: PresenterGeneralCheck {
 	func updateDB() {
     	interactor?.updateDataBase()
 	}
-	/*override func updateCells() {
-    	interactor?.getData(updateCell: { [weak self] (data: [Special]) -> () in
-	    	self?.interactorData = data
-	    	self?.keys = [String]()
-	    	for key in data.keys {
-    	    	self?.keys.append(key)
-	    	}
-	    	self?.keys.sort(by: <)
-	    	var cells = [String:[configuringCell]]()
-	    	for key in (self!.keys) {
-    	    	for object in self!.interactorData[key]! {
-	    	    	let cell = self?.viewController?.tableView?.dequeueReusableCell(withIdentifier: "UserCell") as! configuringCell
-	    	    	cell.configureCell(withObject: object)
-	    	    	if cells[key] == nil {
-    	    	    	cells[key] = [configuringCell]()
-	    	    	}
-	    	    	cells[key]!.append(cell)
-    	    	}
-	    	}
-	    	self?.viewController?.setNewCells(cells: cells,keys: self!.keys)
-    	})
-	}*/
 
 	func getUsers() {
 		interactor?.getData(getUsers: { [weak self] (data: [VDUserSpecial]) -> () in
 			self?.models = data
 			self?.setViewModels(users: data)
-			viewController?.setViewModels(viewModels: viewModels)
+			viewController?.setViewModels(viewModels: viewModels as! [IListViewModel])
 		})
 
 	}

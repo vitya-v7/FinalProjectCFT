@@ -28,7 +28,7 @@ class ViewControllerDetailCourse: UIViewController, UITableViewDelegate, UITable
     	var nib = UINib.init(nibName: "detailcell", bundle: nil)
     	self.tableView?.register(nib, forCellReuseIdentifier: "UserDetailCell")
     	nib = UINib.init(nibName: "userDescriptionCell", bundle: nil)
-    	self.tableView?.register(nib, forCellReuseIdentifier: "UserCell")
+    	self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
     	
     	
     	let barb = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))

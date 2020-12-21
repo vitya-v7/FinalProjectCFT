@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct CourseListViewModel {
+class CourseListViewModel: IListViewModel {
 	var name: String
-	var predmet: String
 	var prepod: String
+	var predmet: String
+	init(name: String, prepod: String, predmet: String) {
+		self.name = name
+		self.prepod = prepod
+		self.predmet = predmet
+	}
 }

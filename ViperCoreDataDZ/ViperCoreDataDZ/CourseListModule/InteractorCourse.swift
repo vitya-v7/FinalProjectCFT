@@ -8,7 +8,18 @@
 
 import UIKit
 import CoreData
-class InteractorCourse: NSObject {
+
+protocol InteractorCourseListProtocol {
+	func updateDataBase()
+	func addEmptyCourse() -> VDCourseSpecial
+	func deleteObjectFromDB(object: VDCourseSpecial)
+	func returnData() -> [VDCourseSpecial]
+	func getData(getCourses:([VDCourseSpecial])->())
+}
+
+class InteractorCourse: NSObject, InteractorCourseListProtocol {
+
+
 	var courses = [VDCourseSpecial]()
 	func updateDataBase() {
     	

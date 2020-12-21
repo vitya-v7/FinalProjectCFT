@@ -8,6 +8,15 @@
 
 import UIKit
 import CoreData
+
+protocol InteractorUserListProtocol {
+	func updateDataBase()
+	func addEmptyUser() -> VDUserSpecial
+	func deleteObjectFromDB(object: VDUserSpecial)
+	func returnData() -> [VDUserSpecial]
+	func getData(getUsers:([VDUserSpecial])->())
+}
+
 class InteractorUser: NSObject, InteractorUserListProtocol {
 	var users = [VDUserSpecial]()
 	func updateDataBase() {

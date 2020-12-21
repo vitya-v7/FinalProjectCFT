@@ -7,16 +7,13 @@
 //
 
 import UIKit
-protocol configuringCell {
-	func configureCell(withObject object: Special)
-}
 
-class VDMyCell: UITableViewCell,configuringCell {
+class VDMyCell: UITableViewCell {
 
 	@IBOutlet var firstName: UILabel?
 	@IBOutlet var lastName: UILabel?
 	@IBOutlet var adress: UILabel?
-	
+	static let cellIdentifier = "UserCell"
 	override func awakeFromNib() {
     	super.awakeFromNib()
     	adress?.adjustsFontSizeToFitWidth = true
@@ -24,12 +21,10 @@ class VDMyCell: UITableViewCell,configuringCell {
 	}
 	
 	
-	func configureCell(withObject object: Special) {
-    	
-    	let user = object as! VDUserSpecial
-    	firstName?.text = user.firstName
-    	lastName?.text = user.lastName
-    	adress?.text = user.adress
+	func configureCell(withObject object: UserListViewModel) {
+    	firstName?.text = object.firstName
+    	lastName?.text = object.lastName
+    	adress?.text = object.adress
 	}
 
 	override func setSelected(_ selected: Bool, animated: Bool) {

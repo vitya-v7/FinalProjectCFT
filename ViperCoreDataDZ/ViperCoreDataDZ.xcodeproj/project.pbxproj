@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		844509A5258F678A005056AA /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509A4258F678A005056AA /* UserListViewModel.swift */; };
-		844509AD258FBCE7005056AA /* CustomDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509AB258FBCE7005056AA /* CustomDataSourse.swift */; };
-		844509B5258FC28D005056AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* ViewController.swift */; };
+		844509B5258FC28D005056AA /* IListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* IListViewController.swift */; };
 		844509B8258FCC6D005056AA /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B7258FCC6D005056AA /* CourseListViewModel.swift */; };
+		844509C325901F2A005056AA /* IListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509C225901F2A005056AA /* IListViewModel.swift */; };
 		84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */; };
 		84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */; };
 		84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */; };
@@ -63,9 +63,9 @@
 
 /* Begin PBXFileReference section */
 		844509A4258F678A005056AA /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
-		844509AB258FBCE7005056AA /* CustomDataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSourse.swift; sourceTree = "<group>"; };
-		844509B4258FC28D005056AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		844509B4258FC28D005056AA /* IListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IListViewController.swift; sourceTree = "<group>"; };
 		844509B7258FCC6D005056AA /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
+		844509C225901F2A005056AA /* IListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IListViewModel.swift; sourceTree = "<group>"; };
 		84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDPickerController.swift; sourceTree = "<group>"; };
 		84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepodCheck.swift; sourceTree = "<group>"; };
 		84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDetailCourse.swift; sourceTree = "<group>"; };
@@ -206,6 +206,8 @@
 			children = (
 				D7B208241F2E07A600B5787E /* AppDelegate.swift */,
 				D7B2083F1F2E260500B5787E /* Sorting.swift */,
+				844509C225901F2A005056AA /* IListViewModel.swift */,
+				844509B4258FC28D005056AA /* IListViewController.swift */,
 				D7F2B8B81F333019006B54C1 /* Main */,
 				D7F2B8B91F333164006B54C1 /* CheckModule */,
 				D7F2B8B31F3317EE006B54C1 /* PrepodListModule */,
@@ -309,8 +311,6 @@
 		D7F2B8B81F333019006B54C1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				844509B4258FC28D005056AA /* ViewController.swift */,
-				844509AB258FBCE7005056AA /* CustomDataSourse.swift */,
 				D7C744811F31F7910063FD84 /* PresenterGeneralCheck.swift */,
 				D7F2B8B61F331DF9006B54C1 /* InteractorUserListProtocol.swift */,
 				D7B208401F2E260500B5787E /* VDDataManager.swift */,
@@ -441,11 +441,11 @@
 				D7B208251F2E07A600B5787E /* AppDelegate.swift in Sources */,
 				D72F89C61F30873400926958 /* ViewControllerCheck.swift in Sources */,
 				84D6D79725873D8800FFCAE7 /* RouterToDetailCourseController.swift in Sources */,
-				844509B5258FC28D005056AA /* ViewController.swift in Sources */,
+				844509B5258FC28D005056AA /* IListViewController.swift in Sources */,
 				D7C744821F31F7910063FD84 /* PresenterGeneralCheck.swift in Sources */,
-				844509AD258FBCE7005056AA /* CustomDataSourse.swift in Sources */,
 				84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */,
 				84D6D7B925873DEF00FFCAE7 /* VDCourseSpecial.swift in Sources */,
+				844509C325901F2A005056AA /* IListViewModel.swift in Sources */,
 				84D6D7AA25873DA900FFCAE7 /* PresenterUser.swift in Sources */,
 				84D6D79925873D8800FFCAE7 /* PresenterCourse.swift in Sources */,
 				84D6D7A325873D9800FFCAE7 /* RouterToCheckController.swift in Sources */,
