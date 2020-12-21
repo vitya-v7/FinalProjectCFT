@@ -28,9 +28,9 @@ class PresenterCourse: PresenterGeneralCheck {
 	}
 
 	func setViewModels(courses: [VDCourseSpecial]) {
-		var vm = CourseViewModel()
-		for index in 0 ..< courses.count {
 
+		for index in 0 ..< courses.count {
+			var vm = CourseViewModel()
 			vm.name = models[index].name ?? ""
 			var prepodString = ""
 			if let prepod = models[index].prepod {

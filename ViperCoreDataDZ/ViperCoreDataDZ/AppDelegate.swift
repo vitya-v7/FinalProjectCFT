@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    	/*VDDataManager.sharedManager.deleteAllObjects(WithEntityName: "VDUser")
+    	VDDataManager.sharedManager.deleteAllObjects(WithEntityName: "VDUser")
     	VDDataManager.sharedManager.deleteAllObjects(WithEntityName: "VDCourse")
     	VDDataManager.sharedManager.addTenUsers()
-    	VDDataManager.sharedManager.addTenCourses()*/
+    	VDDataManager.sharedManager.addTenCourses()
 
     	// Override point for customization after application launch.
     	return true
