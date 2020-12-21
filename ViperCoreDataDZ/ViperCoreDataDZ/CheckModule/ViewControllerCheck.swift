@@ -79,6 +79,11 @@ class ViewControllerCheck: ViewController {
 
 extension ViewControllerCheck: UITableViewDelegate {
 
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+	{
+		return 90
+	}
+
 	func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath)
 	{
 		let cell = tableView.cellForRow(at: indexPath)

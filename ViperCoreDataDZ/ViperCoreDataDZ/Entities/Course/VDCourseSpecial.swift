@@ -87,4 +87,12 @@ class VDCourseSpecial: Special {
 		uSpecial.students.sortingBy(parameters: ["firstName","lastName"])
 		return uSpecial
 	}
+
+	static func convertManagedObjectsToModels(entities: [VDCourse]) -> [VDCourseSpecial] {
+		var models = [VDCourseSpecial]()
+		for item in entities {
+			models.append(convertManagedObjectToModel(entity: item))
+		}
+		return models
+	}
 }

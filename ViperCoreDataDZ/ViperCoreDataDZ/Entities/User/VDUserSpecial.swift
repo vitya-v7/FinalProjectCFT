@@ -71,32 +71,47 @@ class VDUserSpecial: Special {
 	
 
 	static func addNewObjectFromEntity( entity: VDUser) -> VDUserSpecial {
-    	if getUserIndexByID(id: entity.objectID) == nil {
-    	let uSpecial = VDUserSpecial()
-    	uSpecial.firstName = entity.firstName
-    	uSpecial.ID = entity.objectID
-    	uSpecial.lastName = entity.lastName
-    	uSpecial.adress = entity.adress
-	    	
-	    	for case let obj as VDCourse in entity.courses! {
-    	    	if let usIndex = VDCourseSpecial.getCourseIndexByID(id: obj.objectID) {
-    	    	//uSpecial.courses?.append(VDCourseSpecial.courses[usIndex!])
-    	    	
-    	    	 uSpecial.courses.insert(VDCourseSpecial.courses[usIndex], at: 0)
-    	    	}
-	    	}
-	    	for case let obj as VDCourse in entity.coursesForTeaching! {
-    	    	if let usIndex = VDCourseSpecial.getCourseIndexByID(id: obj.objectID) {
-    	    	//uSpecial.coursesForTeaching?.append(VDCourseSpecial.courses[usIndex!])
-    	    	uSpecial.coursesForTeaching.insert(VDCourseSpecial.courses[usIndex], at: 0)
-    	    	}
-	    	}
-	    	uSpecial.courses.sortingBy(parameters: ["name"])
-	    	uSpecial.coursesForTeaching.sortingBy(parameters: ["name"])
-
-    	users.append(uSpecial)
-		return uSpecial
-    	}
+		if getUserIndexByID(id: entity.objectID) == nil {
+			let uSpecial: VDUserSpecial = convertManagedObjectToModel(entity: entity)
+			users.append(uSpecial)
+			return uSpecial
+		}
 		return VDUserSpecial()
+	}
+
+
+	static func convertManagedObjectToModel(entity: VDUser) -> VDUserSpecial {
+		let uSpecial = VDUserSpecial()
+		uSpecial.firstName = entity.firstName
+		uSpecial.ID = entity.objectID
+		uSpecial.lastName = entity.lastName
+		uSpecial.adress = entity.adress
+
+		for case let obj as VDCourse in entity.courses! {
+			if let usIndex = VDCourseSpecial.getCourseIndexByID(id: obj.objectID) {
+				//uSpecial.courses?.append(VDCourseSpecial.courses[usIndex!])
+
+				uSpecial.courses.insert(VDCourseSpecial.courses[usIndex], at: 0)
+			}
+		}
+		for case let obj as VDCourse in entity.coursesForTeaching! {
+			if let usIndex = VDCourseSpecial.getCourseIndexByID(id: obj.objectID) {
+				//uSpecial.coursesForTeaching?.append(VDCourseSpecial.courses[usIndex!])
+				uSpecial.coursesForTeaching.insert(VDCourseSpecial.courses[usIndex], at: 0)
+			}
+		}
+		uSpecial.courses.sortingBy(parameters: ["name"])
+		uSpecial.coursesForTeaching.sortingBy(parameters: ["name"])
+
+		users.append(uSpecial)
+		return uSpecial
+	}
+
+	static func convertManagedObjectsToModels(entities: [VDUser]) -> [VDUserSpecial] {
+		var models = [VDUserSpecial]()
+		for item in entities {
+			models.append(convertManagedObjectToModel(entity: item))
+		}
+		return models
 	}
 }

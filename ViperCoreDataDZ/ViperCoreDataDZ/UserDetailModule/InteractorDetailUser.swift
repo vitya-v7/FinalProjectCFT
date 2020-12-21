@@ -40,7 +40,7 @@ class InteractorDetailUser: NSObject{
 	}
 
 	func getAllCourses() -> [VDCourseSpecial]? {
-		return VDDataManager.sharedManager.getAllObjectsByEntity(name: "VDCourse") as! [VDCourse]
+		return VDCourseSpecial.convertManagedObjectsToModels(entities: VDDataManager.sharedManager.getAllObjectsByEntity(name: "VDCourse") as! [VDCourse])
 	}
 
 	func updateUserWithObject(userIn: VDUserSpecial) {
