@@ -59,27 +59,32 @@ class VDCourseSpecial: Special {
 	
 	static func addNewObjectFromEntity( entity: VDCourse) -> VDCourseSpecial {
 		if getCourseIndexByID(id: entity.objectID) == nil {
-			let uSpecial = VDCourseSpecial()
-			
-			//let sortedStudents = VDDataManager.sharedManager.getStudentsOfCourse(course: entity)
-			uSpecial.name = entity.name
-			uSpecial.ID = entity.objectID
-			uSpecial.predmet = entity.predmet
-			if entity.prepod != nil {
-				if let usIndex = VDUserSpecial.getUserIndexByID(id: (entity.prepod?.objectID)!) {
-					uSpecial.prepod = VDUserSpecial.users[usIndex]
-				}
-			}
-			for case let obj as VDUser in entity.students! {
-				if let usIndex = VDUserSpecial.getUserIndexByID(id: obj.objectID) {
-					uSpecial.students.append(VDUserSpecial.users[usIndex])
-				}
-			}
-			uSpecial.students.sortingBy(parameters: ["firstName","lastName"])
-			
+
+			let uSpecial: VDCourseSpecial = convertManagedObjectToModel(entity: entity)
 			courses.append(uSpecial)
 			return uSpecial
 		}
 		return VDCourseSpecial()
+	}
+
+	static func convertManagedObjectToModel(entity: VDCourse) -> VDCourseSpecial {
+		let uSpecial = VDCourseSpecial()
+
+		//let sortedStudents = VDDataManager.sharedManager.getStudentsOfCourse(course: entity)
+		uSpecial.name = entity.name
+		uSpecial.ID = entity.objectID
+		uSpecial.predmet = entity.predmet
+		if entity.prepod != nil {
+			if let usIndex = VDUserSpecial.getUserIndexByID(id: (entity.prepod?.objectID)!) {
+				uSpecial.prepod = VDUserSpecial.users[usIndex]
+			}
+		}
+		for case let obj as VDUser in entity.students! {
+			if let usIndex = VDUserSpecial.getUserIndexByID(id: obj.objectID) {
+				uSpecial.students.append(VDUserSpecial.users[usIndex])
+			}
+		}
+		uSpecial.students.sortingBy(parameters: ["firstName","lastName"])
+		return uSpecial
 	}
 }

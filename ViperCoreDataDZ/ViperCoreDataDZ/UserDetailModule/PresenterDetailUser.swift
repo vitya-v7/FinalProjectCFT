@@ -74,7 +74,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 					}
 				}
 				type = .learning
-				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModelsForCoursesForLearning, checked: boolArray, type: type, fromView: viewController!)
+				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: , checked: boolArray, type: type, fromView: viewController!)
 			}
 			if myIndexPath!.section == 2 {
 				let courses = interactor?.getCoursesOfUserForTeaching()
