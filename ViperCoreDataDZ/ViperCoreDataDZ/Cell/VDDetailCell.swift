@@ -23,7 +23,6 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	static let cellIdentifier = "DetailCell"
 	static let nibName = "detailcell"
 
-
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		//textField.resignFirstResponder()
 		delegate1?.textFieldDataChanged(tag: textField.tag, value: textField.text!)

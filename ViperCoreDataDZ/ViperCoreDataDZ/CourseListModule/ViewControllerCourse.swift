@@ -12,7 +12,7 @@ class ViewControllerCourse: UIViewController {
 	
 	
 	var output: PresenterCourse?
-	var viewModels = [CourseListViewModel]()
+	var viewModels = [CourseViewModel]()
 
 	@IBOutlet var tableView: UITableView?
 
@@ -69,7 +69,7 @@ class ViewControllerCourse: UIViewController {
 extension ViewControllerCourse: IListViewController {
 
 	func setViewModels(viewModels: [IListViewModel]) {
-		self.viewModels = viewModels as! [CourseListViewModel]
+		self.viewModels = viewModels as! [CourseViewModel]
 	}
 
 	func updateViewModels() {

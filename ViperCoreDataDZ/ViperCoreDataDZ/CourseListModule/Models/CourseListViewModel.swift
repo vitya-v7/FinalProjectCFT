@@ -1,5 +1,5 @@
 //
-//  CourseListViewModel.swift
+//  CourseViewModel.swift
 //  ViperCoreDataDZ
 //
 //  Created by Viktor Deryabin on 20.12.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CourseListViewModel: IListViewModel {
+class CourseViewModel: IListViewModel {
 	var name: String
 	var prepod: String
 	var predmet: String
@@ -16,5 +16,10 @@ class CourseListViewModel: IListViewModel {
 		self.name = name
 		self.prepod = prepod
 		self.predmet = predmet
+	}
+	init() {
+		self.name = ""
+		self.prepod = ""
+		self.predmet = ""
 	}
 }

@@ -13,9 +13,9 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	var interactor: InteractorDetailUser?
 	var wireFrame: RouterToCheckController?
 
-	var viewModelForUser = UserListViewModel()
-	var viewModelsForCoursesForLearning = [CourseListViewModel]()
-	var viewModelsForCoursesForTeaching = [CourseListViewModel]()
+	var viewModelForUser = UserViewModel()
+	var viewModelsForCoursesForLearning = [CourseViewModel]()
+	var viewModelsForCoursesForTeaching = [CourseViewModel]()
 
 	var modelForUser = VDUserSpecial()
 	var modelsForCoursesForLearning = [VDCourseSpecial]()

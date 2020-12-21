@@ -15,7 +15,7 @@ class PresenterCourse: PresenterGeneralCheck {
 	var wireFrame: RouterToDetailCourseController?
 	var interactor: InteractorCourseListProtocol?
 	var models = [VDCourseSpecial]()
-	var viewModels = [CourseListViewModel]()
+	var viewModels = [CourseViewModel]()
 	var delegate: AssignmentProtocol?
 
 	func updateDB() {

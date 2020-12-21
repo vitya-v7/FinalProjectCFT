@@ -25,7 +25,7 @@ class VDMyCourseCell: UITableViewCell {
 
     	// Configure the view for the selected state
 	}
-	func configureCell(withObject object: CourseListViewModel) {
+	func configureCell(withObject object: CourseViewModel) {
 		name?.text = object.name
 		predmet?.text = object.predmet
 		prepod?.text = object.prepod

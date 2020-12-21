@@ -19,7 +19,7 @@ class PresenterUser: PresenterGeneralCheck {
 	var wireFrame: RouterToDetailController?
 	var interactor: InteractorUserListProtocol?
 	var models = [VDUserSpecial]()
-	var viewModels = [UserListViewModel]()
+	var viewModels = [UserViewModel]()
 	var delegate: AssignmentProtocol?
 	func updateDB() {
     	interactor?.updateDataBase()

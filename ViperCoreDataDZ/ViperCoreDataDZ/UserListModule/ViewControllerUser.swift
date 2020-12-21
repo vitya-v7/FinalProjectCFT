@@ -11,7 +11,7 @@ import UIKit
 class ViewControllerUser: UIViewController {
 	
 	var output: PresenterUser?
-	var viewModels = [UserListViewModel]()
+	var viewModels = [UserViewModel]()
 	@IBOutlet var tableView: UITableView?
 
 
@@ -73,7 +73,7 @@ class ViewControllerUser: UIViewController {
 
 extension ViewControllerUser: IListViewController {
 	func setViewModels(viewModels: [IListViewModel]) {
-		self.viewModels = viewModels as! [UserListViewModel]
+		self.viewModels = viewModels as! [UserViewModel]
 	}
 
 	func updateViewModels() {

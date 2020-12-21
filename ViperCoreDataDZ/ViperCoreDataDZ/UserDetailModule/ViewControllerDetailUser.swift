@@ -13,9 +13,9 @@ import CoreData
 
 class ViewControllerDetailUser: UIViewController
 {
-	var viewModelForUser = UserListViewModel()
-	var viewModelsForCoursesForLearning = [CourseListViewModel]()
-	var viewModelsForCoursesForTeaching = [CourseListViewModel]()
+	var viewModelForUser = UserViewModel()
+	var viewModelsForCoursesForLearning = [CourseViewModel]()
+	var viewModelsForCoursesForTeaching = [CourseViewModel]()
 	
 	var output: PresenterDetailUser?
 	@IBOutlet var tableView: UITableView?
@@ -30,6 +30,7 @@ class ViewControllerDetailUser: UIViewController
 		self.tableView?.register(nib, forCellReuseIdentifier: "CoursesCheck")
 		self.tableView?.delegate = self
 		self.tableView?.dataSource = self
+
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))
 	}
 
@@ -129,8 +130,6 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 			return cell
 		default: break
 		}
-
-
 		return  UITableViewCell()
 	}
 
