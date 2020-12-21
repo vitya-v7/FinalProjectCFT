@@ -22,9 +22,10 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	var modelsForCoursesForTeaching = [VDCourseSpecial]()
 
 
-	func getUser() {
-		modelForUser = interactor?.updateDetailUserObjectFromDB() ?? VDUserSpecial()
-	}
+	/*func getUser() {
+		modelForUser = interactor?.getUserModel() ?? VDUserSpecial()
+		viewModelForUser = modelToViewModel(model: modelForUser)
+	}*/
 
 	/*func getTFcount() -> Int {
     	return interactor!.nameData.count
@@ -85,9 +86,11 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		model.lastName = viewModel.lastName
 	}
 
-
-	func updateDB() {
+	func updateDBAndGetUserViewModel() -> UserViewModel {
     	interactor?.updateDataBase()
+		self.modelForUser = interactor?.getUserModel() ?? VDUserSpecial()
+		self.viewModelForUser = modelToViewModel(model: self.modelForUser)
+		return self.viewModelForUser
 	}
 
 	func dismissView() {

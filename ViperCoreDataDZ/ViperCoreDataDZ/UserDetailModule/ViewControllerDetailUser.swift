@@ -51,10 +51,6 @@ class ViewControllerDetailUser: UIViewController
 		output?.dismissView()
 	}
 
-	/*func getCoursesForTeachingCount() {
-
-	}*/
-
 	override func viewWillDisappear(_ animated: Bool) {
 
 		if (self.isMovingFromParent){
@@ -65,7 +61,7 @@ class ViewControllerDetailUser: UIViewController
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-		output?.updateDB()
+		self.viewModelForUser = output?.updateDBAndGetUserViewModel() ?? UserViewModel()
 		self.tableView?.reloadData()
 	}
 
