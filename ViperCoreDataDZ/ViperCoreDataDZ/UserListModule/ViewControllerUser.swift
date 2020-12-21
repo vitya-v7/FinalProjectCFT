@@ -8,16 +8,14 @@
 import Foundation
 import UIKit
 
-class ViewControllerUser: UIViewController {
+class ViewControllerUser: ViewController {
 	
 	var output: PresenterUser?
 	var viewModels = [UserViewModel]()
-	@IBOutlet var tableView: UITableView?
-
 
 	override func viewDidLoad() {
     	super.viewDidLoad()
-		let nib = UINib.init(nibName: "userDescriptionCell", bundle: nil)
+		let nib = UINib.init(nibName: VDMyCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
 
 		let but1 = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(myEditing(_:)))
@@ -25,7 +23,7 @@ class ViewControllerUser: UIViewController {
 		self.navigationItem.leftBarButtonItem = but1
     	output = PresenterUser()
     	output?.viewController = self
-    	output?.wireFrame = RouterToDetailController()
+    	output?.wireFrame = RouterToDetailUserController()
     	//dataSource.setCellType(cellIdentifier: "UserCell")
     	let interactor: InteractorUser = InteractorUser()
     	output?.interactor = interactor
@@ -62,7 +60,10 @@ class ViewControllerUser: UIViewController {
     	tableView?.reloadData()
 	}
 	
-	
+	override func setViewModels(viewModels: [IListViewModel]) {
+		self.viewModels = viewModels as! [UserViewModel]
+	}
+
 	override func didReceiveMemoryWarning() {
     	super.didReceiveMemoryWarning()
     	// Dispose of any resources that can be recreated.
@@ -115,7 +116,7 @@ extension ViewControllerUser: UITableViewDataSource {
 	}
 }
 
-extension ViewControllerUser: IListViewController {
+/*extension ViewControllerUser: IListViewController {
 	func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [UserViewModel]
 	}
@@ -123,4 +124,4 @@ extension ViewControllerUser: IListViewController {
 	func updateViewModels() {
 		output?.getUsers()
 	}
-}
+}*/

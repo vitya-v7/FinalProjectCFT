@@ -22,7 +22,6 @@ class RouterToCheckController: NSObject {
     	presenter.interactor = interactor
     	vc.output = presenter
     	
-    	
     	return vc
 	}
 	

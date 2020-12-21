@@ -30,7 +30,7 @@ class RouterToDetailCourseController: NSObject {
     	return vc
 	}
 	
-	func presentParticipantDetailsModule(course: VDCourseSpecial, isTemporary: Bool, fromView: IListViewController) {
+	func presentParticipantDetailsModule(course: VDCourseSpecial, isTemporary: Bool, fromView: ViewController) {
     	
     	let destinationVC = RouterToDetailCourseController.setupDetailModule(course: course,isTemporary:isTemporary) as! ViewControllerDetailCourse
     	

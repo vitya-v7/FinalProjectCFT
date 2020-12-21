@@ -1,5 +1,5 @@
 //
-//  RouterToDetailController.swift
+//  RouterToDetailUserController.swift
 //  ViperCoreDataDZ
 //
 //  Created by Viktor Deryabin on 16.12.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class RouterToDetailController: NSObject {
+class RouterToDetailUserController: NSObject {
 	class func setupDetailModule(user: VDUserSpecial, isTemporary: Bool) -> UIViewController
 	{
     	let user = user
@@ -28,9 +28,9 @@ class RouterToDetailController: NSObject {
     	return vc
 	}
 	
-	func presentParticipantDetailsModule(user: VDUserSpecial, isTemporary: Bool, fromView: IListViewController) {
+	func presentParticipantDetailsModule(user: VDUserSpecial, isTemporary: Bool, fromView: ViewController) {
 
-    	let destinationVC = RouterToDetailController.setupDetailModule(user: user,isTemporary:isTemporary) as! ViewControllerDetailUser
+    	let destinationVC = RouterToDetailUserController.setupDetailModule(user: user,isTemporary:isTemporary) as! ViewControllerDetailUser
     	
     	fromView.navigationController?.pushViewController(destinationVC, animated: true)
     	

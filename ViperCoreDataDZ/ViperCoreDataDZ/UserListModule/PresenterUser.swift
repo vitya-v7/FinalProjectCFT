@@ -15,8 +15,8 @@ protocol changeCoursesOfStudents {
 
 class PresenterUser: PresenterGeneralCheck {
 	var temporaryUserID: NSManagedObjectID?
-	weak var viewController: ViewControllerUser?
-	var wireFrame: RouterToDetailController?
+	weak var viewController: ViewController?
+	var wireFrame: RouterToDetailUserController?
 	var interactor: InteractorUserListProtocol?
 	var models = [VDUserSpecial]()
 	var viewModels = [UserViewModel]()

@@ -41,10 +41,10 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		interactor?.deleteTemporaryUserFromDB()
 	}
 	func changeCoursesOfStud(checkedCourses: [Bool]) {
-		interactor!.changeCoursesOfStud(checkedCourses: checkedCourses)
+		interactor?.changeCoursesOfStud(checkedCourses: checkedCourses)
 	}
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
-		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
+		interactor?.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
 	}
 
 	func callCheckViewController( myIndexPath: IndexPath?) {

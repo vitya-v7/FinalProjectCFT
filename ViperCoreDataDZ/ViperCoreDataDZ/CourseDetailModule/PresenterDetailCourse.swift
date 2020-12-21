@@ -111,7 +111,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	}
     	else {
 	    	var cell = VDDetailCell.init()
-	    	identifier = "DetailCell"
+			identifier = VDDetailCell.cellIdentifier
 	    	
 	    	//cell.cellIndex = indexPath.row
 	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDDetailCell

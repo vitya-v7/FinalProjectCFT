@@ -11,7 +11,7 @@ protocol changePrepodOfCourse {
 	
 	func changePrepodOfCourse(checkedStudent: Int?)
 }
-class ViewControllerPrepodCheck: UIViewController {
+class ViewControllerPrepodCheck: ViewController {
    
 	var output: PresenterGeneralCheck?
     	var prepodIndex: NSInteger = -1
@@ -31,7 +31,7 @@ class ViewControllerPrepodCheck: UIViewController {
     	}
     	override func viewWillLayoutSubviews() {
 	    	if prepodIndex != -1 {
-    	    	let cell = tableView?.cellForRow(at: IndexPath.init(row: prepodIndex, section: 0))
+				let cell = tableView?.cellForRow(at: IndexPath.init(row: prepodIndex, section: 0))
     	    	cell?.accessoryType = .checkmark
 	    	}
     	}
@@ -44,7 +44,7 @@ class ViewControllerPrepodCheck: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
     	
     	output?.updateCells()
-    	tableView?.reloadData()
+		tableView?.reloadData()
 	}
     	
     	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

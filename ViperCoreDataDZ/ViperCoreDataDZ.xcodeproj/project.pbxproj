@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		844509A5258F678A005056AA /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509A4258F678A005056AA /* UserViewModel.swift */; };
-		844509B5258FC28D005056AA /* IListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B4258FC28D005056AA /* IListViewController.swift */; };
 		844509B8258FCC6D005056AA /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509B7258FCC6D005056AA /* CourseListViewModel.swift */; };
 		844509C325901F2A005056AA /* IListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509C225901F2A005056AA /* IListViewModel.swift */; };
+		844509CD259084EC005056AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844509CC259084EC005056AA /* ViewController.swift */; };
 		84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */; };
 		84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */; };
 		84D6D78E25873D7400FFCAE7 /* ViewControllerDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */; };
@@ -27,7 +27,7 @@
 		84D6D7A325873D9800FFCAE7 /* RouterToCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D79F25873D9800FFCAE7 /* RouterToCheckController.swift */; };
 		84D6D7A925873DA900FFCAE7 /* ViewControllerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7A525873DA800FFCAE7 /* ViewControllerUser.swift */; };
 		84D6D7AA25873DA900FFCAE7 /* PresenterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7A625873DA800FFCAE7 /* PresenterUser.swift */; };
-		84D6D7AB25873DA900FFCAE7 /* RouterToDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7A725873DA800FFCAE7 /* RouterToDetailController.swift */; };
+		84D6D7AB25873DA900FFCAE7 /* RouterToDetailUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7A725873DA800FFCAE7 /* RouterToDetailUserController.swift */; };
 		84D6D7AC25873DA900FFCAE7 /* InteractorUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7A825873DA800FFCAE7 /* InteractorUser.swift */; };
 		84D6D7B125873DE200FFCAE7 /* VDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7AE25873DE200FFCAE7 /* VDUser+CoreDataProperties.swift */; };
 		84D6D7B225873DE200FFCAE7 /* VDUserSpecial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6D7AF25873DE200FFCAE7 /* VDUserSpecial.swift */; };
@@ -58,14 +58,13 @@
 		D7C744821F31F7910063FD84 /* PresenterGeneralCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C744811F31F7910063FD84 /* PresenterGeneralCheck.swift */; };
 		D7F2B8B21F3317E2006B54C1 /* ViewControllerPrepod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2B8B11F3317E2006B54C1 /* ViewControllerPrepod.swift */; };
 		D7F2B8B51F331818006B54C1 /* InteractorPrepod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2B8B41F331818006B54C1 /* InteractorPrepod.swift */; };
-		D7F2B8B71F331DF9006B54C1 /* InteractorUserListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2B8B61F331DF9006B54C1 /* InteractorUserListProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		844509A4258F678A005056AA /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		844509B4258FC28D005056AA /* IListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IListViewController.swift; sourceTree = "<group>"; };
 		844509B7258FCC6D005056AA /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
 		844509C225901F2A005056AA /* IListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IListViewModel.swift; sourceTree = "<group>"; };
+		844509CC259084EC005056AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VDPickerController.swift; sourceTree = "<group>"; };
 		84D6D78825873D7400FFCAE7 /* ViewControllerPrepodCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepodCheck.swift; sourceTree = "<group>"; };
 		84D6D78925873D7400FFCAE7 /* ViewControllerDetailCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDetailCourse.swift; sourceTree = "<group>"; };
@@ -82,7 +81,7 @@
 		84D6D79F25873D9800FFCAE7 /* RouterToCheckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouterToCheckController.swift; path = UserDetailModule/RouterToCheckController.swift; sourceTree = "<group>"; };
 		84D6D7A525873DA800FFCAE7 /* ViewControllerUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerUser.swift; path = UserListModule/ViewControllerUser.swift; sourceTree = "<group>"; };
 		84D6D7A625873DA800FFCAE7 /* PresenterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresenterUser.swift; path = UserListModule/PresenterUser.swift; sourceTree = "<group>"; };
-		84D6D7A725873DA800FFCAE7 /* RouterToDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouterToDetailController.swift; path = UserListModule/RouterToDetailController.swift; sourceTree = "<group>"; };
+		84D6D7A725873DA800FFCAE7 /* RouterToDetailUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouterToDetailUserController.swift; path = UserListModule/RouterToDetailUserController.swift; sourceTree = "<group>"; };
 		84D6D7A825873DA800FFCAE7 /* InteractorUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InteractorUser.swift; path = UserListModule/InteractorUser.swift; sourceTree = "<group>"; };
 		84D6D7AE25873DE200FFCAE7 /* VDUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VDUser+CoreDataProperties.swift"; path = "User/VDUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		84D6D7AF25873DE200FFCAE7 /* VDUserSpecial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VDUserSpecial.swift; path = User/VDUserSpecial.swift; sourceTree = "<group>"; };
@@ -115,7 +114,6 @@
 		D7C744811F31F7910063FD84 /* PresenterGeneralCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterGeneralCheck.swift; sourceTree = "<group>"; };
 		D7F2B8B11F3317E2006B54C1 /* ViewControllerPrepod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPrepod.swift; sourceTree = "<group>"; };
 		D7F2B8B41F331818006B54C1 /* InteractorPrepod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorPrepod.swift; sourceTree = "<group>"; };
-		D7F2B8B61F331DF9006B54C1 /* InteractorUserListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorUserListProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,15 +188,15 @@
 			isa = PBXGroup;
 			children = (
 				D7B208241F2E07A600B5787E /* AppDelegate.swift */,
+				844509CC259084EC005056AA /* ViewController.swift */,
 				D7B2083F1F2E260500B5787E /* Sorting.swift */,
 				844509C225901F2A005056AA /* IListViewModel.swift */,
-				844509B4258FC28D005056AA /* IListViewController.swift */,
 				D7F2B8B81F333019006B54C1 /* Main */,
 				D7F2B8B91F333164006B54C1 /* CheckModule */,
 				D7F2B8B31F3317EE006B54C1 /* PrepodListModule */,
 				D7A121D41F30F51F00315803 /* CourseDetailModule */,
-				D7A121D31F30F51100315803 /* CourseListModule */,
 				D7E1C30B1F2F2B0B0079D54D /* UserDetailModule */,
+				D7A121D31F30F51100315803 /* CourseListModule */,
 				D7E1C30A1F2F2AD30079D54D /* UserListModule */,
 				D7B2089C1F2E27F500B5787E /* Entities */,
 				D7B2095D1F2E56E600B5787E /* Cell */,
@@ -266,7 +264,7 @@
 				84E1E5B8258E850C00B242E9 /* Models */,
 				84D6D7A825873DA800FFCAE7 /* InteractorUser.swift */,
 				84D6D7A625873DA800FFCAE7 /* PresenterUser.swift */,
-				84D6D7A725873DA800FFCAE7 /* RouterToDetailController.swift */,
+				84D6D7A725873DA800FFCAE7 /* RouterToDetailUserController.swift */,
 				84D6D7A525873DA800FFCAE7 /* ViewControllerUser.swift */,
 			);
 			name = UserListModule;
@@ -296,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				D7C744811F31F7910063FD84 /* PresenterGeneralCheck.swift */,
-				D7F2B8B61F331DF9006B54C1 /* InteractorUserListProtocol.swift */,
 				D7B208401F2E260500B5787E /* VDDataManager.swift */,
 				84D6D78425873D3A00FFCAE7 /* VDPickerController.swift */,
 				D7B208431F2E262000B5787E /* Special.swift */,
@@ -394,9 +391,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F2B8B71F331DF9006B54C1 /* InteractorUserListProtocol.swift in Sources */,
 				84D6D7A925873DA900FFCAE7 /* ViewControllerUser.swift in Sources */,
-				84D6D7AB25873DA900FFCAE7 /* RouterToDetailController.swift in Sources */,
+				84D6D7AB25873DA900FFCAE7 /* RouterToDetailUserController.swift in Sources */,
 				84D6D7C725873E0400FFCAE7 /* VDMyCourseCell.swift in Sources */,
 				84D6D79025873D7400FFCAE7 /* InteractorDetailCourse.swift in Sources */,
 				84D6D7A125873D9800FFCAE7 /* PresenterDetailUser.swift in Sources */,
@@ -412,6 +408,7 @@
 				84D6D7C325873E0400FFCAE7 /* VDMyCell.swift in Sources */,
 				84D6D78525873D3A00FFCAE7 /* VDPickerController.swift in Sources */,
 				84D6D7B225873DE200FFCAE7 /* VDUserSpecial.swift in Sources */,
+				844509CD259084EC005056AA /* ViewController.swift in Sources */,
 				D7B2082D1F2E07A600B5787E /* ViperCoreDataDZ.xcdatamodeld in Sources */,
 				84D6D78F25873D7400FFCAE7 /* RouterToCheckCourseController.swift in Sources */,
 				84D6D7BA25873DEF00FFCAE7 /* VDCourse+CoreDataProperties.swift in Sources */,
@@ -425,7 +422,6 @@
 				D7B208251F2E07A600B5787E /* AppDelegate.swift in Sources */,
 				D72F89C61F30873400926958 /* ViewControllerCheck.swift in Sources */,
 				84D6D79725873D8800FFCAE7 /* RouterToDetailCourseController.swift in Sources */,
-				844509B5258FC28D005056AA /* IListViewController.swift in Sources */,
 				D7C744821F31F7910063FD84 /* PresenterGeneralCheck.swift in Sources */,
 				84D6D78D25873D7400FFCAE7 /* ViewControllerPrepodCheck.swift in Sources */,
 				84D6D7B925873DEF00FFCAE7 /* VDCourseSpecial.swift in Sources */,

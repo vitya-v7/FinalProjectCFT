@@ -8,17 +8,16 @@
 
 import UIKit
 
-class ViewControllerCourse: UIViewController {
+class ViewControllerCourse: ViewController {
 	
 	
 	var output: PresenterCourse?
 	var viewModels = [CourseViewModel]()
 
-	@IBOutlet var tableView: UITableView?
-
+	
 	override func viewDidLoad() {
     	super.viewDidLoad()
-		let nib = UINib.init(nibName: "courseDescriptionCell", bundle: nil)
+		let nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
 
 		let but1 = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(myEditing(_:)))
@@ -59,14 +58,18 @@ class ViewControllerCourse: UIViewController {
     	output?.updateCells()
     	tableView?.reloadData()
 	}
-	
+
+	override func setViewModels(viewModels: [IListViewModel]) {
+		self.viewModels = viewModels as! [CourseViewModel]
+	}
+
 	override func didReceiveMemoryWarning() {
     	super.didReceiveMemoryWarning()
     	// Dispose of any resources that can be recreated.
 	}
 }
 
-extension ViewControllerCourse: IListViewController {
+/*extension ViewControllerCourse: IListViewController {
 
 	func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [CourseViewModel]
@@ -75,7 +78,7 @@ extension ViewControllerCourse: IListViewController {
 	func updateViewModels() {
 		output?.getCourses()
 	}
-}
+}*/
 
 extension ViewControllerCourse: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

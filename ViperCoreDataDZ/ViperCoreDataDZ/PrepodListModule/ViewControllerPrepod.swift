@@ -16,7 +16,7 @@ class ViewControllerPrepod: ViewController {
     	super.viewDidLoad()
     	output = PresenterUser()
     	output?.viewController = self
-    	output?.wireFrame = RouterToDetailController()
+    	output?.wireFrame = RouterToDetailUserController()
     	let interactor: InteractorPrepod = InteractorPrepod()
     	output?.interactor = interactor
     	output!.updateCells()

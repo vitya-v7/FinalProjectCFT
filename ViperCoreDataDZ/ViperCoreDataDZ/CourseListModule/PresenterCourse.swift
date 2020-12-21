@@ -11,7 +11,7 @@ import CoreData
 
 class PresenterCourse: PresenterGeneralCheck {
 	var temporaryCourseID: NSManagedObjectID?
-	weak var viewController: ViewControllerCourse?
+	weak var viewController: ViewController?
 	var wireFrame: RouterToDetailCourseController?
 	var interactor: InteractorCourseListProtocol?
 	var models = [VDCourseSpecial]()
@@ -27,10 +27,13 @@ class PresenterCourse: PresenterGeneralCheck {
 		interactor?.deleteObjectFromDB(object: models[indexPath.row])
 	}
 
-	func setViewModels(users: [VDUserSpecial]) {
-		for index in 0 ..< users.count {
+	func setViewModels(courses: [VDCourseSpecial]) {
+		for index in 0 ..< courses.count {
 			viewModels[index].name = models[index].name ?? ""
-			let prepodString = models[index].prepod?.firstName ?? "" + " " + models[index].prepod?.lastName ?? ""
+			var prepodString = ""
+			if let prepod = models[index].prepod {
+				prepodString = (prepod.firstName ?? "") + " " + (prepod.lastName ?? "")
+			}
 			viewModels[index].prepod = prepodString
 			viewModels[index].predmet = models[index].predmet ?? ""
 		}
