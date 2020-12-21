@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouterToCheckCourseController: NSObject {
+/*class RouterToCheckCourseController: NSObject {
 	class func setupCheckModule(delegate: AssignmentProtocol, checked: [Bool], type: typeOfCourse) -> ViewController
 	{
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
@@ -31,7 +31,7 @@ class RouterToCheckCourseController: NSObject {
     	fromView.navigationController?.pushViewController(destinationVC, animated: true)
     	
 	}
-	
+
 	///////////////////////////////
 	
 	
@@ -57,3 +57,4 @@ class RouterToCheckCourseController: NSObject {
     	
 	}
 }
+*/

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserViewModel {
+class UserViewModel: IListViewModel {
 	var adress: String
 	var firstName: String
 	var lastName: String

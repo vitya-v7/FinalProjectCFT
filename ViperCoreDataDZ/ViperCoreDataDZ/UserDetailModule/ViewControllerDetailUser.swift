@@ -23,6 +23,9 @@ class ViewControllerDetailUser: UIViewController
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
+		temporaryUserViewModel.adress = ""
+		temporaryUserViewModel.firstName = ""
+		temporaryUserViewModel.lastName = ""
 		var nib = UINib.init(nibName: VDDetailCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifier)
 		nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
@@ -46,7 +49,15 @@ class ViewControllerDetailUser: UIViewController
 				cell.txtField!.resignFirstResponder()
 			}
 		}
-		viewModelForUser = temporaryUserViewModel
+		if temporaryUserViewModel.adress != "" {
+			viewModelForUser.adress = temporaryUserViewModel.adress
+		}
+		if temporaryUserViewModel.firstName != "" {
+			viewModelForUser.firstName = temporaryUserViewModel.firstName
+		}
+		if temporaryUserViewModel.lastName != "" {
+			viewModelForUser.lastName = temporaryUserViewModel.lastName
+		}
 		output?.updateUser(viewModel: viewModelForUser)
 		output?.dismissView()
 	}
@@ -64,7 +75,6 @@ class ViewControllerDetailUser: UIViewController
 		self.viewModelForUser = output?.updateDBAndGetUserViewModel() ?? UserViewModel()
 		self.tableView?.reloadData()
 	}
-
 }
 
 extension ViewControllerDetailUser: UITableViewDataSource {
@@ -83,7 +93,7 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 		switch indexPath.section {
 		case 0: let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifier) as! VDDetailCell
 
-		cell.delegate1 = self
+			cell.delegate1 = self
 			switch indexPath.row {
 			case 0:
 				cell.label?.text = "firstName"

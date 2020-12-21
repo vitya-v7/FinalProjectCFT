@@ -6,7 +6,7 @@
 //  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 import CoreData
 class InteractorDetailCourse: NSObject {
 	var temporaryCourseID: NSManagedObjectID?
@@ -94,3 +94,4 @@ class InteractorDetailCourse: NSObject {
 	}
 
 }
+*/

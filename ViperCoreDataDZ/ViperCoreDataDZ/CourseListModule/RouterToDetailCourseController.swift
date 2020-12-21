@@ -11,7 +11,7 @@ import CoreData
 class RouterToDetailCourseController: NSObject {
 	class func setupDetailModule(course: VDCourseSpecial, isTemporary: Bool) -> UIViewController
 	{
-    	let course = course
+    	/*let course = course
     	let storyBoard = UIStoryboard.init(name: "Courses", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "detailCourseID") as! ViewControllerDetailCourse
 	   
@@ -26,13 +26,13 @@ class RouterToDetailCourseController: NSObject {
     	presenter.viewController = vc
     	
     	presenter.interactor = interactor
-    	presenter.wireFrame = RouterToCheckCourseController()
-    	return vc
+    	presenter.wireFrame = RouterToCheckCourseController()*/
+    	return UIViewController()
 	}
 	
 	func presentParticipantDetailsModule(course: VDCourseSpecial, isTemporary: Bool, fromView: ViewController) {
     	
-    	let destinationVC = RouterToDetailCourseController.setupDetailModule(course: course,isTemporary:isTemporary) as! ViewControllerDetailCourse
+    	let destinationVC = RouterToDetailCourseController.setupDetailModule(course: course,isTemporary:isTemporary)// as! ViewControllerDetailCourse
     	
     	fromView.navigationController?.pushViewController(destinationVC, animated: true)
     	

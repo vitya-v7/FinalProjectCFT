@@ -56,12 +56,16 @@ class ViewControllerUser: ViewController {
     	VDDataManager.sharedManager.updateCourseBD()
     	dataSource.setDataDictionary(data: output?.createDict())*/
     	output?.updateDB()
-    	output?.updateCells()
-    	tableView?.reloadData()
+	    updateViewModels()
 	}
 	
 	override func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [UserViewModel]
+	}
+
+	func updateViewModels() {
+		output?.getUsers()
+		tableView?.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -83,10 +87,12 @@ extension ViewControllerUser: UITableViewDelegate {
 
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
+			viewModels.remove(at: indexPath.row)
 			output?.deleteObjectWithIndexPath(indexPath: indexPath)
 			tableView.beginUpdates()
 			tableView.deleteRows(at: [indexPath], with: .fade)
 			tableView.endUpdates()
+			tableView.reloadData()
 		}
 	}
 
@@ -111,6 +117,7 @@ extension ViewControllerUser: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier, for: indexPath) as? VDMyCell
 
 		guard let cellIn = cell else { return UITableViewCell() }
+		
 		cellIn.configureCell(withObject: viewModels[indexPath.row])
 		return cellIn
 	}

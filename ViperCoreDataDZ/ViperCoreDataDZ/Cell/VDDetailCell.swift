@@ -43,6 +43,7 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	
 	 override func awakeFromNib() {
     	super.awakeFromNib()
+
     	// Initialization code
 	}
 	

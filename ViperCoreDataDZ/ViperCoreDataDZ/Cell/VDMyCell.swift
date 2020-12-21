@@ -25,6 +25,7 @@ class VDMyCell: UITableViewCell {
 	
 	
 	func configureCell(withObject object: UserViewModel) {
+		
     	firstName?.text = object.firstName
     	lastName?.text = object.lastName
     	adress?.text = object.adress

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 /*protocol InteractorOutput {
 	func changeStudsOfCourse(checkedStudents:checkedStudents)
 	func changePrepodOfCourse(checkedStudent: checkedStudent)
@@ -159,3 +159,4 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	
 	}
 }
+*/

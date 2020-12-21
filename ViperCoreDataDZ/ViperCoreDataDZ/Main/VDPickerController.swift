@@ -56,7 +56,7 @@ class VDPickerController: ViewController,UIPickerViewDelegate,UIPickerViewDataSo
 	@objc func saveData(_ but: UIButton) {
     	let row = picker?.selectedRow(inComponent: 0)
 		
-    	delegate1?.changeDictionaryData(name: cellMeaning!, value: VDDataManager.coursePredmet[row! - 1])
+//    	delegate1?.changeDictionaryData(name: cellMeaning!, value: VDDataManager.coursePredmet[row! - 1])
     	self.dismiss(animated: true, completion: nil)
 	}
 	

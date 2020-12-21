@@ -28,22 +28,26 @@ class PresenterCourse: PresenterGeneralCheck {
 	}
 
 	func setViewModels(courses: [VDCourseSpecial]) {
+		var vm = CourseViewModel()
 		for index in 0 ..< courses.count {
-			viewModels[index].name = models[index].name ?? ""
+
+			vm.name = models[index].name ?? ""
 			var prepodString = ""
 			if let prepod = models[index].prepod {
 				prepodString = (prepod.firstName ?? "") + " " + (prepod.lastName ?? "")
 			}
-			viewModels[index].prepod = prepodString
-			viewModels[index].predmet = models[index].predmet ?? ""
+			vm.prepod = prepodString
+			vm.predmet = models[index].predmet ?? ""
+			viewModels.append(vm)
 		}
+
 	}
 
 	func getCourses() {
 		interactor?.getData(getCourses: { [weak self] (data: [VDCourseSpecial]) -> () in
 			self?.models = data
 			self?.setViewModels(courses: data)
-			viewController?.setViewModels(viewModels: viewModels)
+			viewController?.setViewModels(viewModels: viewModels as [IListViewModel])
 		})
 	}
 

@@ -55,12 +55,16 @@ class ViewControllerCourse: ViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
     	output?.updateDB()
-    	output?.updateCells()
-    	tableView?.reloadData()
+		updateViewModels()
 	}
 
 	override func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [CourseViewModel]
+	}
+
+	func updateViewModels() {
+		output?.getCourses()
+		tableView?.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -84,10 +88,12 @@ extension ViewControllerCourse: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
 		if editingStyle == .delete {
+			viewModels.remove(at: indexPath.row)
 			output?.deleteObjectWithIndexPath(indexPath: indexPath)
 			tableView.beginUpdates()
 			tableView.deleteRows(at: [indexPath], with: .fade)
 			tableView.endUpdates()
+			tableView.reloadData()
 		}
 
 	}
@@ -113,7 +119,7 @@ extension ViewControllerCourse: UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier, for: indexPath) as? VDMyCourseCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCourseCell.cellIdentifier, for: indexPath) as? VDMyCourseCell
 
 		guard let cellIn = cell else { return UITableViewCell() }
 		cellIn.configureCell(withObject: viewModels[indexPath.row])

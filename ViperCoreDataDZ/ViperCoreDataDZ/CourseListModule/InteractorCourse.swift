@@ -18,12 +18,11 @@ protocol InteractorCourseListProtocol {
 }
 
 class InteractorCourse: NSObject, InteractorCourseListProtocol {
-
-
+	
 	var courses = [VDCourseSpecial]()
 	func updateDataBase() {
     	
-    	VDDataManager.sharedManager.updateCourseBD()
+    	VDDataManager.sharedManager.updateUserBD()
     	VDDataManager.sharedManager.updateCourseBD()
 	}
 

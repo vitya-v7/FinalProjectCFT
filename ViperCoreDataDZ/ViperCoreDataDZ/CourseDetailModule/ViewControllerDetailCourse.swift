@@ -5,7 +5,7 @@
 //  Created by Viktor Deryabin on 17.12.2020.
 //  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
-
+/*
 import UIKit
 import CoreData
 
@@ -152,3 +152,4 @@ extension ViewControllerDetailCourse: TextFieldChanged {
 
 
 }
+*/

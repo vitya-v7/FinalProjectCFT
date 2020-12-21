@@ -29,23 +29,27 @@ class PresenterUser: PresenterGeneralCheck {
 		interactor?.getData(getUsers: { [weak self] (data: [VDUserSpecial]) -> () in
 			self?.models = data
 			self?.setViewModels(users: data)
-			viewController?.setViewModels(viewModels: viewModels as! [IListViewModel])
+			viewController?.setViewModels(viewModels: viewModels as [IListViewModel])
 		})
-
 	}
 
 	func setViewModels(users: [VDUserSpecial]) {
+		viewModels = [UserViewModel]()
 		for index in 0 ..< users.count {
-			viewModels[index].firstName = users[index].firstName!
-			viewModels[index].lastName = users[index].lastName!
-			viewModels[index].adress = users[index].adress!
+			var vm = UserViewModel()
+			vm.firstName = users[index].firstName!
+			vm.lastName = users[index].lastName!
+			vm.adress = users[index].adress!
+			viewModels.append(vm)
 		}
 	}
 
 	func deleteObjectWithIndexPath(indexPath: IndexPath) {
 		interactor?.deleteObjectFromDB(object: models[indexPath.row])
+		models.remove(at: indexPath.row)
+		viewModels.remove(at: indexPath.row)
 	}
-	
+
 	func callDetailViewController( myIndexPath: NSIndexPath?) {
     	var user: VDUserSpecial
     	var isTemporary = false

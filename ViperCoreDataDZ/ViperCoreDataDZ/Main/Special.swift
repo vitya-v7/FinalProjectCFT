@@ -16,7 +16,7 @@ protocol compareTwoElements {
 class Special: NSObject, compareTwoElements {
 	var ID:NSManagedObjectID?
 	func compareTwoElements(i2: compareTwoElements, ByParameter parameter: String) -> Bool? {
-    	if let i22 = i2[parameter], let i11 = self[parameter] {
+		if let i22 = i2[parameter]?.capitalized, let i11 = self[parameter]?.capitalized {
     	if (i22 > i11) {
 	    	return true
     	}
