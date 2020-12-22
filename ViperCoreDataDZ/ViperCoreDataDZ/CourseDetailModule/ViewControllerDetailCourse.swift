@@ -40,6 +40,17 @@ class ViewControllerDetailCourse: UIViewController {
 
 	}
 
+	func setViewModelForCourse(viewModel: CourseViewModel) {
+		self.viewModelForCourse = viewModel
+	}
+
+	func setTemporaryPredmetForCourse(value: String) {
+		temporaryCourseViewModel.predmet = value
+		let cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
+		cell.txtField?.text = value
+		//tableView?.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
+	}
+
 	override func didReceiveMemoryWarning() {
     	super.didReceiveMemoryWarning()
     	// Dispose of any resources that can be recreated.
@@ -78,9 +89,7 @@ class ViewControllerDetailCourse: UIViewController {
 
 		output?.dismissView()
 	}
-	/*func changePredmetTextField(value: String) {
-		(tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell).txtField!.text = value
-	}*/
+
 }
 
 extension ViewControllerDetailCourse: UITableViewDelegate {
@@ -176,6 +185,7 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 			case 1:
 				cell.label?.text = "predmet"
 				cell.txtField?.text = viewModelForCourse.predmet
+				
 				//cell.delegate2 = self
 				cell.txtField?.tag = 4
 			default:
@@ -213,12 +223,12 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 }
 
 extension ViewControllerDetailCourse: TextFieldChanged {
-	func textFieldDataChanged(tag: Int, value: String) {
-		switch tag {
+	func textFieldDataChanged(textField: UITextField) {
+		switch textField.tag {
 		case 3:
-			temporaryCourseViewModel.name = value
+			temporaryCourseViewModel.name = textField.text ?? ""
 		case 4:
-			temporaryCourseViewModel.predmet = value
+			output?.callPopover(value: textField.text!)
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}

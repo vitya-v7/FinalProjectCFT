@@ -8,12 +8,13 @@
 
 import UIKit
 protocol TextFieldChanged {
-	func textFieldDataChanged(tag: Int, value: String)
+	func textFieldDataChanged(textField: UITextField)
 }
 
 protocol CallingPopoverByPicker {
-	func callPopover(cell: VDDetailCell)
+	func callPopover(value: String)
 }
+
 class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 	@IBOutlet var label: UILabel?
 	@IBOutlet var txtField: UITextField?
@@ -25,21 +26,18 @@ class VDDetailCell: UITableViewCell,UITextFieldDelegate {
 
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		//textField.resignFirstResponder()
-		delegate1?.textFieldDataChanged(tag: textField.tag, value: textField.text!)
+		if textField.tag == 3 {
+			delegate1?.textFieldDataChanged(textField: textField)
+		}
 	}
 
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    	if delegate2 != nil  {
-	    	delegate2?.callPopover(cell: self)
-	    	return false
-    	}
+		if textField.tag == 4 {
+			delegate1?.textFieldDataChanged(textField: textField)
+			return false
+		}
     	return true
 	}
-
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-    	
-	}
-	
 	
 	 override func awakeFromNib() {
     	super.awakeFromNib()

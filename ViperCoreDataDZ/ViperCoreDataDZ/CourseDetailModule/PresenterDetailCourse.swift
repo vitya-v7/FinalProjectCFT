@@ -17,7 +17,7 @@ protocol InteractorOutput {
 }
 class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicker {
 
-
+	let optionsForPicker = Constants.objectOfCourse
 
 	weak var viewController: ViewControllerDetailCourse?
 	var interactor: InteractorDetailCourse?
@@ -108,26 +108,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	}
 	}
 
-	func callPopover(cell: VDDetailCell) {
-		let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
-		let pv = storyboard.instantiateViewController(withIdentifier: "PickerController") as! VDPickerController
-		pv.cellMeaning = "predmet" 
-		//pv.delegate1 = interactor
-		if cell.txtField?.text != nil {
-			pv.initialTitle = cell.txtField?.text
-		}
-		pv.modalPresentationStyle = UIModalPresentationStyle.popover
-		pv.preferredContentSize = CGSize(width: 300, height: 300)
-		pv.picker?.backgroundColor = UIColor.white
-		self.viewController?.present(pv, animated: true, completion: nil)
-		let popover = pv.popoverPresentationController
-		popover?.permittedArrowDirections = .any
-		popover?.sourceView = viewController?.view
-		if let viewController = self.viewController {
-			popover?.sourceRect = viewController.view.bounds
-		}
-	}
-
 
 	func updateModelByViewModel(model: VDCourseSpecial, viewModel: CourseViewModel) {
 		model.name = viewModel.name
@@ -171,5 +151,28 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
     	viewController?.navigationController?.popViewController(animated: true)
     	
 	}
+
+	func callPopover(value: String) {
+		let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
+		let pv = storyboard.instantiateViewController(withIdentifier: "PickerController") as! VDPickerController
+		pv.output = self
+		pv.initialTitle = value
+		pv.currentOption = value
+		pv.modalPresentationStyle = UIModalPresentationStyle.popover
+		pv.preferredContentSize = CGSize(width: 300, height: 300)
+		pv.picker?.backgroundColor = UIColor.white
+		
+		viewController!.present(pv, animated: true, completion: nil)
+		let popover = pv.popoverPresentationController
+		popover?.permittedArrowDirections = .any
+		popover?.sourceView = viewController!.view
+		popover?.sourceRect = viewController!.view.bounds
+	}
+
 }
 
+extension PresenterDetailCourse: PopoverOutput {
+	func changeData(value: String) {
+		viewController?.setTemporaryPredmetForCourse(value: value)
+	}
+}

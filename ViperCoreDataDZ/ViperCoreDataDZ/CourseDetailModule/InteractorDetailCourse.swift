@@ -15,6 +15,10 @@ class InteractorDetailCourse: NSObject {
 
 	func updateCourseWithObject(courseIn: VDCourseSpecial) {
 		temporaryCourseID = nil
+		setCourse(courseIn: courseIn)
+	}
+
+	func setCourse(courseIn: VDCourseSpecial) {
 		course = courseIn
 		updateCourseInDB()
 	}

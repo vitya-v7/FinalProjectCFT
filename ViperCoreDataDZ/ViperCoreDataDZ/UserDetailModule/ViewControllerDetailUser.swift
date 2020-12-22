@@ -208,14 +208,14 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 }
 
 extension ViewControllerDetailUser: TextFieldChanged {
-	func textFieldDataChanged(tag: Int, value: String) {
-		switch tag {
+	func textFieldDataChanged(textField: UITextField) {
+		switch textField.tag {
 		case 0:
-			temporaryUserViewModel.firstName = value
+			temporaryUserViewModel.firstName = textField.text ?? ""
 		case 1:
-			temporaryUserViewModel.lastName = value
+			temporaryUserViewModel.lastName = textField.text ?? ""
 		case 2:
-			temporaryUserViewModel.adress = value
+			temporaryUserViewModel.adress = textField.text ?? ""
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}
