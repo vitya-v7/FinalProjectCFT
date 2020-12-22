@@ -102,6 +102,10 @@ class PresenterUser: PresenterGeneralCheck {
     	wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
 	}
 
+	func updateModels() {
+		models = interactor!.updateModels()
+	}
+
 	func showAll(_ but: UIBarButtonItem) {
     	VDDataManager.sharedManager.showAllObjects()
 	}

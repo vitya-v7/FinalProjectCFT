@@ -11,10 +11,10 @@ import UIKit
 class ViewControllerPrepod: ViewController {
 
 	var output: PresenterUser?
-
-	var teachersOfCurrentCourses = [String: [UserViewModel]]()
 	var viewModel: [String : [UserViewModel]]?
+	var allViewModel = [UserViewModel]()
 	var keys: [String]?
+
 	override func viewDidLoad() {
     	super.viewDidLoad()
 		let nib = UINib.init(nibName: VDMyCell.nibName, bundle: nil)
@@ -26,7 +26,8 @@ class ViewControllerPrepod: ViewController {
     	output?.wireFrame = RouterToDetailUserController()
     	let interactor: InteractorUser = InteractorUser()
     	output?.interactor = interactor
-
+		output?.updateModels()
+		allViewModel = output!.getAllUserViewModels()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +37,7 @@ class ViewControllerPrepod: ViewController {
 
     	tableView?.reloadData()
 	}
-	
-	
+
 	override func didReceiveMemoryWarning() {
     	super.didReceiveMemoryWarning()
     	// Dispose of any resources that can be recreated.
@@ -54,6 +54,19 @@ extension ViewControllerPrepod: UITableViewDelegate {
 		return keys?[section]
 	}
 
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let object = viewModel![Constants.objectOfCourse[indexPath.section]]![indexPath.row]
+		var indexOut = 0
+		for index in 0 ..< allViewModel.count {
+			if allViewModel[index].adress == object.adress &&
+				allViewModel[index].firstName == object.firstName &&
+				allViewModel[index].lastName == object.lastName {
+				indexOut = index
+			}
+		}
+		output?.interactor?.updateModels() 
+		output?.callDetailViewController(myIndexPath: NSIndexPath.init(row: indexOut, section: 0))
+	}
 }
 
 extension ViewControllerPrepod: UITableViewDataSource {

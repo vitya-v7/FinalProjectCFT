@@ -37,17 +37,6 @@ class ViewControllerCheck: ViewController {
 
 	}
 
-	/*override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		for index in 0 ..< checked!.count {
-			if checked?[index] == true {
-				let cell = tableView?.cellForRow(at: IndexPath.init(row: index, section: 0))
-				cell?.accessoryType = .checkmark
-			}
-		}
-		tableView?.reloadData()
-	}*/
-
 	@objc func saveChoice(_ but: UIBarButtonItem) {
 
 		switch type {
@@ -70,8 +59,6 @@ class ViewControllerCheck: ViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
-
 }
 
 extension ViewControllerCheck: UITableViewDelegate {

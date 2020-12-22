@@ -11,10 +11,3 @@ import Foundation
 struct Constants {
 	static let objectOfCourse = ["C++","IOS","JAVASCRIPT","FORTRAN","PYTHON"]
 }
-public enum PickerType: String {
-	case carModel
-	case carCountry
-	case carBodyStyle
-	case carYear
-	case carNumber
-}

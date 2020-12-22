@@ -17,14 +17,24 @@ protocol InteractorUserListProtocol {
 	func getData(getUsers:([VDUserSpecial])->())
 	func getTeachersObject(object: String) -> [VDUserSpecial]
 	func createDict() -> [String: [VDUserSpecial]]
+	func updateModels() -> [VDUserSpecial]
 }
 
 class InteractorUser: NSObject, InteractorUserListProtocol {
+
+
 	var users = [VDUserSpecial]()
+
 	func updateDataBase() {
 		VDDataManager.sharedManager.updateUserBD()
 		VDDataManager.sharedManager.updateCourseBD()
 	}
+
+	func updateModels() -> [VDUserSpecial] {
+		users = VDUserSpecial.users
+		return users
+	}
+	
 	func returnData() -> [VDUserSpecial]{
 		users = VDUserSpecial.users
 		users.sortingBy(parameters: ["firstName", "lastName"])
@@ -71,6 +81,7 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 	func getData(getUsers:([VDUserSpecial])->()) {
 		getUsers(returnData())
 	}
+
 	func addEmptyUser() -> VDUserSpecial {
 		return VDDataManager.sharedManager.addEmptyUser()
 	}

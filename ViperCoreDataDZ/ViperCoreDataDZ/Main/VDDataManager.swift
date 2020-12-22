@@ -242,12 +242,6 @@ class VDDataManager: NSObject {
         course.prepod = teacher
                
         try? persistentContainer.viewContext.save()
-        /*NSLog("NEW Course ID: \(course.objectID)\n")
-        let courseIndex = VDCourseSpecial.getCourseIndexByID(id: courseID)
-        let teacherIndex  = VDUserSpecial.getUserIndexByID(id: teacherID)
-        VDCourseSpecial.courses[courseIndex!].prepod = VDUserSpecial.users[teacherIndex!]
-        VDUserSpecial.users[teacherIndex!].coursesForTeaching.append(VDCourseSpecial.courses[courseIndex!])
-        VDUserSpecial.users[teacherIndex!].sortCoursesForTeachingByName()*/
     }
     
     func resignUserAsStudent(with studentID: NSManagedObjectID, fromCourseWith courseID: NSManagedObjectID) {
@@ -260,10 +254,6 @@ class VDDataManager: NSObject {
             }
         }
         try? persistentContainer.viewContext.save()
-        /*let courseIndex = VDCourseSpecial.getCourseIndexByID(id: courseID)
-        let studentIndex  = VDUserSpecial.getUserIndexByID(id: studentID)
-        VDCourseSpecial.courses[courseIndex!].deleteStudentById(id: studentID)
-        VDUserSpecial.users[studentIndex!].deleteCourseById(id: courseID)*/
     }
     
     func resignUserAsTeacher(with teacherID: NSManagedObjectID, fromCourseWith courseID: NSManagedObjectID) {
@@ -272,16 +262,7 @@ class VDDataManager: NSObject {
         course.prepod = nil
         }
         try? persistentContainer.viewContext.save()
-       /* let courseIndex = VDCourseSpecial.getCourseIndexByID(id: courseID)
-        let studentIndex  = VDUserSpecial.getUserIndexByID(id: teacherID)
-        VDCourseSpecial.courses[courseIndex!].prepod = nil
-        VDUserSpecial.users[studentIndex!].deleteCourseForTeachingById(id: courseID)*/
     }
-    ///////////////////////
-    
-    
-   
-    
 
     ////////// MARK: GENERAL
     func insertObject<T>(name:String) -> T
