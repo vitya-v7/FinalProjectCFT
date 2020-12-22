@@ -6,65 +6,105 @@
 //  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
-/*import UIKit
-/*protocol InteractorOutput {
-	func changeStudsOfCourse(checkedStudents:checkedStudents)
-	func changePrepodOfCourse(checkedStudent: checkedStudent)
+import UIKit
+protocol InteractorOutput {
+	//func changeStudsOfCourse(checkedStudents:checkedStudents)
+	//func changePrepodOfCourse(checkedStudent: checkedStudent)
 	func getStudentsCount() -> Int
 	func getNameDataCount()
 	func deleteTemporaryCourseFromDB()
 	func getTemporaryCourseID()
-}*/
+}
 class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicker {
+
+
+
 	weak var viewController: ViewControllerDetailCourse?
 	var interactor: InteractorDetailCourse?
 	var wireFrame: RouterToCheckCourseController?
+
+
+	var viewModelForCourse = CourseViewModel()
+	var viewModelForPrepod = UserViewModel()
+	var viewModelsForStudentsForCourse = [UserViewModel]()
+
+	var modelForCourse = VDCourseSpecial()
+	var modelForPrepod = VDUserSpecial()
+	var modelsForStudentsForCourse = [VDUserSpecial]()
+
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
     	interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
+	}
+
+	func updateDBAndGetCourseViewModel() -> CourseViewModel {
+		interactor!.updateDataBase()
+		self.modelForCourse = interactor!.getCourseModel() ?? VDCourseSpecial()
+		self.viewModelForCourse = convertModelToViewModelForCourse(model: self.modelForCourse)
+		return self.viewModelForCourse
 	}
 	
 	func changePrepodOfCourse(checkedStudent: NSInteger) {
     	interactor!.changePrepodOfCourse(checkedStudent: checkedStudent)
 	}
-	
+
+
 	func getStudentsCount() -> Int {
     	return interactor!.course!.students.count
 	}
 
-	func getTFcount() -> Int {
-    	return interactor!.nameData.count
-	}
-	
 	func isTemporaryCourse() -> Bool {
-    	if interactor?.temporaryCourseID != nil {
+    	if interactor!.temporaryCourseID != nil {
 	    	return true
     	}
     	return false
 	}
 	
 	func daleteTemporaryCourse() {
-    	interactor?.deleteTemporaryCourseFromDB()
+    	interactor!.deleteTemporaryCourseFromDB()
 	}
 	
+	func getUsersForCourse() -> [UserViewModel] {
+		modelsForStudentsForCourse = interactor!.getStudentsOfCourse() ?? [VDUserSpecial]()
+		viewModelsForStudentsForCourse = convertModelsToViewModels(models: modelsForStudentsForCourse)
+		return viewModelsForStudentsForCourse
+	}
+
+	func getPrepodViewModel() -> UserViewModel {
+		modelForPrepod = interactor!.getPrepodOfCourse() ?? VDUserSpecial()
+		viewModelForPrepod = convertModelToViewModel(model: modelForPrepod)
+		return viewModelForPrepod
+	}
+
+	func updateCourse(viewModel: CourseViewModel) {
+		self.viewModelForCourse = viewModel
+		updateModelByViewModel(model: self.modelForCourse, viewModel: self.viewModelForCourse)
+		interactor!.updateCourseWithObject(courseIn: modelForCourse)
+	}
+
 	func callCheckViewController( myIndexPath: IndexPath?) {
     	//var vc = VDCourseDetailControllerTableViewController()
     	
-    	if myIndexPath!.section == 0 && myIndexPath?.row == getTFcount() {
+    	if myIndexPath!.section == 0 && myIndexPath!.row == 2 {
 	    	var checkedPrepodIndex: NSInteger = -1
-	    	if interactor!.course!.prepod != nil {
-    	    	checkedPrepodIndex = VDUserSpecial.getUserIndexByID(id: interactor!.course!.prepod!.ID!)!
-    	    	
+			if interactor!.getPrepodOfCourse() != nil {
+				if let index = interactor!.getStudentIndexByID(id: interactor!.getPrepodOfCourse()!.ID) {
+					checkedPrepodIndex = index
+				}
 	    	}
-	    	wireFrame?.presentParticipantChecksPrepodModule(delegate: self, checked: checkedPrepodIndex, fromView: viewController!)
+			let viewModels = convertModelsToViewModels(models:  interactor!.getAllUsers())
+			wireFrame?.presentParticipantChecksPrepodModule(delegate: self, viewModels: viewModels, checked: checkedPrepodIndex, fromView: viewController!)
     	}
-    	if myIndexPath!.section == 1 && myIndexPath?.row == 0 {
+    	if myIndexPath!.section == 1 && myIndexPath!.row == 0 {
 	    	let type:typeOfCourse = .students
-	    	var boolArray = [Bool](repeating: false, count: VDUserSpecial.users.count)
-	    	for obj in (interactor?.course?.students)! {
-    	    	boolArray[VDUserSpecial.getUserIndexByID(id: obj.ID!)!] = true
-	    	}
 
-	    	wireFrame?.presentParticipantChecksModule(delegate: self, checked: boolArray, type: type, fromView: viewController!)
+			var boolArray = [Bool](repeating: false, count: interactor!.getAllUsers().count )
+			if let students = interactor!.getStudentsOfCourse() {
+				for obj in students {
+					boolArray[VDUserSpecial.getUserIndexByID(id: obj.ID!)!] = true
+				}
+			}
+			let viewModels = convertModelsToViewModels(models:  interactor!.getAllUsers())
+			wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModels,checked: boolArray, type: type, fromView: viewController!)
     	}
 	}
 
@@ -72,7 +112,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
 		let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
 		let pv = storyboard.instantiateViewController(withIdentifier: "PickerController") as! VDPickerController
 		pv.cellMeaning = "predmet" 
-		pv.delegate1 = interactor
+		//pv.delegate1 = interactor
 		if cell.txtField?.text != nil {
 			pv.initialTitle = cell.txtField?.text
 		}
@@ -87,76 +127,49 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicke
 			popover?.sourceRect = viewController.view.bounds
 		}
 	}
-	
-	func getCellAtIndexPath(indexPath: IndexPath) -> UITableViewCell {
-    	
-    	let cell = UITableViewCell()
-    	let identifier: String
-    	
-    	switch indexPath.section {
-    	case 0: if indexPath.row == 2 {
-	    	var cell = VDMyCell.init()
-	    	identifier = VDMyCell.cellIdentifier
-	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCell
-	    	if interactor?.course?.prepod != nil {
-    	    	cell.firstName?.text = interactor?.course?.prepod?.firstName
-    	    	cell.lastName?.text = interactor?.course?.prepod?.lastName
-	    	}
-	    	else {
-    	    	cell.firstName?.text = "There's no"
-    	    	cell.lastName?.text = " teacher"
-	    	}
-	    	cell.adress?.text = "Prepod"
-	    	return cell
-    	}
-    	else {
-	    	var cell = VDDetailCell.init()
-			identifier = VDDetailCell.cellIdentifier
-	    	
-	    	//cell.cellIndex = indexPath.row
-	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDDetailCell
-			cell.delegate1 = interactor
-	    	if indexPath.row == 0 {
-				cell.label?.text = interactor!.getNameOfTF(at: indexPath.row)
-				cell.txtField?.text = interactor!.getValueOfTF(at: indexPath.row)
-	    	}
-			else if indexPath.row == 1 {
-				cell.delegate2 = self
-				cell.label?.text = interactor!.getNameOfTF(at: indexPath.row)
-				cell.txtField?.text = interactor!.getValueOfTF(at: indexPath.row)
-			}
-	    	//cell.txtField?.addTarget(self, action: #selector(textFieldPick(_:)), for: .touchDown)
-	    	return cell
-	    	}
-    	case 1:
-	    	let row = indexPath.row - 1
-	    	var cell = VDMyCell()
-			identifier = VDMyCell.cellIdentifier
-	    	cell = viewController?.tableView?.dequeueReusableCell(withIdentifier: identifier) as! VDMyCell
-	    	if indexPath.row == 0 {
-    	    	cell.firstName?.text = " "
-    	    	cell.lastName?.text = " "
-    	    	cell.adress?.text = "Add Student"
-    	    	
-    	    	return cell
-	    	}
-	    	cell.configureCell(withObject:  interactor!.course!.students[row])
-	    	return cell
-    	default: break
-    	}
-    	return cell
+
+
+	func updateModelByViewModel(model: VDCourseSpecial, viewModel: CourseViewModel) {
+		model.name = viewModel.name
+		model.predmet = viewModel.predmet
+		let fullNameArr = viewModel.prepod.components(separatedBy: " ")
+		model.prepod?.firstName = fullNameArr[0]
+		model.prepod?.lastName = fullNameArr[1]
 	}
-	
-	func updateCourse() {
-    	interactor?.updateCourseWithDictionary()
-		
-    	}
+
+	func convertModelToViewModelForCourse(model: VDCourseSpecial) -> CourseViewModel {
+		let vm = CourseViewModel()
+		vm.name = model.name ?? ""
+		vm.predmet = model.predmet ?? ""
+		vm.prepod = (model.prepod?.firstName ?? "") + " " + (model.prepod?.lastName ?? "")
+		return vm
+	}
+
+
+	func convertModelToViewModel(model: VDUserSpecial) -> UserViewModel {
+		let vm = UserViewModel()
+		vm.firstName = model.firstName ?? ""
+		vm.lastName = model.lastName ?? ""
+		vm.adress = model.adress ?? ""
+		return vm
+	}
+
+	func convertModelsToViewModels(models: [VDUserSpecial]) -> [UserViewModel] {
+		var viewModels = [UserViewModel]()
+		for item in models {
+			let vm = convertModelToViewModel(model: item)
+			viewModels.append(vm)
+		}
+		return viewModels
+	}
+
+
 	func updateDB() {
-    	interactor?.updateDataBase()
+    	interactor!.updateDataBase()
 	}
 	func dismissView() {
     	viewController?.navigationController?.popViewController(animated: true)
     	
 	}
 }
-*/
+

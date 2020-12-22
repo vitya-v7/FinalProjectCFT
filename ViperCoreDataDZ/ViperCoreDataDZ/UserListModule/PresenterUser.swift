@@ -8,10 +8,7 @@
 
 import UIKit
 import CoreData
-protocol changeCoursesOfStudents {
-	func changeCoursesOfStud(checkedCourses: [Bool])
-	func changeCoursesForTeachingOfStud(checkedCourses: [Bool])
-}
+
 
 class PresenterUser: PresenterGeneralCheck {
 	var temporaryUserID: NSManagedObjectID?
@@ -31,6 +28,48 @@ class PresenterUser: PresenterGeneralCheck {
 			self?.setViewModels(users: data)
 			viewController?.setViewModels(viewModels: viewModels as [IListViewModel])
 		})
+	}
+
+	func getAllUserViewModels() -> [UserViewModel] {
+		return convertModelsToViewModels(models: interactor!.returnData())
+	}
+
+	func getTeachersUsersForSpecialCourseObject(object: String) -> [UserViewModel] {
+		return convertModelsToViewModels(models: interactor!.getTeachersObject(object: object))
+	}
+
+
+	func createDictionary()  -> [String: [UserViewModel]] {
+		var dictionaryWithVM = [String: [UserViewModel]]()
+		let dict = interactor!.createDict()
+		for key in dict.keys {
+			dictionaryWithVM[key] = [UserViewModel]()
+			for item in dict[key]! {
+				dictionaryWithVM[key]?.append(convertModelToViewModel(model: item))
+			}
+		}
+		return dictionaryWithVM
+	}
+
+
+	func convertModelToViewModel(model: VDUserSpecial) -> UserViewModel {
+		let vm = UserViewModel()
+		vm.adress = model.adress ?? ""
+		vm.firstName = model.firstName ?? ""
+		vm.lastName = model.lastName ?? ""
+		return vm
+	}
+
+	func convertModelsToViewModels(models: [VDUserSpecial]) -> [UserViewModel] {
+		var viewModels = [UserViewModel]()
+		for item in models {
+			let vm = UserViewModel()
+			vm.adress = item.adress ?? ""
+			vm.firstName = item.firstName ?? ""
+			vm.lastName = item.lastName ?? ""
+			viewModels.append(vm)
+		}
+		return viewModels
 	}
 
 	func setViewModels(users: [VDUserSpecial]) {
@@ -78,6 +117,7 @@ class PresenterUser: PresenterGeneralCheck {
 	override func changePrepodOfCourse(checkedStudent: NSInteger) {
     	delegate?.changePrepodOfCourse!(checkedStudent: checkedStudent)
 	}
+	
 	
 	
 }

@@ -13,16 +13,28 @@ class RouterToCheckController: NSObject {
 	{
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "CheckController") as! ViewControllerCheck
-    	let interactor: InteractorUser = InteractorUser()
-    	let presenter: PresenterUser = PresenterUser()
+
+
     	vc.checked = checked
     	vc.type = type
 		vc.viewModels = viewModels
-    	presenter.viewController = vc
-    	presenter.delegate = delegate
-    	presenter.interactor = interactor
-    	vc.output = presenter
-    	
+		if type == .students {
+			let interactor: InteractorUser = InteractorUser()
+			let presenter: PresenterUser = PresenterUser()
+			presenter.viewController = vc
+			presenter.delegate = delegate
+			presenter.interactor = interactor
+			vc.output = presenter
+		}
+		else {
+			let interactor: InteractorCourse = InteractorCourse()
+			let presenter: PresenterCourse = PresenterCourse()
+			presenter.viewController = vc
+			presenter.delegate = delegate
+			presenter.interactor = interactor
+			vc.output = presenter
+		}
+		print("debug")
     	return vc
 	}
 	

@@ -25,27 +25,28 @@ class ViewControllerCheck: ViewController {
 		super.viewDidLoad()
 		tableView?.delegate = self
 		tableView?.dataSource = self
-		let nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
+		var nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
 		tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
+		nib = UINib.init(nibName: VDMyCell.nibName, bundle: nil)
 		tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
 		self.navigationItem.rightBarButtonItems = []
 		self.navigationItem.leftBarButtonItems = []
 		let but = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: "") , style: .plain, target: self, action: #selector(saveChoice(_:)))
 		self.navigationItem.setRightBarButton(but, animated: true)
 
+
 	}
 
-	override func viewWillLayoutSubviews() {
-
-		super.viewWillLayoutSubviews()
-
+	/*override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 		for index in 0 ..< checked!.count {
 			if checked?[index] == true {
 				let cell = tableView?.cellForRow(at: IndexPath.init(row: index, section: 0))
 				cell?.accessoryType = .checkmark
 			}
 		}
-	}
+		tableView?.reloadData()
+	}*/
 
 	@objc func saveChoice(_ but: UIBarButtonItem) {
 
@@ -71,10 +72,6 @@ class ViewControllerCheck: ViewController {
 	}
 
 
-	override func viewWillAppear(_ animated: Bool) {
-
-		tableView?.reloadData()
-	}
 }
 
 extension ViewControllerCheck: UITableViewDelegate {
@@ -124,12 +121,24 @@ extension ViewControllerCheck: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if type == .learning || type == .teaching {
 			let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCourseCell.cellIdentifier, for: indexPath) as? VDMyCourseCell
+			if checked![indexPath.row] == true {
+				cell?.accessoryType = .checkmark
+			}
+			if checked![indexPath.row] == false {
+				cell?.accessoryType = .none
+			}
 			guard let cellIn = cell, let vModels = viewModels else { return UITableViewCell() }
 			cellIn.configureCell(withObject: vModels[indexPath.row] as! CourseViewModel)
 			return cellIn
 		}
 		if type == .students {
 			let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier, for: indexPath) as? VDMyCell
+			if checked![indexPath.row] == true {
+				cell?.accessoryType = .checkmark
+			}
+			if checked![indexPath.row] == false {
+				cell?.accessoryType = .none
+			}
 			guard let cellIn = cell, let vModels = viewModels else { return UITableViewCell() }
 			cellIn.configureCell(withObject: vModels[indexPath.row] as! UserViewModel)
 			return cellIn

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     	VDDataManager.sharedManager.deleteAllObjects(WithEntityName: "VDCourse")
     	VDDataManager.sharedManager.addTenUsers()
     	VDDataManager.sharedManager.addTenCourses()
-
+		
     	// Override point for customization after application launch.
     	return true
 	}

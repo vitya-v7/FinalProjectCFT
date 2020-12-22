@@ -33,7 +33,7 @@ class ViewControllerCourse: ViewController {
 		tableView?.dataSource = self
     	//VDDataManager.sharedManager.updatecourseBD()
     	//VDDataManager.sharedManager.updateCourseBD()
-
+		self.title = "Courses"
     	let but2 = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
     	//let but2 = UIBarButtonItem.init(title: "Show DB", style: .plain, target: self, action: #selector(showAll(_:)))
     	self.navigationItem.setRightBarButtonItems([but2], animated: true)
@@ -57,6 +57,11 @@ class ViewControllerCourse: ViewController {
     	output?.updateDB()
 		updateViewModels()
 	}
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+	}
+
 
 	override func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [CourseViewModel]

@@ -6,52 +6,42 @@
 //  Copyright © 2020 Viktor Deryabin. All rights reserved.
 //
 
-/*import UIKit
+import UIKit
 import CoreData
 class InteractorDetailCourse: NSObject {
 	var temporaryCourseID: NSManagedObjectID?
-	var delegate1: TableViewReloaded?
-	var course: VDCourseSpecial? {
-		didSet(courseOld) {
-			for i in 0..<nameData.count {
-				newData[nameData[i]] = course?[nameData[i]]
-			}
-		}
+
+	var course: VDCourseSpecial?
+
+	func updateCourseWithObject(courseIn: VDCourseSpecial) {
+		temporaryCourseID = nil
+		course = courseIn
+		updateCourseInDB()
+	}
+
+	func getStudentsOfCourse() -> [VDUserSpecial]? {
+		return course?.students
+	}
+
+	func getAllUsers() -> [VDUserSpecial] {
+		return VDUserSpecial.users
 	}
 
 	func deleteTemporaryCourseFromDB() {
 		VDDataManager.sharedManager.deleteByID(id: temporaryCourseID!)
 	}
 
-	var nameData = ["name","predmet"]
-	var newData = [String:String]()
-	func getNameOfTF(at row: Int) -> String {
-		return nameData[row]
-	}
-	func getValueOfTF(at row: Int) -> String? {
-		return newData[nameData[row]]
-	}
 	func updateDataBase() {
 		VDDataManager.sharedManager.updateUserBD()
 		VDDataManager.sharedManager.updateCourseBD()
 		updateDetailCourseObject()
 	}
+	
 	func updateCourseInDB() {
 		VDDataManager.sharedManager.updateCourse(course: course!)
 		VDDataManager.sharedManager.updateCourseBD()
 	}
-	func updateCourseWithDictionary() {
-		temporaryCourseID = nil
-		course?.name = newData[nameData[0]]
-		course?.predmet = newData[nameData[1]]
-		updateCourseInDB()
-	}
-	func changeDictionaryData(name: String, value: String) {
-		newData[name] = value
-		if name == "predmet" {
-			delegate1?.changePredmetTextField(value: value)
-		}
-	}
+
 	func updateDetailCourseObject() {
 		if course?.ID != nil {
 			course = VDCourseSpecial.courses[VDCourseSpecial.getCourseIndexByID(id: course!.ID!)!]
@@ -68,7 +58,23 @@ class InteractorDetailCourse: NSObject {
 
 			}
 		}
+	}
+	
+	func getStudentIndexByID(id: NSManagedObjectID?) -> Int? {
+		if let idIn = id {
+			return VDUserSpecial.getUserIndexByID(id: idIn)
+		}
+		else {
+			return -1
+		}
+	}
 
+	func getPrepodOfCourse() -> VDUserSpecial? {
+		return course?.prepod
+	}
+
+	func getCourseModel() -> VDCourseSpecial? {
+		return course
 	}
 
 	func changePrepodOfCourse(checkedStudent: NSInteger) {
@@ -90,8 +96,6 @@ class InteractorDetailCourse: NSObject {
 				VDDataManager.sharedManager.assignUserAsTeacher(with: studID!, onCourseWith: (course?.ID)!)
 			}
 		}
-
 	}
-
 }
-*/
+

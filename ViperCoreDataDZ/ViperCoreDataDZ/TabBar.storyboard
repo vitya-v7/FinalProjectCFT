@@ -13,7 +13,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="jnQ-Zf-37Y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="5df-cR-Wmb">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="5df-cR-Wmb">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stud" translatesAutoresizingMaskIntoConstraints="NO" id="v3U-ec-clN">
-                                <rect key="frame" x="56.5" y="117.5" width="262.5" height="432.5"/>
+                                <rect key="frame" x="56.5" y="118" width="262.5" height="431.5"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -91,7 +91,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="stud" width="411" height="432.5"/>
+        <image name="stud" width="410" height="431.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
