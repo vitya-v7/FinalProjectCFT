@@ -27,6 +27,7 @@ class RouterToDetailCourseController: NSObject {
     	
     	presenter.interactor = interactor
     	presenter.wireFrame = RouterToCheckCourseController()
+		interactor.presenter = presenter
     	return vc
 	}
 	

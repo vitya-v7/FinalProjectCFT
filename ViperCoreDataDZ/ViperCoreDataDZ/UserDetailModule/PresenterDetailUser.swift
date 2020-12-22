@@ -37,14 +37,21 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		}
 		return false
 	}
+	
 	func deleteTemporaryUser() {
 		interactor!.deleteTemporaryUserFromDB()
 	}
+
 	func changeCoursesOfStud(checkedCourses: [Bool]) {
 		interactor!.changeCoursesOfStud(checkedCourses: checkedCourses)
 	}
+
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
 		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
+		interactor!.updateUserInDB()
+		self.modelsForCoursesForTeaching = interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
+		self.viewModelsForCoursesForTeaching = convertModelsToViewModels(models: self.modelsForCoursesForTeaching)
+		viewController?.viewModelsForCoursesForTeaching = self.viewModelsForCoursesForTeaching
 		viewController?.tableView?.reloadData()
 	}
 
@@ -105,6 +112,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		let userVM = UserViewModel(adress: model.adress ?? "", firstName: model.firstName ?? "", lastName: model.lastName ?? "")
 		return userVM
 	}
+
 
 	func updateModelByViewModel(model: VDUserSpecial, viewModel: UserViewModel) {
 		model.adress = viewModel.adress

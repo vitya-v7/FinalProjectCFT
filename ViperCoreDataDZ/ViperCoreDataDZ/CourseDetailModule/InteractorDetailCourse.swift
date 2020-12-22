@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 class InteractorDetailCourse: NSObject {
 	var temporaryCourseID: NSManagedObjectID?
-
+	weak var presenter: PresenterDetailCourse?
 	var course: VDCourseSpecial?
 
 	func updateCourseWithObject(courseIn: VDCourseSpecial) {
@@ -82,12 +82,14 @@ class InteractorDetailCourse: NSObject {
 	}
 
 	func changePrepodOfCourse(checkedStudent: NSInteger) {
+		var prepodTemp: VDUserSpecial?
 		if course?.prepod != nil {
 			if checkedStudent == -1 {
 				VDDataManager.sharedManager.resignUserAsTeacher(with: (course?.prepod?.ID!)!, fromCourseWith: (course?.ID)!)
 			}
 			else {
 				let studID = VDUserSpecial.users[checkedStudent].ID
+				prepodTemp = VDUserSpecial.users[checkedStudent]
 				if studID != course?.prepod?.ID {
 					VDDataManager.sharedManager.resignUserAsTeacher(with: (course?.prepod?.ID!)!, fromCourseWith: (course?.ID)!)
 					VDDataManager.sharedManager.assignUserAsTeacher(with: studID!, onCourseWith: (course?.ID)!)
@@ -97,9 +99,15 @@ class InteractorDetailCourse: NSObject {
 		else {
 			if checkedStudent != -1 {
 				let studID = VDUserSpecial.users[checkedStudent].ID
+				prepodTemp =  VDUserSpecial.users[checkedStudent]
 				VDDataManager.sharedManager.assignUserAsTeacher(with: studID!, onCourseWith: (course?.ID)!)
 			}
 		}
+		if prepodTemp != nil {
+			let stringWithName = (prepodTemp?.firstName ?? "") + " " + (prepodTemp?.lastName ?? "")
+			presenter?.changePrepodOfCourse(prepod: stringWithName)
+		}
+
 	}
 }
 

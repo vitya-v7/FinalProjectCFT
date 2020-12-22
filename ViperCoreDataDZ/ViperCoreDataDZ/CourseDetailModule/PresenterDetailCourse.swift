@@ -81,6 +81,15 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		interactor!.updateCourseWithObject(courseIn: modelForCourse)
 	}
 
+	func changePrepodOfCourse(prepod: String) {
+		let names = prepod.components(separatedBy: " ")
+		modelForCourse.prepod?.firstName = names[0]
+		modelForCourse.prepod?.lastName = names[1]
+
+		viewModelForCourse.prepod = prepod
+		viewController?.changePrepodOfCourse(prepod: prepod)
+	}
+
 	func callCheckViewController( myIndexPath: IndexPath?) {
     	//var vc = VDCourseDetailControllerTableViewController()
     	

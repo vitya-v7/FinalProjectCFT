@@ -76,6 +76,11 @@ class ViewControllerDetailCourse: UIViewController {
 		self.tableView?.reloadData()
 	}
 
+	func changePrepodOfCourse(prepod: String) {
+		viewModelForCourse.prepod = prepod
+		tableView?.reloadData()
+	}
+
 	@objc func saveData(_ but: UIBarButtonItem) {
 
 		for i in 0..<2{
@@ -129,9 +134,7 @@ extension ViewControllerDetailCourse: UITableViewDelegate {
 		}
 		return 90
 	}
-	
 }
-
 
 extension ViewControllerDetailCourse: UITableViewDataSource {
 
@@ -228,16 +231,6 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 }
 
 extension ViewControllerDetailCourse: TextFieldChanged {
-	/*func textFieldDataChanged(textField: UITextField) {
-	switch textField.tag {
-	case 3:
-	temporaryCourseViewModel.name = textField.text ?? ""
-	case 4:
-	output?.callPopover(value: textField.text!)
-	default:
-	fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
-	}
-	}*/
 	func textCharactersChanged(newValue: String, tag: Int) {
 		switch tag {
 		case 3:
