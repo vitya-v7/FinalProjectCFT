@@ -31,6 +31,8 @@ class ViewControllerPrepod: ViewController {
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
+		output?.updateModels()
+		allViewModel = output!.getAllUserViewModels()
 		viewModel = output!.createDictionary()
 		keys = Array(viewModel!.keys)
 		keys?.sort{$0 < $1}
@@ -55,7 +57,7 @@ extension ViewControllerPrepod: UITableViewDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let object = viewModel![Constants.objectOfCourse[indexPath.section]]![indexPath.row]
+		let object = viewModel![keys![indexPath.section]]![indexPath.row]
 		var indexOut = 0
 		for index in 0 ..< allViewModel.count {
 			if allViewModel[index].adress == object.adress &&
