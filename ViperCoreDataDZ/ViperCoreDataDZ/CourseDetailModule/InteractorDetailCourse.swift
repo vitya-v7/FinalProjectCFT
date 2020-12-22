@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 class InteractorDetailCourse: NSObject {
+	
 	var temporaryCourseID: NSManagedObjectID?
 	weak var presenter: PresenterDetailCourse?
 	var course: VDCourseSpecial?
@@ -51,7 +52,7 @@ class InteractorDetailCourse: NSObject {
 			course = VDCourseSpecial.courses[VDCourseSpecial.getCourseIndexByID(id: course!.ID!)!]
 		}
 	}
-	///////////////
+
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
 		for index in 0 ..< checkedStudents.count {
 			if checkedStudents[index] == false {
@@ -103,11 +104,11 @@ class InteractorDetailCourse: NSObject {
 				VDDataManager.sharedManager.assignUserAsTeacher(with: studID!, onCourseWith: (course?.ID)!)
 			}
 		}
+
 		if prepodTemp != nil {
 			let stringWithName = (prepodTemp?.firstName ?? "") + " " + (prepodTemp?.lastName ?? "")
 			presenter?.changePrepodOfCourse(prepod: stringWithName)
 		}
-
 	}
 }
 

@@ -17,29 +17,21 @@ class ViewControllerUser: ViewController {
 		super.viewDidLoad()
 		let nib = UINib.init(nibName: VDMyCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
-
 		let but1 = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(myEditing(_:)))
-
-
 		self.navigationItem.leftBarButtonItem = but1
 		output = PresenterUser()
 		output?.viewController = self
 		output?.wireFrame = RouterToDetailUserController()
-		//dataSource.setCellType(cellIdentifier: "UserCell")
 		let interactor: InteractorUser = InteractorUser()
 		output?.interactor = interactor
 		tableView?.delegate = self
 		tableView?.dataSource = self
-		//VDDataManager.sharedManager.updateUserBD()
-		//VDDataManager.sharedManager.updateCourseBD()
 		let but2 = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
 		self.navigationItem.setRightBarButtonItems([but2], animated: true)
-		// Do any additional setup after loading the view, typically from a nib.
 	}
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		//self.tabBarItem = UITabBarItem.init(title: "Students", image: UIImage.init(named: "students"), tag: 0)
 	}
 
 	@objc func myEditing( _: UIBarButtonItem) {
@@ -52,14 +44,9 @@ class ViewControllerUser: ViewController {
 	}
 
 	@objc func insertNewObject(_ sender: Any) {
-
 		output?.callDetailViewController(myIndexPath: nil)
 	}
 	override func viewWillAppear(_ animated: Bool) {
-
-		/*VDDataManager.sharedManager.updateUserBD()
-		VDDataManager.sharedManager.updateCourseBD()
-		dataSource.setDataDictionary(data: output?.createDict())*/
 		output?.updateDB()
 		updateViewModels()
 	}
@@ -75,10 +62,7 @@ class ViewControllerUser: ViewController {
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
-
-
 }
 
 extension ViewControllerUser: UITableViewDelegate {
@@ -103,7 +87,6 @@ extension ViewControllerUser: UITableViewDelegate {
 	{
 		return 90
 	}
-
 }
 
 extension ViewControllerUser: UITableViewDataSource {
@@ -125,13 +108,3 @@ extension ViewControllerUser: UITableViewDataSource {
 		return cellIn
 	}
 }
-
-/*extension ViewControllerUser: IListViewController {
-func setViewModels(viewModels: [IListViewModel]) {
-self.viewModels = viewModels as! [UserViewModel]
-}
-
-func updateViewModels() {
-output?.getUsers()
-}
-}*/

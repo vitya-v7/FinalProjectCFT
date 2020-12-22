@@ -17,58 +17,58 @@ class VDUserSpecial: Special {
 	
 	static var users = [VDUserSpecial]()
 	override subscript( string: String) -> String? {
-    	switch string {
-    	case "firstName":
-	    	return firstName
-    	case "lastName":
-	    	return lastName
-    	case "adress":
-	    	return adress
-    	default:
-	    	return nil
-    	}
+		switch string {
+		case "firstName":
+			return firstName
+		case "lastName":
+			return lastName
+		case "adress":
+			return adress
+		default:
+			return nil
+		}
 	}
-    	
-	
+
 	static func getUserIndexByID( id:NSManagedObjectID) ->  Int?{
-    	
-    	for i in 0 ..< VDUserSpecial.users.count {
-	    	if VDUserSpecial.users[i].ID == id {
-    	    	return i
-	    	}
-    	}
-    	
-    	return nil
+
+		for i in 0 ..< VDUserSpecial.users.count {
+			if VDUserSpecial.users[i].ID == id {
+				return i
+			}
+		}
+
+		return nil
 	}
+
 	static func deleteUserByID( id:NSManagedObjectID) ->  Bool {
-    	for i in 0 ..< VDUserSpecial.users.count {
-	    	if VDUserSpecial.users[i].ID == id {
-    	    	VDUserSpecial.users.remove(at: i)
-    	    	return true
-	    	}
-    	}
-    	return false
+		for i in 0 ..< VDUserSpecial.users.count {
+			if VDUserSpecial.users[i].ID == id {
+				VDUserSpecial.users.remove(at: i)
+				return true
+			}
+		}
+		return false
 	}
+
 	func deleteCourseById(id: NSManagedObjectID) ->  Bool  {
-    	for i in 0 ..< (self.courses.count) {
-	    	if courses[i].ID == id {
-    	    	self.courses.remove(at: i)
-    	    	return true
-	    	}
-    	}
-    	return false
+		for i in 0 ..< (self.courses.count) {
+			if courses[i].ID == id {
+				self.courses.remove(at: i)
+				return true
+			}
+		}
+		return false
 	}
 	
 	func deleteCourseForTeachingById(id: NSManagedObjectID) ->  Bool  {
-    	for i in 0 ..< (self.coursesForTeaching.count) {
-	    	if coursesForTeaching[i].ID == id {
-    	    	self.coursesForTeaching.remove(at: i)
-    	    	return true
-	    	}
-    	}
-    	return false
+		for i in 0 ..< (self.coursesForTeaching.count) {
+			if coursesForTeaching[i].ID == id {
+				self.coursesForTeaching.remove(at: i)
+				return true
+			}
+		}
+		return false
 	}
-	
 
 	static func addNewObjectFromEntity( entity: VDUser) -> VDUserSpecial {
 		if getUserIndexByID(id: entity.objectID) == nil {
@@ -78,7 +78,6 @@ class VDUserSpecial: Special {
 		}
 		return VDUserSpecial()
 	}
-
 
 	static func convertManagedObjectToModel(entity: VDUser) -> VDUserSpecial {
 		let uSpecial = VDUserSpecial()

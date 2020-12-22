@@ -18,23 +18,18 @@ class VDMyCell: UITableViewCell {
 	static let nibName = "userDescriptionCell"
 
 	override func awakeFromNib() {
-    	super.awakeFromNib()
-    	adress?.adjustsFontSizeToFitWidth = true
-    	// Initialization code
+		super.awakeFromNib()
+		adress?.adjustsFontSizeToFitWidth = true
 	}
-	
-	
+
 	func configureCell(withObject object: UserViewModel) {
 		
-    	firstName?.text = object.firstName
-    	lastName?.text = object.lastName
-    	adress?.text = object.adress
+		firstName?.text = object.firstName
+		lastName?.text = object.lastName
+		adress?.text = object.adress
 	}
 
 	override func setSelected(_ selected: Bool, animated: Bool) {
-    	super.setSelected(selected, animated: animated)
-    	
-    	// Configure the view for the selected state
+		super.setSelected(selected, animated: animated)
 	}
-
 }

@@ -13,22 +13,21 @@ import CoreData
 class InteractorDetailUser: NSObject{
 
 	var temporaryUserID: NSManagedObjectID?
-
 	var user: VDUserSpecial?
 
 	func deleteTemporaryUserFromDB() {
-    	VDDataManager.sharedManager.deleteByID(id: temporaryUserID!)
+		VDDataManager.sharedManager.deleteByID(id: temporaryUserID!)
 	}
 
 	func updateDataBase() {
-    	VDDataManager.sharedManager.updateUserBD()
-    	VDDataManager.sharedManager.updateCourseBD()
+		VDDataManager.sharedManager.updateUserBD()
+		VDDataManager.sharedManager.updateCourseBD()
 		updateDetailUserObjectFromDB()
 	}
 
 	func updateUserInDB() {
-    	VDDataManager.sharedManager.updateUser(user: user!)
-    	VDDataManager.sharedManager.updateCourseBD()
+		VDDataManager.sharedManager.updateUser(user: user!)
+		VDDataManager.sharedManager.updateCourseBD()
 	}
 
 	func getCoursesOfUserForLearning() -> [VDCourseSpecial]? {
@@ -40,7 +39,6 @@ class InteractorDetailUser: NSObject{
 	}
 
 	func getAllCourses() -> [VDCourseSpecial]? {
-		//return VDCourseSpecial.convertManagedObjectsToModels(entities: VDDataManager.sharedManager.getAllObjectsByEntity(name: "VDCourse") as! [VDCourse])
 		return VDCourseSpecial.courses
 	}
 
@@ -54,43 +52,40 @@ class InteractorDetailUser: NSObject{
 	}
 
 	func updateUserWithObject(userIn: VDUserSpecial) {
-    	temporaryUserID = nil
+		temporaryUserID = nil
 		user = userIn
-    	updateUserInDB()
+		updateUserInDB()
 	}
 
 	func updateDetailUserObjectFromDB() {
-    	if user?.ID != nil {
-	    	user = VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: user!.ID!)!]
-    	}
+		if user?.ID != nil {
+			user = VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: user!.ID!)!]
+		}
 	}
 
 	func getUserModel() -> VDUserSpecial {
 		return user ?? VDUserSpecial()
 	}
-	///////////////
+
 	func changeCoursesOfStud(checkedCourses: [Bool]) {
-    	for index in 0 ..< checkedCourses.count {
-	    	if checkedCourses[index] == false {
-    	    	VDDataManager.sharedManager.resignUserAsStudent(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
-	    	}
-	    	else {
-    	    	VDDataManager.sharedManager.assignUserAsStudent(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
-	    	}
-    	}
-    	
-	}
-	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
-    	
-    	for index in 0 ..< checkedCourses.count {
-	    	if checkedCourses[index] == false {
-    	    	VDDataManager.sharedManager.resignUserAsTeacher(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
-	    	}
-	    	else {
-    	    	VDDataManager.sharedManager.assignUserAsTeacher(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
-	    	}
-    	}
+		for index in 0 ..< checkedCourses.count {
+			if checkedCourses[index] == false {
+				VDDataManager.sharedManager.resignUserAsStudent(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
+			}
+			else {
+				VDDataManager.sharedManager.assignUserAsStudent(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
+			}
+		}
 	}
 
-	
+	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
+		for index in 0 ..< checkedCourses.count {
+			if checkedCourses[index] == false {
+				VDDataManager.sharedManager.resignUserAsTeacher(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
+			}
+			else {
+				VDDataManager.sharedManager.assignUserAsTeacher(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
+			}
+		}
+	}
 }

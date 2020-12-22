@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-
-
 class ViewControllerDetailUser: UIViewController
 {
 	var viewModelForUser = UserViewModel()
@@ -40,7 +38,6 @@ class ViewControllerDetailUser: UIViewController
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
 	@objc func saveData(_ but: UIBarButtonItem) {
@@ -58,7 +55,6 @@ class ViewControllerDetailUser: UIViewController
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		
 		if (self.isMovingFromParent){
 			if output!.isTemporaryUser() {
 				output!.deleteTemporaryUser()
@@ -80,7 +76,6 @@ class ViewControllerDetailUser: UIViewController
 
 extension ViewControllerDetailUser: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
 		switch section {
 		case 0: return 3
 		case 1: return viewModelsForCoursesForLearning.count + 1
@@ -88,7 +83,6 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 		default: return 0
 		}
 	}
-	
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		switch indexPath.section {
@@ -159,10 +153,10 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 			return ""
 		}
 	}
-	
 }
 
 extension ViewControllerDetailUser: UITableViewDelegate {
+
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if indexPath.section == 0 {
 			return 50
@@ -204,11 +198,9 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 		}
 		cell.selectionStyle = .none
 	}
-	
 }
 
 extension ViewControllerDetailUser: TextFieldChanged {
-	
 	func textCharactersChanged(newValue: String, tag: Int) {
 		switch tag {
 		case 0:

@@ -8,13 +8,12 @@
 
 import UIKit
 protocol InteractorOutput {
-	//func changeStudsOfCourse(checkedStudents:checkedStudents)
-	//func changePrepodOfCourse(checkedStudent: checkedStudent)
 	func getStudentsCount() -> Int
 	func getNameDataCount()
 	func deleteTemporaryCourseFromDB()
 	func getTemporaryCourseID()
 }
+
 class PresenterDetailCourse: NSObject, AssignmentProtocol {
 
 	let optionsForPicker = Constants.objectOfCourse
@@ -22,7 +21,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 	weak var viewController: ViewControllerDetailCourse?
 	var interactor: InteractorDetailCourse?
 	var wireFrame: RouterToCheckCourseController?
-
 
 	var viewModelForCourse = CourseViewModel()
 	var viewModelForPrepod = UserViewModel()
@@ -33,7 +31,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 	var modelsForStudentsForCourse = [VDUserSpecial]()
 
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
-    	interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
+		interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
 	}
 
 	func updateDBAndGetCourseViewModel() -> CourseViewModel {
@@ -44,23 +42,22 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 	}
 	
 	func changePrepodOfCourse(checkedStudent: NSInteger) {
-    	interactor!.changePrepodOfCourse(checkedStudent: checkedStudent)
+		interactor!.changePrepodOfCourse(checkedStudent: checkedStudent)
 	}
 
-
 	func getStudentsCount() -> Int {
-    	return interactor!.course!.students.count
+		return interactor!.course!.students.count
 	}
 
 	func isTemporaryCourse() -> Bool {
-    	if interactor!.temporaryCourseID != nil {
-	    	return true
-    	}
-    	return false
+		if interactor!.temporaryCourseID != nil {
+			return true
+		}
+		return false
 	}
 	
 	func daleteTemporaryCourse() {
-    	interactor!.deleteTemporaryCourseFromDB()
+		interactor!.deleteTemporaryCourseFromDB()
 	}
 	
 	func getUsersForCourse() -> [UserViewModel] {
@@ -91,20 +88,18 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 	}
 
 	func callCheckViewController( myIndexPath: IndexPath?) {
-    	//var vc = VDCourseDetailControllerTableViewController()
-    	
-    	if myIndexPath!.section == 0 && myIndexPath!.row == 2 {
-	    	var checkedPrepodIndex: NSInteger = -1
+		if myIndexPath!.section == 0 && myIndexPath!.row == 2 {
+			var checkedPrepodIndex: NSInteger = -1
 			if interactor!.getPrepodOfCourse() != nil {
 				if let index = interactor!.getStudentIndexByID(id: interactor!.getPrepodOfCourse()!.ID) {
 					checkedPrepodIndex = index
 				}
-	    	}
+			}
 			let viewModels = convertModelsToViewModels(models:  interactor!.getAllUsers())
 			wireFrame?.presentParticipantChecksPrepodModule(delegate: self, viewModels: viewModels, checked: checkedPrepodIndex, fromView: viewController!)
-    	}
-    	if myIndexPath!.section == 1 && myIndexPath!.row == 0 {
-	    	let type:typeOfCourse = .students
+		}
+		if myIndexPath!.section == 1 && myIndexPath!.row == 0 {
+			let type:typeOfCourse = .students
 
 			var boolArray = [Bool](repeating: false, count: interactor!.getAllUsers().count )
 			if let students = interactor!.getStudentsOfCourse() {
@@ -114,9 +109,8 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 			}
 			let viewModels = convertModelsToViewModels(models:  interactor!.getAllUsers())
 			wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModels,checked: boolArray, type: type, fromView: viewController!)
-    	}
+		}
 	}
-
 
 	func updateModelByViewModel(model: VDCourseSpecial, viewModel: CourseViewModel) {
 		model.name = viewModel.name
@@ -133,7 +127,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		vm.prepod = (model.prepod?.firstName ?? "") + " " + (model.prepod?.lastName ?? "")
 		return vm
 	}
-
 
 	func convertModelToViewModel(model: VDUserSpecial) -> UserViewModel {
 		let vm = UserViewModel()
@@ -152,13 +145,13 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		return viewModels
 	}
 
-
 	func updateDB() {
-    	interactor!.updateDataBase()
+		interactor!.updateDataBase()
 	}
+
 	func dismissView() {
-    	viewController?.navigationController?.popViewController(animated: true)
-    	
+		viewController?.navigationController?.popViewController(animated: true)
+
 	}
 
 	func callPopover(value: String) {
@@ -177,7 +170,6 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		popover?.sourceView = viewController!.view
 		popover?.sourceRect = viewController!.view.bounds
 	}
-
 }
 
 extension PresenterDetailCourse: PopoverOutput {

@@ -22,7 +22,6 @@ protocol InteractorUserListProtocol {
 
 class InteractorUser: NSObject, InteractorUserListProtocol {
 
-
 	var users = [VDUserSpecial]()
 
 	func updateDataBase() {
@@ -54,7 +53,6 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 		return teachers
 	}
 
-
 	func createDict() -> [String: [VDUserSpecial]]{
 		var nameCourse = [String]()
 		var dict: [String: [VDUserSpecial]] = [:]
@@ -76,7 +74,6 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 		}
 		return dict
 	}
-
 
 	func getData(getUsers:([VDUserSpecial])->()) {
 		getUsers(returnData())

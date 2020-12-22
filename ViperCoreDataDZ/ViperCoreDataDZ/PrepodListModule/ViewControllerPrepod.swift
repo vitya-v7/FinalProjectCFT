@@ -16,16 +16,16 @@ class ViewControllerPrepod: ViewController {
 	var keys: [String]?
 
 	override func viewDidLoad() {
-    	super.viewDidLoad()
+		super.viewDidLoad()
 		let nib = UINib.init(nibName: VDMyCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCell.cellIdentifier)
 		tableView?.delegate = self
 		tableView?.dataSource = self
 		output = PresenterUser()
-    	output?.viewController = self
-    	output?.wireFrame = RouterToDetailUserController()
-    	let interactor: InteractorUser = InteractorUser()
-    	output?.interactor = interactor
+		output?.viewController = self
+		output?.wireFrame = RouterToDetailUserController()
+		let interactor: InteractorUser = InteractorUser()
+		output?.interactor = interactor
 		output?.updateModels()
 		allViewModel = output!.getAllUserViewModels()
 	}
@@ -35,12 +35,12 @@ class ViewControllerPrepod: ViewController {
 		keys = Array(viewModel!.keys)
 		keys?.sort{$0 < $1}
 
-    	tableView?.reloadData()
+		tableView?.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {
-    	super.didReceiveMemoryWarning()
-    	// Dispose of any resources that can be recreated.
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
 	}
 }
 
@@ -64,7 +64,7 @@ extension ViewControllerPrepod: UITableViewDelegate {
 				indexOut = index
 			}
 		}
-		output?.interactor?.updateModels() 
+		let _ = output?.interactor?.updateModels() 
 		output?.callDetailViewController(myIndexPath: NSIndexPath.init(row: indexOut, section: 0))
 	}
 }

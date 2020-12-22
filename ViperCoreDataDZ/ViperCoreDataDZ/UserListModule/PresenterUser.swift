@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class PresenterUser: PresenterGeneralCheck {
 	var temporaryUserID: NSManagedObjectID?
 	weak var viewController: ViewController?
@@ -19,7 +18,7 @@ class PresenterUser: PresenterGeneralCheck {
 	var viewModels = [UserViewModel]()
 	var delegate: AssignmentProtocol?
 	func updateDB() {
-    	interactor?.updateDataBase()
+		interactor?.updateDataBase()
 	}
 
 	func getUsers() {
@@ -38,7 +37,6 @@ class PresenterUser: PresenterGeneralCheck {
 		return convertModelsToViewModels(models: interactor!.getTeachersObject(object: object))
 	}
 
-
 	func createDictionary()  -> [String: [UserViewModel]] {
 		var dictionaryWithVM = [String: [UserViewModel]]()
 		let dict = interactor!.createDict()
@@ -50,7 +48,6 @@ class PresenterUser: PresenterGeneralCheck {
 		}
 		return dictionaryWithVM
 	}
-
 
 	func convertModelToViewModel(model: VDUserSpecial) -> UserViewModel {
 		let vm = UserViewModel()
@@ -90,16 +87,16 @@ class PresenterUser: PresenterGeneralCheck {
 	}
 
 	func callDetailViewController( myIndexPath: NSIndexPath?) {
-    	var user: VDUserSpecial
-    	var isTemporary = false
-    	if myIndexPath == nil {
-    	    	user = interactor!.addEmptyUser()
-    	    	isTemporary = true
-    	}
-    	else {
+		var user: VDUserSpecial
+		var isTemporary = false
+		if myIndexPath == nil {
+			user = interactor!.addEmptyUser()
+			isTemporary = true
+		}
+		else {
 			user = models[myIndexPath!.row]
-    	}
-    	wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
+		}
+		wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
 	}
 
 	func updateModels() {
@@ -107,21 +104,19 @@ class PresenterUser: PresenterGeneralCheck {
 	}
 
 	func showAll(_ but: UIBarButtonItem) {
-    	VDDataManager.sharedManager.showAllObjects()
+		VDDataManager.sharedManager.showAllObjects()
 	}
 
 	override func dismissView() {
-    	viewController?.navigationController?.popViewController(animated: true)
-    	
+		viewController?.navigationController?.popViewController(animated: true)
+
 	}
 
 	override func changeStudsOfCourse(checkedStudents: [Bool]) {
-    	delegate?.changeStudsOfCourse?(checkedStudents: checkedStudents)
+		delegate?.changeStudsOfCourse?(checkedStudents: checkedStudents)
 	}
+
 	override func changePrepodOfCourse(checkedStudent: NSInteger) {
-    	delegate?.changePrepodOfCourse!(checkedStudent: checkedStudent)
+		delegate?.changePrepodOfCourse!(checkedStudent: checkedStudent)
 	}
-	
-	
-	
 }

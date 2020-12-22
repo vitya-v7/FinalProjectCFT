@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class ViewControllerDetailCourse: UIViewController {
 	var viewModelForCourse = CourseViewModel()
 	var temporaryCourseViewModel = CourseViewModel()
@@ -19,12 +18,10 @@ class ViewControllerDetailCourse: UIViewController {
 	var firstAppearOnScreen = true
 	@IBOutlet var tableView: UITableView?
 	override func viewDidLoad() {
-    	super.viewDidLoad()
+		super.viewDidLoad()
 		temporaryCourseViewModel.name = ""
 		temporaryCourseViewModel.predmet = ""
 		temporaryCourseViewModel.prepod = ""
-
-    	//course = VDCourseSpecial.getCourseByID(myIndexObject)
 
 		var nib = UINib.init(nibName: VDDetailCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDDetailCell.cellIdentifier) // ??????
@@ -35,10 +32,9 @@ class ViewControllerDetailCourse: UIViewController {
 
 		self.tableView?.delegate = self
 		self.tableView?.dataSource = self
-    	
-    	let barb = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))
-    	self.navigationItem.setRightBarButtonItems([barb], animated: true)
 
+		let barb = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))
+		self.navigationItem.setRightBarButtonItems([barb], animated: true)
 	}
 
 	func setViewModelForCourse(viewModel: CourseViewModel) {
@@ -47,22 +43,20 @@ class ViewControllerDetailCourse: UIViewController {
 
 	func setTemporaryPredmetForCourse(value: String) {
 		temporaryCourseViewModel.predmet = value
-		//let cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
-		//cell.txtField?.text = value
 		tableView?.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {
-    	super.didReceiveMemoryWarning()
-    	// Dispose of any resources that can be recreated.
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
-    	if (self.isMovingFromParent){
-	    	if output!.isTemporaryCourse() {
-    	    	output!.daleteTemporaryCourse()
-	    	}
-    	}
+		if (self.isMovingFromParent){
+			if output!.isTemporaryCourse() {
+				output!.daleteTemporaryCourse()
+			}
+		}
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -88,14 +82,12 @@ class ViewControllerDetailCourse: UIViewController {
 				cell.txtField!.resignFirstResponder()
 			}
 		}
-
 		viewModelForCourse.name = temporaryCourseViewModel.name
 		viewModelForCourse.predmet = temporaryCourseViewModel.predmet
 
 		output?.updateCourse(viewModel: viewModelForCourse)
 		output?.dismissView()
 	}
-
 }
 
 extension ViewControllerDetailCourse: UITableViewDelegate {
@@ -125,7 +117,7 @@ extension ViewControllerDetailCourse: UITableViewDelegate {
 		else {
 			cell.backgroundColor = UIColor.white
 		}
-		 cell.selectionStyle = .none
+		cell.selectionStyle = .none
 	}
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -168,39 +160,39 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 		switch indexPath.section {
 		case 0:
 			if indexPath.row == 2 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier) as! VDMyCell
-			if viewModelForPrepod != nil {
-				cell.firstName?.text = viewModelForPrepod?.firstName ?? ""
-				cell.lastName?.text = viewModelForPrepod?.lastName ?? ""
+				let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier) as! VDMyCell
+				if viewModelForPrepod != nil {
+					cell.firstName?.text = viewModelForPrepod?.firstName ?? ""
+					cell.lastName?.text = viewModelForPrepod?.lastName ?? ""
+				}
+				else {
+					cell.firstName?.text = "There's no"
+					cell.lastName?.text = " teacher"
+				}
+				cell.adress?.text = "Prepod"
+				return cell
 			}
 			else {
-				cell.firstName?.text = "There's no"
-				cell.lastName?.text = " teacher"
-			}
-			cell.adress?.text = "Prepod"
-			return cell
-		}
-		else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifier) as! VDDetailCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifier) as! VDDetailCell
 
-			cell.delegate1 = self
+				cell.delegate1 = self
 
-			switch indexPath.row {
-			case 0:
-				cell.label?.text = "name"
-				cell.txtField?.text = temporaryCourseViewModel.name
-				cell.txtField?.tag = 3
-			case 1:
-				cell.label?.text = "predmet"
-				cell.txtField?.text = temporaryCourseViewModel.predmet
-				
-				//cell.delegate2 = self
-				cell.txtField?.tag = 4
-			default:
-				fatalError("\(self.description)" + " - cellForRow Func: index out of range")
+				switch indexPath.row {
+				case 0:
+					cell.label?.text = "name"
+					cell.txtField?.text = temporaryCourseViewModel.name
+					cell.txtField?.tag = 3
+				case 1:
+					cell.label?.text = "predmet"
+					cell.txtField?.text = temporaryCourseViewModel.predmet
+
+					//cell.delegate2 = self
+					cell.txtField?.tag = 4
+				default:
+					fatalError("\(self.description)" + " - cellForRow Func: index out of range")
+				}
+				return cell
 			}
-			return cell
-		}
 		case 1:
 			let cell2 = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier) as! VDMyCell
 			if indexPath.row == 0 {
@@ -237,7 +229,7 @@ extension ViewControllerDetailCourse: TextFieldChanged {
 			temporaryCourseViewModel.name = newValue
 		case 4:
 			output?.callPopover(value: newValue)
-			//temporaryCourseViewModel.predmet = newValue
+		//temporaryCourseViewModel.predmet = newValue
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}

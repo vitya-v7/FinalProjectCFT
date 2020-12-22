@@ -21,9 +21,9 @@ class InteractorCourse: NSObject, InteractorCourseListProtocol {
 	
 	var courses = [VDCourseSpecial]()
 	func updateDataBase() {
-    	
-    	VDDataManager.sharedManager.updateUserBD()
-    	VDDataManager.sharedManager.updateCourseBD()
+
+		VDDataManager.sharedManager.updateUserBD()
+		VDDataManager.sharedManager.updateCourseBD()
 	}
 
 	func returnData() -> [VDCourseSpecial] {
@@ -37,14 +37,9 @@ class InteractorCourse: NSObject, InteractorCourseListProtocol {
 	}
 	
 	func addEmptyCourse() -> VDCourseSpecial {
-    	
-    	return VDDataManager.sharedManager.addEmptyCourse()
+
+		return VDDataManager.sharedManager.addEmptyCourse()
 	}
-	
-	/*func getCourseByID( id: NSManagedObjectID) -> VDCourseSpecial{
-    	
-    	return VDCourseSpecial.courses[VDCourseSpecial.getCourseIndexByID(id: id)!]
-	}*/
 	
 	func deleteObjectFromDB(object: VDCourseSpecial) {
 		guard let id = object.ID else {

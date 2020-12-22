@@ -36,7 +36,6 @@ class VDPickerController: UIViewController {
 				self.index = indx
 			}
 		}
-
 		picker?.selectRow((self.index ?? 0) + 1, inComponent: 0, animated: true)
 		self.picker.reloadAllComponents()
 	}

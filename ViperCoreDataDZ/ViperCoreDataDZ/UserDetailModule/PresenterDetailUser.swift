@@ -21,16 +21,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	var modelsForCoursesForLearning = [VDCourseSpecial]()
 	var modelsForCoursesForTeaching = [VDCourseSpecial]()
 
-
-	/*func getUser() {
-	modelForUser = interactor!.getUserModel() ?? VDUserSpecial()
-	viewModelForUser = modelToViewModel(model: modelForUser)
-	}*/
-
-	/*func getTFcount() -> Int {
-	return interactor!.nameData.count
-	}*/
-
 	func isTemporaryUser() -> Bool {
 		if interactor!.temporaryUserID != nil {
 			return true
@@ -55,7 +45,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		viewController?.tableView?.reloadData()
 	}
 
-
 	func getCoursesVMForLearning() -> [CourseViewModel] {
 		modelsForCoursesForLearning = interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]()
 		viewModelsForCoursesForLearning = convertModelsToViewModels(models: modelsForCoursesForLearning)
@@ -67,7 +56,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		viewModelsForCoursesForTeaching = convertModelsToViewModels(models: modelsForCoursesForTeaching)
 		return viewModelsForCoursesForTeaching
 	}
-
 
 	func callCheckViewController( myIndexPath: IndexPath?) {
 		var type: typeOfCourse = .learning
@@ -112,7 +100,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		let userVM = UserViewModel(adress: model.adress ?? "", firstName: model.firstName ?? "", lastName: model.lastName ?? "")
 		return userVM
 	}
-
 
 	func updateModelByViewModel(model: VDUserSpecial, viewModel: UserViewModel) {
 		model.adress = viewModel.adress

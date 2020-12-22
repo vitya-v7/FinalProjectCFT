@@ -10,34 +10,25 @@ import UIKit
 
 class ViewControllerCourse: ViewController {
 	
-	
 	var output: PresenterCourse?
 	var viewModels = [CourseViewModel]()
 
-	
 	override func viewDidLoad() {
-    	super.viewDidLoad()
+		super.viewDidLoad()
 		let nib = UINib.init(nibName: VDMyCourseCell.nibName, bundle: nil)
 		self.tableView?.register(nib, forCellReuseIdentifier: VDMyCourseCell.cellIdentifier)
-
 		let but1 = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(myEditing(_:)))
-
 		self.navigationItem.leftBarButtonItem = but1
-    	output = PresenterCourse()
-    	output?.viewController = self
-    	output?.wireFrame = RouterToDetailCourseController()
-    	//dataSource.setCellType(cellIdentifier: "UserCell")
-    	let interactor: InteractorCourse = InteractorCourse()
-    	output?.interactor = interactor
+		output = PresenterCourse()
+		output?.viewController = self
+		output?.wireFrame = RouterToDetailCourseController()
+		let interactor: InteractorCourse = InteractorCourse()
+		output?.interactor = interactor
 		tableView?.delegate = self
 		tableView?.dataSource = self
-    	//VDDataManager.sharedManager.updatecourseBD()
-    	//VDDataManager.sharedManager.updateCourseBD()
 		self.title = "Courses"
-    	let but2 = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-    	//let but2 = UIBarButtonItem.init(title: "Show DB", style: .plain, target: self, action: #selector(showAll(_:)))
-    	self.navigationItem.setRightBarButtonItems([but2], animated: true)
-    	// Do any additional setup after loading the view, typically from a nib.
+		let but2 = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+		self.navigationItem.setRightBarButtonItems([but2], animated: true)
 	}
 	
 	@objc func myEditing( _: UIBarButtonItem) {
@@ -54,14 +45,13 @@ class ViewControllerCourse: ViewController {
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-    	output?.updateDB()
+		output?.updateDB()
 		updateViewModels()
 	}
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
-
 
 	override func setViewModels(viewModels: [IListViewModel]) {
 		self.viewModels = viewModels as! [CourseViewModel]
@@ -73,21 +63,10 @@ class ViewControllerCourse: ViewController {
 	}
 
 	override func didReceiveMemoryWarning() {
-    	super.didReceiveMemoryWarning()
-    	// Dispose of any resources that can be recreated.
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
 	}
 }
-
-/*extension ViewControllerCourse: IListViewController {
-
-	func setViewModels(viewModels: [IListViewModel]) {
-		self.viewModels = viewModels as! [CourseViewModel]
-	}
-
-	func updateViewModels() {
-		output?.getCourses()
-	}
-}*/
 
 extension ViewControllerCourse: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -100,7 +79,6 @@ extension ViewControllerCourse: UITableViewDelegate {
 			tableView.endUpdates()
 			tableView.reloadData()
 		}
-
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -130,5 +108,4 @@ extension ViewControllerCourse: UITableViewDataSource {
 		cellIn.configureCell(withObject: viewModels[indexPath.row])
 		return cellIn
 	}
-
 }

@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreData
+
 class VDCourseSpecial: Special {
+
 	var name: String?
 	var predmet: String?
 	var students = [VDUserSpecial]()
@@ -16,7 +18,6 @@ class VDCourseSpecial: Special {
 	static var courses = [VDCourseSpecial]()
 	
 	static func getCourseIndexByID( id:NSManagedObjectID) ->  Int? {
-		
 		for i in 0 ..< VDCourseSpecial.courses.count {
 			if VDCourseSpecial.courses[i].ID == id {
 				return i
@@ -55,11 +56,9 @@ class VDCourseSpecial: Special {
 		}
 		return false
 	}
-	
-	
+
 	static func addNewObjectFromEntity( entity: VDCourse) -> VDCourseSpecial {
 		if getCourseIndexByID(id: entity.objectID) == nil {
-
 			let uSpecial: VDCourseSpecial = convertManagedObjectToModel(entity: entity)
 			courses.append(uSpecial)
 			return uSpecial
@@ -69,8 +68,6 @@ class VDCourseSpecial: Special {
 
 	static func convertManagedObjectToModel(entity: VDCourse) -> VDCourseSpecial {
 		let uSpecial = VDCourseSpecial()
-
-		//let sortedStudents = VDDataManager.sharedManager.getStudentsOfCourse(course: entity)
 		uSpecial.name = entity.name
 		uSpecial.ID = entity.objectID
 		uSpecial.predmet = entity.predmet

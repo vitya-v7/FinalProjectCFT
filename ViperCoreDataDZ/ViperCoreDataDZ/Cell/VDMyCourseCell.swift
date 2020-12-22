@@ -14,16 +14,13 @@ class VDMyCourseCell: UITableViewCell {
 	@IBOutlet var predmet: UILabel?
 	@IBOutlet var prepod: UILabel?
 	override func awakeFromNib() {
-    	super.awakeFromNib()
-    	// Initialization code
+		super.awakeFromNib()
 	}
 	static let cellIdentifier = "CourseCell"
 	static let nibName = "courseDescriptionCell"
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
-    	super.setSelected(selected, animated: animated)
-
-    	// Configure the view for the selected state
+		super.setSelected(selected, animated: animated)
 	}
 	func configureCell(withObject object: CourseViewModel) {
 		name?.text = object.name

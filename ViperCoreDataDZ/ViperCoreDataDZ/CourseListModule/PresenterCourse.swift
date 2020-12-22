@@ -40,7 +40,6 @@ class PresenterCourse: PresenterGeneralCheck {
 			vm.predmet = models[index].predmet ?? ""
 			viewModels.append(vm)
 		}
-
 	}
 
 	func getCourses() {
@@ -52,7 +51,6 @@ class PresenterCourse: PresenterGeneralCheck {
 	}
 
 	func callDetailViewController(myIndexPath: IndexPath?) {
-		//var vc = VDcourseDetailControllerTableViewController()
 		var course: VDCourseSpecial
 		var isTemporary = false
 		if myIndexPath == nil {
@@ -75,12 +73,9 @@ class PresenterCourse: PresenterGeneralCheck {
 	
 	override func changeCoursesOfStud(checkedCourses: [Bool]) {
 		delegate?.changeCoursesOfStud?(checkedCourses: checkedCourses)
-
 	}
 	
 	override func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
 		delegate?.changeCoursesForTeachingOfStud?(checkedCourses: checkedCourses)
-
 	}
-
 }
