@@ -15,7 +15,7 @@ protocol InteractorOutput {
 	func deleteTemporaryCourseFromDB()
 	func getTemporaryCourseID()
 }
-class PresenterDetailCourse: NSObject, AssignmentProtocol, CallingPopoverByPicker {
+class PresenterDetailCourse: NSObject, AssignmentProtocol {
 
 	let optionsForPicker = Constants.objectOfCourse
 

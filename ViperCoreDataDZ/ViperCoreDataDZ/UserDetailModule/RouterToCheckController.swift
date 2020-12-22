@@ -14,7 +14,6 @@ class RouterToCheckController: NSObject {
     	let storyBoard = UIStoryboard.init(name: "MultipleCheckController", bundle: nil)
     	let vc = storyBoard.instantiateViewController(withIdentifier: "CheckController") as! ViewControllerCheck
 
-
     	vc.checked = checked
     	vc.type = type
 		vc.viewModels = viewModels
@@ -34,7 +33,6 @@ class RouterToCheckController: NSObject {
 			presenter.interactor = interactor
 			vc.output = presenter
 		}
-		print("debug")
     	return vc
 	}
 	

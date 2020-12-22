@@ -75,7 +75,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 						}
 					}
 				}
-
 				type = .learning
 				let viewModels = convertModelsToViewModels(models:  interactor!.getAllCourses() ?? [VDCourseSpecial]())
 				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModels, checked: boolArray, type: type, fromView: viewController!)

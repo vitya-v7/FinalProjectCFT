@@ -22,30 +22,30 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="predmet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BpQ-C9-4Go">
-                        <rect key="frame" x="21" y="252.5" width="422" height="226.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="prepod" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goj-69-VRS">
-                        <rect key="frame" x="454.5" y="134.5" width="291.5" height="226.5"/>
+                        <rect key="frame" x="477.5" y="134.5" width="268.5" height="226.5"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                         <color key="textColor" red="0.48621015099999998" green="0.44276950500000001" blue="0.82904257550000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="predmet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BpQ-C9-4Go">
+                        <rect key="frame" x="21" y="252" width="422" height="226.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Q49-66-vj6" firstAttribute="height" secondItem="BpQ-C9-4Go" secondAttribute="height" id="0Xv-Ik-vhe"/>
                     <constraint firstAttribute="bottomMargin" secondItem="BpQ-C9-4Go" secondAttribute="bottom" constant="5" id="18E-IA-KRb"/>
-                    <constraint firstItem="goj-69-VRS" firstAttribute="width" secondItem="vhb-Lr-umU" secondAttribute="width" multiplier="0.38" id="9hx-E6-FRv"/>
+                    <constraint firstItem="BpQ-C9-4Go" firstAttribute="width" secondItem="Q49-66-vj6" secondAttribute="width" id="2hP-Gi-1sc"/>
+                    <constraint firstItem="goj-69-VRS" firstAttribute="width" secondItem="vhb-Lr-umU" secondAttribute="width" multiplier="0.35" id="9hx-E6-FRv"/>
                     <constraint firstItem="goj-69-VRS" firstAttribute="centerY" secondItem="vhb-Lr-umU" secondAttribute="centerY" id="IM5-tb-8OA"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Q49-66-vj6" secondAttribute="leading" constant="-5" id="QhR-x2-cqz"/>
                     <constraint firstItem="Q49-66-vj6" firstAttribute="top" secondItem="vhb-Lr-umU" secondAttribute="topMargin" constant="5" id="Se8-yA-fvI"/>
                     <constraint firstAttribute="leadingMargin" secondItem="BpQ-C9-4Go" secondAttribute="leading" constant="-5" id="UrC-xu-ORW"/>
                     <constraint firstItem="goj-69-VRS" firstAttribute="height" secondItem="Q49-66-vj6" secondAttribute="height" id="bD6-Bg-VTh"/>
                     <constraint firstItem="BpQ-C9-4Go" firstAttribute="top" secondItem="Q49-66-vj6" secondAttribute="bottom" constant="10" id="eOw-4j-MfY"/>
-                    <constraint firstItem="BpQ-C9-4Go" firstAttribute="width" secondItem="Q49-66-vj6" secondAttribute="width" id="r0c-fH-XAq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="goj-69-VRS" secondAttribute="trailing" constant="5" id="rap-Hi-197"/>
                     <constraint firstItem="Q49-66-vj6" firstAttribute="width" secondItem="vhb-Lr-umU" secondAttribute="width" multiplier="0.55" id="zdS-my-zyB"/>
                 </constraints>

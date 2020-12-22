@@ -16,6 +16,7 @@ class ViewControllerDetailCourse: UIViewController {
 	var viewModelsForStudentsForCourse = [UserViewModel]()
 	var viewModelForPrepod: UserViewModel?
 	var output: PresenterDetailCourse?
+	var firstAppearOnScreen = true
 	@IBOutlet var tableView: UITableView?
 	override func viewDidLoad() {
     	super.viewDidLoad()
@@ -46,9 +47,9 @@ class ViewControllerDetailCourse: UIViewController {
 
 	func setTemporaryPredmetForCourse(value: String) {
 		temporaryCourseViewModel.predmet = value
-		let cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
-		cell.txtField?.text = value
-		//tableView?.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .automatic)
+		//let cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
+		//cell.txtField?.text = value
+		tableView?.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -66,6 +67,10 @@ class ViewControllerDetailCourse: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		self.viewModelForCourse = output?.updateDBAndGetCourseViewModel() ?? CourseViewModel()
+		if firstAppearOnScreen == true {
+			self.temporaryCourseViewModel = self.viewModelForCourse
+			firstAppearOnScreen = false
+		}
 		self.viewModelsForStudentsForCourse = output?.getUsersForCourse() ?? [UserViewModel]()
 		self.viewModelForPrepod = output?.getPrepodViewModel()
 		self.tableView?.reloadData()
@@ -78,15 +83,11 @@ class ViewControllerDetailCourse: UIViewController {
 				cell.txtField!.resignFirstResponder()
 			}
 		}
-		if temporaryCourseViewModel.name != "" {
-			viewModelForCourse.name = temporaryCourseViewModel.name
-		}
-		if temporaryCourseViewModel.predmet != "" {
-			viewModelForCourse.predmet = temporaryCourseViewModel.predmet
-		}
+
+		viewModelForCourse.name = temporaryCourseViewModel.name
+		viewModelForCourse.predmet = temporaryCourseViewModel.predmet
 
 		output?.updateCourse(viewModel: viewModelForCourse)
-
 		output?.dismissView()
 	}
 
@@ -150,6 +151,10 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 1 && indexPath.row == 0 || indexPath.section == 0 && indexPath.row == 2 {
+			var cell = self.tableView?.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! VDDetailCell
+			temporaryCourseViewModel.name = cell.txtField!.text ?? ""
+			cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
+			temporaryCourseViewModel.predmet = cell.txtField!.text ?? ""
 			self.output?.callCheckViewController(myIndexPath: indexPath)
 		}
 	}
@@ -180,11 +185,11 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 			switch indexPath.row {
 			case 0:
 				cell.label?.text = "name"
-				cell.txtField?.text = viewModelForCourse.name
+				cell.txtField?.text = temporaryCourseViewModel.name
 				cell.txtField?.tag = 3
 			case 1:
 				cell.label?.text = "predmet"
-				cell.txtField?.text = viewModelForCourse.predmet
+				cell.txtField?.text = temporaryCourseViewModel.predmet
 				
 				//cell.delegate2 = self
 				cell.txtField?.tag = 4
@@ -223,12 +228,23 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 }
 
 extension ViewControllerDetailCourse: TextFieldChanged {
-	func textFieldDataChanged(textField: UITextField) {
-		switch textField.tag {
+	/*func textFieldDataChanged(textField: UITextField) {
+	switch textField.tag {
+	case 3:
+	temporaryCourseViewModel.name = textField.text ?? ""
+	case 4:
+	output?.callPopover(value: textField.text!)
+	default:
+	fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
+	}
+	}*/
+	func textCharactersChanged(newValue: String, tag: Int) {
+		switch tag {
 		case 3:
-			temporaryCourseViewModel.name = textField.text ?? ""
+			temporaryCourseViewModel.name = newValue
 		case 4:
-			output?.callPopover(value: textField.text!)
+			output?.callPopover(value: newValue)
+			//temporaryCourseViewModel.predmet = newValue
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}

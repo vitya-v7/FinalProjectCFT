@@ -17,7 +17,7 @@ class ViewControllerDetailUser: UIViewController
 	var temporaryUserViewModel = UserViewModel()
 	var viewModelsForCoursesForLearning = [CourseViewModel]()
 	var viewModelsForCoursesForTeaching = [CourseViewModel]()
-	
+	var firstAppearOnScreen = true
 	var output: PresenterDetailUser?
 	@IBOutlet var tableView: UITableView?
 	override func viewDidLoad() {
@@ -34,45 +34,44 @@ class ViewControllerDetailUser: UIViewController
 		self.tableView?.register(nib, forCellReuseIdentifier: "CoursesCheck")
 		self.tableView?.delegate = self
 		self.tableView?.dataSource = self
-
+		
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveData(_:)))
 	}
-
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
+	
 	@objc func saveData(_ but: UIBarButtonItem) {
 		for i in 0..<3 {
 			if let cell = tableView?.cellForRow(at: IndexPath.init(row: i, section: 0)) as? VDDetailCell {
 				cell.txtField!.resignFirstResponder()
 			}
 		}
-		if temporaryUserViewModel.adress != "" {
-			viewModelForUser.adress = temporaryUserViewModel.adress
-		}
-		if temporaryUserViewModel.firstName != "" {
-			viewModelForUser.firstName = temporaryUserViewModel.firstName
-		}
-		if temporaryUserViewModel.lastName != "" {
-			viewModelForUser.lastName = temporaryUserViewModel.lastName
-		}
+		viewModelForUser.adress = temporaryUserViewModel.adress
+		viewModelForUser.firstName = temporaryUserViewModel.firstName
+		viewModelForUser.lastName = temporaryUserViewModel.lastName
+		
 		output?.updateUser(viewModel: viewModelForUser)
 		output?.dismissView()
 	}
-
+	
 	override func viewWillDisappear(_ animated: Bool) {
-
+		
 		if (self.isMovingFromParent){
 			if output!.isTemporaryUser() {
 				output!.deleteTemporaryUser()
 			}
 		}
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		self.viewModelForUser = output?.updateDBAndGetUserViewModel() ?? UserViewModel()
+		if firstAppearOnScreen == true {
+			self.temporaryUserViewModel = self.viewModelForUser
+			firstAppearOnScreen = false
+		}
 		self.viewModelsForCoursesForTeaching = output?.getCoursesVMForTeaching() ?? [CourseViewModel]()
 		self.viewModelsForCoursesForLearning = output?.getCoursesVMForLearning() ?? [CourseViewModel]()
 		self.tableView?.reloadData()
@@ -89,30 +88,30 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 		default: return 0
 		}
 	}
-
-
+	
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		switch indexPath.section {
 		case 0: let cell = tableView.dequeueReusableCell(withIdentifier: VDDetailCell.cellIdentifier) as! VDDetailCell
-
+			
 			cell.delegate1 = self
 			switch indexPath.row {
 			case 0:
 				cell.label?.text = "firstName"
-				cell.txtField?.text = viewModelForUser.firstName
+				cell.txtField?.text = temporaryUserViewModel.firstName
 				cell.txtField?.tag = 0
 			case 1:
 				cell.label?.text = "lastName"
-				cell.txtField?.text = viewModelForUser.lastName
+				cell.txtField?.text = temporaryUserViewModel.lastName
 				cell.txtField?.tag = 1
 			case 2:
 				cell.label?.text = "adress"
-				cell.txtField?.text = viewModelForUser.adress
+				cell.txtField?.text = temporaryUserViewModel.adress
 				cell.txtField?.tag = 2
 			default:
 				fatalError("\(self.description)" + " - cellForRow Func: index out of range")
 			}
-		return cell
+			return cell
 		case 1,2:
 			let row = indexPath.row - 1
 			var cell = VDMyCourseCell()
@@ -124,7 +123,7 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 				cell.prepod?.text = "Add Course"
 				return cell
 			}
-
+			
 			if indexPath.section == 1
 			{
 				cell.name?.text = viewModelsForCoursesForLearning[row].name
@@ -142,11 +141,11 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 		}
 		return  UITableViewCell()
 	}
-
+	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 3
 	}
-
+	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		switch section {
 		case 0:
@@ -160,7 +159,7 @@ extension ViewControllerDetailUser: UITableViewDataSource {
 			return ""
 		}
 	}
-
+	
 }
 
 extension ViewControllerDetailUser: UITableViewDelegate {
@@ -170,20 +169,21 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 		}
 		return 90
 	}
-
+	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0 && (indexPath.section == 1 || indexPath.section == 2) {
+			
 			self.output?.callCheckViewController(myIndexPath: indexPath)
 		}
 	}
-
+	
 	func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
 		if (indexPath.row == 0 && (indexPath.section == 1 || indexPath.section == 2)) {
 			let cell = tableView.cellForRow(at: indexPath)
 			cell?.backgroundColor = UIColor.red
 		}
 	}
-
+	
 	func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
 		let cell = tableView.cellForRow(at: indexPath)
 		if (indexPath.row == 0 && (indexPath.section == 1 || indexPath.section == 2))  {
@@ -193,29 +193,41 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 			cell?.backgroundColor = UIColor.white
 		}
 	}
-
+	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		if (indexPath.row == 0 && (indexPath.section == 1 || indexPath.section == 2)) {
 			cell.backgroundColor = UIColor(red: 0.0 , green: 1.0 , blue: 140/255.0 , alpha: 0.2)
-
+			
 		}
 		else {
 			cell.backgroundColor = UIColor.white
 		}
 		cell.selectionStyle = .none
 	}
-
+	
 }
 
 extension ViewControllerDetailUser: TextFieldChanged {
-	func textFieldDataChanged(textField: UITextField) {
-		switch textField.tag {
+	/*func textFieldDataChanged(textField: UITextField) {
+	switch textField.tag {
+	case 0:
+	temporaryUserViewModel.firstName = textField.text ?? ""
+	case 1:
+	temporaryUserViewModel.lastName = textField.text ?? ""
+	case 2:
+	temporaryUserViewModel.adress = textField.text ?? ""
+	default:
+	fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
+	}
+	}*/
+	func textCharactersChanged(newValue: String, tag: Int) {
+		switch tag {
 		case 0:
-			temporaryUserViewModel.firstName = textField.text ?? ""
+			temporaryUserViewModel.firstName = newValue
 		case 1:
-			temporaryUserViewModel.lastName = textField.text ?? ""
+			temporaryUserViewModel.lastName = newValue
 		case 2:
-			temporaryUserViewModel.adress = textField.text ?? ""
+			temporaryUserViewModel.adress = newValue
 		default:
 			fatalError("\(self.description)" + " - textFieldDataChanged Func: index out of range")
 		}
