@@ -26,18 +26,14 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 	var viewModelForPrepod = UserViewModel()
 	var viewModelsForStudentsForCourse = [UserViewModel]()
 
-	var modelForCourse = VDCourseSpecial()
-	var modelForPrepod = VDUserSpecial()
-	var modelsForStudentsForCourse = [VDUserSpecial]()
-
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
 		interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
 	}
 
 	func updateDBAndGetCourseViewModel() -> CourseViewModel {
 		interactor!.updateDataBase()
-		self.modelForCourse = interactor!.getCourseModel() ?? VDCourseSpecial()
-		self.viewModelForCourse = convertModelToViewModelForCourse(model: self.modelForCourse)
+		let modelForCourse = interactor!.getCourseModel() ?? VDCourseSpecial()
+		self.viewModelForCourse = convertModelToViewModelForCourse(model: modelForCourse)
 		return self.viewModelForCourse
 	}
 	
@@ -56,33 +52,28 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		return false
 	}
 	
-	func daleteTemporaryCourse() {
+	func deleteTemporaryCourse() {
 		interactor!.deleteTemporaryCourseFromDB()
 	}
 	
 	func getUsersForCourse() -> [UserViewModel] {
-		modelsForStudentsForCourse = interactor!.getStudentsOfCourse() ?? [VDUserSpecial]()
+		let modelsForStudentsForCourse = interactor!.getStudentsOfCourse() ?? [VDUserSpecial]()
 		viewModelsForStudentsForCourse = convertModelsToViewModels(models: modelsForStudentsForCourse)
 		return viewModelsForStudentsForCourse
 	}
 
 	func getPrepodViewModel() -> UserViewModel {
-		modelForPrepod = interactor!.getPrepodOfCourse() ?? VDUserSpecial()
+		let modelForPrepod = interactor!.getPrepodOfCourse() ?? VDUserSpecial()
 		viewModelForPrepod = convertModelToViewModel(model: modelForPrepod)
 		return viewModelForPrepod
 	}
 
 	func updateCourse(viewModel: CourseViewModel) {
 		self.viewModelForCourse = viewModel
-		updateModelByViewModel(model: self.modelForCourse, viewModel: self.viewModelForCourse)
-		interactor!.updateCourseWithObject(courseIn: modelForCourse)
+		interactor!.updateCourseWithObject(name: viewModel.name, prepod: viewModel.prepod, predmet: viewModel.predmet)
 	}
 
 	func changePrepodOfCourse(prepod: String) {
-		let names = prepod.components(separatedBy: " ")
-		modelForCourse.prepod?.firstName = names[0]
-		modelForCourse.prepod?.lastName = names[1]
-
 		viewModelForCourse.prepod = prepod
 		viewController?.changePrepodOfCourse(prepod: prepod)
 	}

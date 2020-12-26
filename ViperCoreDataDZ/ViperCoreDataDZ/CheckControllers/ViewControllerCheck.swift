@@ -32,9 +32,7 @@ class ViewControllerCheck: ViewController {
 		self.navigationItem.rightBarButtonItems = []
 		self.navigationItem.leftBarButtonItems = []
 		let but = UIBarButtonItem.init(title: NSLocalizedString("Save", comment: "") , style: .plain, target: self, action: #selector(saveChoice(_:)))
-		self.navigationItem.setRightBarButton(but, animated: true)
-		
-		
+		self.navigationItem.setRightBarButton(but, animated: true)		
 	}
 	
 	@objc func saveChoice(_ but: UIBarButtonItem) {

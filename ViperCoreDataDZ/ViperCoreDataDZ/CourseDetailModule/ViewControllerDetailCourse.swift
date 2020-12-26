@@ -54,7 +54,7 @@ class ViewControllerDetailCourse: UIViewController {
 	override func viewWillDisappear(_ animated: Bool) {
 		if (self.isMovingFromParent){
 			if output!.isTemporaryCourse() {
-				output!.daleteTemporaryCourse()
+				output!.deleteTemporaryCourse()
 			}
 		}
 	}

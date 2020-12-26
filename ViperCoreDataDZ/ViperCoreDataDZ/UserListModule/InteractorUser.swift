@@ -12,17 +12,25 @@ import CoreData
 protocol InteractorUserListProtocol {
 	func updateDataBase()
 	func addEmptyUser() -> VDUserSpecial
-	func deleteObjectFromDB(object: VDUserSpecial)
+	func deleteObjectFromDB(indexPath: IndexPath)
 	func returnData() -> [VDUserSpecial]
 	func getData(getUsers:([VDUserSpecial])->())
 	func getTeachersObject(object: String) -> [VDUserSpecial]
 	func createDict() -> [String: [VDUserSpecial]]
 	func updateModels() -> [VDUserSpecial]
+	func getUserAtIndex(indexPath: IndexPath?) -> VDUserSpecial?
 }
 
 class InteractorUser: NSObject, InteractorUserListProtocol {
 
 	var users = [VDUserSpecial]()
+
+	func getUserAtIndex(indexPath: IndexPath?) -> VDUserSpecial? {
+		if indexPath == nil {
+			return nil
+		}
+		return users[indexPath!.row]
+	}
 
 	func updateDataBase() {
 		VDDataManager.sharedManager.updateUserBD()
@@ -83,8 +91,8 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 		return VDDataManager.sharedManager.addEmptyUser()
 	}
 	
-	func deleteObjectFromDB(object: VDUserSpecial) {
-		guard let id = object.ID else {
+	func deleteObjectFromDB(indexPath: IndexPath) {
+		guard let id = users[indexPath.row].ID else {
 			return
 		}
 		VDDataManager.sharedManager.deleteByID(id: id)

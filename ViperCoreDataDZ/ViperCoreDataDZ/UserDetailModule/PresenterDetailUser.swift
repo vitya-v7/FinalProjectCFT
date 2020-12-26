@@ -17,9 +17,6 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	var viewModelsForCoursesForLearning = [CourseViewModel]()
 	var viewModelsForCoursesForTeaching = [CourseViewModel]()
 
-	var modelForUser = VDUserSpecial()
-	var modelsForCoursesForLearning = [VDCourseSpecial]()
-	var modelsForCoursesForTeaching = [VDCourseSpecial]()
 
 	func isTemporaryUser() -> Bool {
 		if interactor!.temporaryUserID != nil {
@@ -39,20 +36,19 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
 		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
 		interactor!.updateUserInDB()
-		self.modelsForCoursesForTeaching = interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
-		self.viewModelsForCoursesForTeaching = convertModelsToViewModels(models: self.modelsForCoursesForTeaching)
+		self.viewModelsForCoursesForTeaching = convertModelsToViewModels(models: interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]())
 		viewController?.viewModelsForCoursesForTeaching = self.viewModelsForCoursesForTeaching
 		viewController?.tableView?.reloadData()
 	}
 
 	func getCoursesVMForLearning() -> [CourseViewModel] {
-		modelsForCoursesForLearning = interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]()
+		let modelsForCoursesForLearning = interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]()
 		viewModelsForCoursesForLearning = convertModelsToViewModels(models: modelsForCoursesForLearning)
 		return viewModelsForCoursesForLearning
 	}
 
 	func getCoursesVMForTeaching() -> [CourseViewModel] {
-		modelsForCoursesForTeaching = interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
+		let modelsForCoursesForTeaching = interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
 		viewModelsForCoursesForTeaching = convertModelsToViewModels(models: modelsForCoursesForTeaching)
 		return viewModelsForCoursesForTeaching
 	}
@@ -92,8 +88,9 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 
 	func updateUser(viewModel: UserViewModel) {
 		self.viewModelForUser = viewModel
-		updateModelByViewModel(model: self.modelForUser, viewModel: self.viewModelForUser)
-		interactor!.updateUserWithObject(userIn: modelForUser)
+		interactor!.updateUserWithObject(firstName: viewModel.firstName,
+											  lastName: viewModel.lastName,
+											  adress: viewModel.adress)
 	}
 
 	func modelToViewModel(model: VDUserSpecial) -> UserViewModel {
@@ -121,8 +118,8 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 
 	func updateDBAndGetUserViewModel() -> UserViewModel {
 		interactor!.updateDataBase()
-		self.modelForUser = interactor!.getUserModel() 
-		self.viewModelForUser = modelToViewModel(model: self.modelForUser)
+		let tempModel = interactor!.getUserModel()
+		self.viewModelForUser = modelToViewModel(model: tempModel)
 		return self.viewModelForUser
 	}
 

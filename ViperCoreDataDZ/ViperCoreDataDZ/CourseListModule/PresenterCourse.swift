@@ -14,7 +14,6 @@ class PresenterCourse: PresenterGeneralCheck {
 	weak var viewController: ViewController?
 	var wireFrame: RouterToDetailCourseController?
 	var interactor: InteractorCourseListProtocol?
-	var models = [VDCourseSpecial]()
 	var viewModels = [CourseViewModel]()
 	var delegate: AssignmentProtocol?
 
@@ -24,44 +23,44 @@ class PresenterCourse: PresenterGeneralCheck {
 	
 	
 	func deleteObjectWithIndexPath(indexPath: IndexPath) {
-		interactor?.deleteObjectFromDB(object: models[indexPath.row])
+		interactor?.deleteObjectFromDB(indexPath: indexPath)
 	}
 
 	func setViewModels(courses: [VDCourseSpecial]) {
 		viewModels = [CourseViewModel]()
 		for index in 0 ..< courses.count {
 			let vm = CourseViewModel()
-			vm.name = models[index].name ?? ""
+			vm.name = courses[index].name ?? ""
 			var prepodString = ""
-			if let prepod = models[index].prepod {
+			if let prepod = courses[index].prepod {
 				prepodString = (prepod.firstName ?? "") + " " + (prepod.lastName ?? "")
 			}
 			vm.prepod = prepodString
-			vm.predmet = models[index].predmet ?? ""
+			vm.predmet = courses[index].predmet ?? ""
 			viewModels.append(vm)
 		}
 	}
 
 	func getCourses() {
 		interactor?.getData(getCourses: { [weak self] (data: [VDCourseSpecial]) -> () in
-			self?.models = data
 			self?.setViewModels(courses: data)
 			viewController?.setViewModels(viewModels: viewModels as [IListViewModel])
 		})
 	}
 
 	func callDetailViewController(myIndexPath: IndexPath?) {
-		var course: VDCourseSpecial
 		var isTemporary = false
+		var course: VDCourseSpecial
 		if myIndexPath == nil {
 			course = interactor!.addEmptyCourse()
 			isTemporary = true
 		}
 		else {
-			course = models[myIndexPath!.row]
+			course = interactor!.getCourseAtIndex(indexPath: myIndexPath!)!
 		}
 		wireFrame?.presentParticipantDetailsModule(course: course, isTemporary: isTemporary, fromView: viewController!)
 	}
+
 
 	func showAll(_ but: UIBarButtonItem) {
 		VDDataManager.sharedManager.showAllObjects()

@@ -14,7 +14,6 @@ class PresenterUser: PresenterGeneralCheck {
 	weak var viewController: ViewController?
 	var wireFrame: RouterToDetailUserController?
 	var interactor: InteractorUserListProtocol?
-	var models = [VDUserSpecial]()
 	var viewModels = [UserViewModel]()
 	var delegate: AssignmentProtocol?
 	func updateDB() {
@@ -23,7 +22,6 @@ class PresenterUser: PresenterGeneralCheck {
 
 	func getUsers() {
 		interactor?.getData(getUsers: { [weak self] (data: [VDUserSpecial]) -> () in
-			self?.models = data
 			self?.setViewModels(users: data)
 			viewController?.setViewModels(viewModels: viewModels as [IListViewModel])
 		})
@@ -81,26 +79,21 @@ class PresenterUser: PresenterGeneralCheck {
 	}
 
 	func deleteObjectWithIndexPath(indexPath: IndexPath) {
-		interactor?.deleteObjectFromDB(object: models[indexPath.row])
-		models.remove(at: indexPath.row)
+		interactor?.deleteObjectFromDB(indexPath: indexPath)
 		viewModels.remove(at: indexPath.row)
 	}
 
-	func callDetailViewController( myIndexPath: NSIndexPath?) {
-		var user: VDUserSpecial
+	func callDetailViewController(myIndexPath: IndexPath?) {
 		var isTemporary = false
+		var user: VDUserSpecial = VDUserSpecial()
 		if myIndexPath == nil {
 			user = interactor!.addEmptyUser()
 			isTemporary = true
 		}
 		else {
-			user = models[myIndexPath!.row]
+			user = interactor!.getUserAtIndex(indexPath: myIndexPath!)!
 		}
 		wireFrame?.presentParticipantDetailsModule(user: user, isTemporary: isTemporary, fromView: viewController!)
-	}
-
-	func updateModels() {
-		models = interactor!.updateModels()
 	}
 
 	func showAll(_ but: UIBarButtonItem) {

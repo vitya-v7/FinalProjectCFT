@@ -68,7 +68,7 @@ class ViewControllerUser: ViewController {
 extension ViewControllerUser: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		output?.callDetailViewController(myIndexPath: indexPath as NSIndexPath)
+		output?.callDetailViewController(myIndexPath: indexPath)
 		self.tableView?.reloadData()
 	}
 

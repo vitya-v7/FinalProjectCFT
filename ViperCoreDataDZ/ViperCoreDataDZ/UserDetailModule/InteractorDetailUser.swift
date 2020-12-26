@@ -51,9 +51,11 @@ class InteractorDetailUser: NSObject{
 		}
 	}
 
-	func updateUserWithObject(userIn: VDUserSpecial) {
+	func updateUserWithObject(firstName: String, lastName: String, adress: String) {
 		temporaryUserID = nil
-		user = userIn
+		user?.firstName = firstName
+		user?.lastName = lastName
+		user?.adress = adress
 		updateUserInDB()
 	}
 

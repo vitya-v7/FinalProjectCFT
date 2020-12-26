@@ -14,14 +14,13 @@ class InteractorDetailCourse: NSObject {
 	weak var presenter: PresenterDetailCourse?
 	var course: VDCourseSpecial?
 
-	func updateCourseWithObject(courseIn: VDCourseSpecial) {
+	func updateCourseWithObject(name: String, prepod: String, predmet: String) {
 		temporaryCourseID = nil
-		setCourse(courseIn: courseIn)
-	}
-
-	func setCourse(courseIn: VDCourseSpecial) {
-		course = courseIn
-		updateCourseInDB()
+		course?.name = name
+		let prepodData = prepod.components(separatedBy: " ")
+		course?.prepod?.firstName = prepodData[0]
+		course?.prepod?.lastName = prepodData[1]
+		course?.predmet = predmet
 	}
 
 	func getStudentsOfCourse() -> [VDUserSpecial]? {

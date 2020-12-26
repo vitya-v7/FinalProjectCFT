@@ -12,14 +12,23 @@ import CoreData
 protocol InteractorCourseListProtocol {
 	func updateDataBase()
 	func addEmptyCourse() -> VDCourseSpecial
-	func deleteObjectFromDB(object: VDCourseSpecial)
+	func deleteObjectFromDB(indexPath: IndexPath)
 	func returnData() -> [VDCourseSpecial]
 	func getData(getCourses:([VDCourseSpecial])->())
+	func getCourseAtIndex(indexPath: IndexPath?) -> VDCourseSpecial? 
 }
 
 class InteractorCourse: NSObject, InteractorCourseListProtocol {
 	
 	var courses = [VDCourseSpecial]()
+
+	func getCourseAtIndex(indexPath: IndexPath?) -> VDCourseSpecial? {
+		if indexPath == nil {
+			return nil
+		}
+		return courses[indexPath!.row]
+	}
+
 	func updateDataBase() {
 
 		VDDataManager.sharedManager.updateUserBD()
@@ -41,7 +50,8 @@ class InteractorCourse: NSObject, InteractorCourseListProtocol {
 		return VDDataManager.sharedManager.addEmptyCourse()
 	}
 	
-	func deleteObjectFromDB(object: VDCourseSpecial) {
+	func deleteObjectFromDB(indexPath: IndexPath) {
+		let object = courses[indexPath.row]
 		guard let id = object.ID else {
 			return
 		}

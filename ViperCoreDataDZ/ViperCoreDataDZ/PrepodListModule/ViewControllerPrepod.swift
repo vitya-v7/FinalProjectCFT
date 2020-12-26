@@ -26,12 +26,10 @@ class ViewControllerPrepod: ViewController {
 		output?.wireFrame = RouterToDetailUserController()
 		let interactor: InteractorUser = InteractorUser()
 		output?.interactor = interactor
-		output?.updateModels()
 		allViewModel = output!.getAllUserViewModels()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-		output?.updateModels()
 		allViewModel = output!.getAllUserViewModels()
 		viewModel = output!.createDictionary()
 		keys = Array(viewModel!.keys)
@@ -67,7 +65,7 @@ extension ViewControllerPrepod: UITableViewDelegate {
 			}
 		}
 		let _ = output?.interactor?.updateModels() 
-		output?.callDetailViewController(myIndexPath: NSIndexPath.init(row: indexOut, section: 0))
+		output?.callDetailViewController(myIndexPath: IndexPath.init(row: indexOut, section: 0))
 	}
 }
 
