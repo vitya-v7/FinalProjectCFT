@@ -17,11 +17,13 @@ class RouterToDetailCourseController: NSObject {
 		let vc = storyBoard.instantiateViewController(withIdentifier: "detailCourseID") as! ViewControllerDetailCourse
 
 		let interactor: InteractorDetailCourse = InteractorDetailCourse()
+		interactor.courseID = course.ID
 		if isTemporary {
-			interactor.temporaryCourseID = course.ID
+			interactor.isTemporaryCourse = true
 		}
-		//interactor.delegate1 = vc
-		interactor.course = course
+		else {
+			interactor.isTemporaryCourse = false
+		}
 		let presenter: PresenterDetailCourse = PresenterDetailCourse()
 		vc.output = presenter
 		presenter.viewController = vc

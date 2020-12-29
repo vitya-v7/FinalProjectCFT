@@ -85,6 +85,7 @@ class VDDataManager: NSObject {
 	func addEmptyCourse() -> VDCourseSpecial
 	{
 		let course:VDCourse = insertObject(name:"VDCourse")
+		course.predmet = "IOS"
 		let courseModel = VDCourseSpecial.addNewObjectFromEntity(entity: course)
 
 		return courseModel
@@ -296,4 +297,7 @@ class VDDataManager: NSObject {
 
 	}
 
+	func getObjectByID(id: NSManagedObjectID) -> NSManagedObject {
+		return persistentContainer.viewContext.object(with: id)
+	}
 }

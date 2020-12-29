@@ -39,7 +39,19 @@ class ViewControllerDetailUser: UIViewController
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
-	
+
+	func setViewModelForUser(user: UserViewModel) {
+		temporaryUserViewModel = user
+	}
+
+	func setViewModelsForLearningCourses(courses: [CourseViewModel]) {
+		viewModelsForCoursesForLearning = courses
+	}
+
+	func setViewModelsForTeachingCourses(courses: [CourseViewModel]) {
+		viewModelsForCoursesForTeaching = courses
+	}
+
 	@objc func saveData(_ but: UIBarButtonItem) {
 		for i in 0..<3 {
 			if let cell = tableView?.cellForRow(at: IndexPath.init(row: i, section: 0)) as? VDDetailCell {
@@ -63,7 +75,7 @@ class ViewControllerDetailUser: UIViewController
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-		self.viewModelForUser = output?.updateDBAndGetUserViewModel() ?? UserViewModel()
+		self.viewModelForUser = output?.getUserViewModel() ?? UserViewModel()
 		if firstAppearOnScreen == true {
 			self.temporaryUserViewModel = self.viewModelForUser
 			firstAppearOnScreen = false
@@ -73,6 +85,7 @@ class ViewControllerDetailUser: UIViewController
 		self.tableView?.reloadData()
 	}
 }
+
 
 extension ViewControllerDetailUser: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -166,7 +179,6 @@ extension ViewControllerDetailUser: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0 && (indexPath.section == 1 || indexPath.section == 2) {
-			
 			self.output?.callCheckViewController(myIndexPath: indexPath)
 		}
 	}

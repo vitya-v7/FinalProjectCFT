@@ -25,7 +25,16 @@ class VDCourseSpecial: Special {
 		}
 		return nil
 	}
-	
+
+	static func getCourseByID(id: NSManagedObjectID) -> VDCourseSpecial? {
+		for i in 0 ..< VDCourseSpecial.courses.count {
+			if VDCourseSpecial.courses[i].ID == id {
+				return VDCourseSpecial.courses[i]
+			}
+		}
+		return nil
+	}
+
 	override subscript( string: String) -> String? {
 		switch string {
 		case "name":

@@ -19,14 +19,12 @@ protocol InteractorCourseListProtocol {
 }
 
 class InteractorCourse: NSObject, InteractorCourseListProtocol {
-	
-	var courses = [VDCourseSpecial]()
 
 	func getCourseAtIndex(indexPath: IndexPath?) -> VDCourseSpecial? {
 		if indexPath == nil {
 			return nil
 		}
-		return courses[indexPath!.row]
+		return VDCourseSpecial.courses[indexPath!.row]
 	}
 
 	func updateDataBase() {
@@ -36,7 +34,7 @@ class InteractorCourse: NSObject, InteractorCourseListProtocol {
 	}
 
 	func returnData() -> [VDCourseSpecial] {
-		courses = VDCourseSpecial.courses
+		var courses = VDCourseSpecial.courses
 		courses.sortingBy(parameters: ["name"])
 		return courses
 	}
@@ -51,7 +49,7 @@ class InteractorCourse: NSObject, InteractorCourseListProtocol {
 	}
 	
 	func deleteObjectFromDB(indexPath: IndexPath) {
-		let object = courses[indexPath.row]
+		let object = VDCourseSpecial.courses[indexPath.row]
 		guard let id = object.ID else {
 			return
 		}

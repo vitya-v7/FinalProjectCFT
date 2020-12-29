@@ -19,25 +19,26 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 
 
 	func isTemporaryUser() -> Bool {
-		if interactor!.temporaryUserID != nil {
-			return true
-		}
-		return false
+		return interactor!.isTemporaryUser
 	}
 	
 	func deleteTemporaryUser() {
 		interactor!.deleteTemporaryUserFromDB()
 	}
 
-	func changeCoursesOfStud(checkedCourses: [Bool]) {
-		interactor!.changeCoursesOfStud(checkedCourses: checkedCourses)
+	func changeCoursesForLearningOfStud(checkedCourses: [Bool]) {
+		interactor!.changeCoursesForLearningOfStud(checkedCourses: checkedCourses)
+		interactor!.updateUserInDB()
+		self.viewModelsForCoursesForLearning = convertModelsToViewModels(models: interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]())
+		viewController?.setViewModelsForLearningCourses(courses: self.viewModelsForCoursesForLearning)
+		viewController?.tableView?.reloadData()
 	}
 
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
 		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
 		interactor!.updateUserInDB()
 		self.viewModelsForCoursesForTeaching = convertModelsToViewModels(models: interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]())
-		viewController?.viewModelsForCoursesForTeaching = self.viewModelsForCoursesForTeaching
+		viewController?.setViewModelsForTeachingCourses(courses: self.viewModelsForCoursesForTeaching)
 		viewController?.tableView?.reloadData()
 	}
 
@@ -116,7 +117,7 @@ class PresenterDetailUser: NSObject,AssignmentProtocol {
 		return viewModels
 	}
 
-	func updateDBAndGetUserViewModel() -> UserViewModel {
+	func getUserViewModel() -> UserViewModel {
 		interactor!.updateDataBase()
 		let tempModel = interactor!.getUserModel()
 		self.viewModelForUser = modelToViewModel(model: tempModel)

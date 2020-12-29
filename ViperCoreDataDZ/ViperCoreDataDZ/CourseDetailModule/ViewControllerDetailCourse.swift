@@ -146,10 +146,6 @@ extension ViewControllerDetailCourse: UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 1 && indexPath.row == 0 || indexPath.section == 0 && indexPath.row == 2 {
-			var cell = self.tableView?.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! VDDetailCell
-			temporaryCourseViewModel.name = cell.txtField!.text ?? ""
-			cell = self.tableView?.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! VDDetailCell
-			temporaryCourseViewModel.predmet = cell.txtField!.text ?? ""
 			self.output?.callCheckViewController(myIndexPath: indexPath)
 		}
 	}

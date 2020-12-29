@@ -56,24 +56,16 @@ class ViewControllerPrepodCheck: ViewController {
 
 extension ViewControllerPrepodCheck: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let cell = tableView.cellForRow(at: indexPath)
-		cell?.selectionStyle = .none
-		if cell?.accessoryType == .checkmark {
+		if indexPath.row == prepodIndex {
 			prepodIndex = -1
-			cell?.accessoryType = .none
 		}
 		else {
-			if prepodIndex != -1 {
-				let cell2 = tableView.cellForRow(at: IndexPath.init(row: prepodIndex, section: 0))
-				cell2?.accessoryType = .none
-			}
 			prepodIndex = indexPath.row
-			cell?.accessoryType = .checkmark
 		}
+		tableView.reloadData()
 	}
 
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-	{
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 90
 	}
 }
@@ -87,6 +79,12 @@ extension ViewControllerPrepodCheck: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: VDMyCell.cellIdentifier, for: indexPath) as? VDMyCell
 		guard let cellIn = cell else { return UITableViewCell() }
+		if indexPath.row == prepodIndex {
+			cellIn.accessoryType = .checkmark
+		}
+		else {
+			cellIn.accessoryType = .none
+		}
 		cellIn.configureCell(withObject: viewModels[indexPath.row] as! UserViewModel)
 		return cellIn
 	}

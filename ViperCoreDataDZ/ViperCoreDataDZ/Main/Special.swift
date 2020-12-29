@@ -30,3 +30,7 @@ class Special: NSObject, compareTwoElements {
 		return nil
 	}
 }
+
+
+
+

@@ -10,21 +10,38 @@ import UIKit
 import CoreData
 class InteractorDetailCourse: NSObject {
 	
-	var temporaryCourseID: NSManagedObjectID?
+	var courseID: NSManagedObjectID?
+	var isTemporaryCourse: Bool = false
+	
 	weak var presenter: PresenterDetailCourse?
-	var course: VDCourseSpecial?
 
 	func updateCourseWithObject(name: String, prepod: String, predmet: String) {
-		temporaryCourseID = nil
-		course?.name = name
-		let prepodData = prepod.components(separatedBy: " ")
-		course?.prepod?.firstName = prepodData[0]
-		course?.prepod?.lastName = prepodData[1]
-		course?.predmet = predmet
+		isTemporaryCourse = false
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id: ID)
+		course!.name = name
+		let prepodNames = prepod.components(separatedBy: " ")
+		course!.prepod?.firstName = prepodNames[0]
+		course!.prepod?.lastName = prepodNames[1]
+		course!.predmet = predmet
+		updateCourseInDB()
+	}
+
+	func getCurrentCourseID() -> NSManagedObjectID {
+		var ID = NSManagedObjectID.init()
+		if let tempID = courseID {
+			ID = tempID
+		}
+		return ID
 	}
 
 	func getStudentsOfCourse() -> [VDUserSpecial]? {
-		return course?.students
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id:ID)
+		if let students = course?.students {
+			return students
+		}
+		return nil
 	}
 
 	func getAllUsers() -> [VDUserSpecial] {
@@ -32,34 +49,30 @@ class InteractorDetailCourse: NSObject {
 	}
 
 	func deleteTemporaryCourseFromDB() {
-		VDDataManager.sharedManager.deleteByID(id: temporaryCourseID!)
+		if isTemporaryCourse {
+			VDDataManager.sharedManager.deleteByID(id: courseID!)
+		}
 	}
 
 	func updateDataBase() {
 		VDDataManager.sharedManager.updateUserBD()
 		VDDataManager.sharedManager.updateCourseBD()
-		updateDetailCourseObject()
 	}
 	
 	func updateCourseInDB() {
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id:ID)
 		VDDataManager.sharedManager.updateCourse(course: course!)
 		VDDataManager.sharedManager.updateCourseBD()
-	}
-
-	func updateDetailCourseObject() {
-		if course?.ID != nil {
-			course = VDCourseSpecial.courses[VDCourseSpecial.getCourseIndexByID(id: course!.ID!)!]
-		}
 	}
 
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
 		for index in 0 ..< checkedStudents.count {
 			if checkedStudents[index] == false {
-				VDDataManager.sharedManager.resignUserAsStudent(with: VDUserSpecial.users[index].ID!, fromCourseWith: (course?.ID)!)
+				VDDataManager.sharedManager.resignUserAsStudent(with: VDUserSpecial.users[index].ID!, fromCourseWith: courseID!)
 			}
 			else {
-				VDDataManager.sharedManager.assignUserAsStudent(with: VDUserSpecial.users[index].ID!, onCourseWith: (course?.ID)!)
-
+				VDDataManager.sharedManager.assignUserAsStudent(with: VDUserSpecial.users[index].ID!, onCourseWith: courseID!)
 			}
 		}
 	}
@@ -74,15 +87,21 @@ class InteractorDetailCourse: NSObject {
 	}
 
 	func getPrepodOfCourse() -> VDUserSpecial? {
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id:ID)
 		return course?.prepod
 	}
 
 	func getCourseModel() -> VDCourseSpecial? {
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id:ID)
 		return course
 	}
 
 	func changePrepodOfCourse(checkedStudent: NSInteger) {
 		var prepodTemp: VDUserSpecial?
+		let ID = getCurrentCourseID()
+		let course = VDCourseSpecial.getCourseByID(id:ID)
 		if course?.prepod != nil {
 			if checkedStudent == -1 {
 				VDDataManager.sharedManager.resignUserAsTeacher(with: (course?.prepod?.ID!)!, fromCourseWith: (course?.ID)!)
@@ -99,14 +118,14 @@ class InteractorDetailCourse: NSObject {
 		else {
 			if checkedStudent != -1 {
 				let studID = VDUserSpecial.users[checkedStudent].ID
-				prepodTemp =  VDUserSpecial.users[checkedStudent]
+				prepodTemp = VDUserSpecial.users[checkedStudent]
 				VDDataManager.sharedManager.assignUserAsTeacher(with: studID!, onCourseWith: (course?.ID)!)
 			}
 		}
 
 		if prepodTemp != nil {
 			let stringWithName = (prepodTemp?.firstName ?? "") + " " + (prepodTemp?.lastName ?? "")
-			presenter?.changePrepodOfCourse(prepod: stringWithName)
+			presenter?.changePrepodOfCourseForUI(prepod: stringWithName)
 		}
 	}
 }

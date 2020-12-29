@@ -12,30 +12,30 @@ import CoreData
 
 class InteractorDetailUser: NSObject{
 
-	var temporaryUserID: NSManagedObjectID?
-	var user: VDUserSpecial?
-
+	var userID: NSManagedObjectID?
+	var isTemporaryUser: Bool = false
 	func deleteTemporaryUserFromDB() {
-		VDDataManager.sharedManager.deleteByID(id: temporaryUserID!)
-	}
-
-	func updateDataBase() {
-		VDDataManager.sharedManager.updateUserBD()
-		VDDataManager.sharedManager.updateCourseBD()
-		updateDetailUserObjectFromDB()
-	}
-
-	func updateUserInDB() {
-		VDDataManager.sharedManager.updateUser(user: user!)
-		VDDataManager.sharedManager.updateCourseBD()
+		if isTemporaryUser {
+			VDDataManager.sharedManager.deleteByID(id: userID!)
+		}
 	}
 
 	func getCoursesOfUserForLearning() -> [VDCourseSpecial]? {
-		return user?.courses
+		let ID = getCurrentUserID()
+		let user = VDUserSpecial.getUserByID(id:ID)
+		if let courses = user?.courses {
+			return courses
+		}
+		return nil
 	}
 
 	func getCoursesOfUserForTeaching() -> [VDCourseSpecial]? {
-		return user?.coursesForTeaching
+		let ID = getCurrentUserID()
+		let user = VDUserSpecial.getUserByID(id:ID)
+		if let courses = user?.coursesForTeaching {
+			return courses
+		}
+		return nil
 	}
 
 	func getAllCourses() -> [VDCourseSpecial]? {
@@ -51,42 +51,68 @@ class InteractorDetailUser: NSObject{
 		}
 	}
 
+	func updateDataBase() {
+		VDDataManager.sharedManager.updateUserBD()
+		VDDataManager.sharedManager.updateCourseBD()
+	}
+
 	func updateUserWithObject(firstName: String, lastName: String, adress: String) {
-		temporaryUserID = nil
-		user?.firstName = firstName
-		user?.lastName = lastName
-		user?.adress = adress
+		isTemporaryUser = false
+		let ID = getCurrentUserID()
+		let user = VDUserSpecial.getUserByID(id: ID)
+		user!.firstName = firstName
+		user!.lastName = lastName
+		user!.adress = adress
 		updateUserInDB()
 	}
 
-	func updateDetailUserObjectFromDB() {
-		if user?.ID != nil {
-			user = VDUserSpecial.users[VDUserSpecial.getUserIndexByID(id: user!.ID!)!]
-		}
-	}
-
 	func getUserModel() -> VDUserSpecial {
-		return user ?? VDUserSpecial()
+		let ID = getCurrentUserID()
+		if let user = VDUserSpecial.getUserByID(id: ID) {
+			return user
+		}
+		return VDUserSpecial()
 	}
 
-	func changeCoursesOfStud(checkedCourses: [Bool]) {
+	func getCurrentUserID() -> NSManagedObjectID {
+		var ID = NSManagedObjectID.init()
+		if let tempID = userID {
+			ID = tempID
+		}
+		return ID
+	}
+
+	func updateUserInDB() {
+		var user = VDUserSpecial()
+		let ID = getCurrentUserID()
+		if let userIn = VDUserSpecial.getUserByID(id: ID) {
+			user = userIn
+		}
+		VDDataManager.sharedManager.updateUser(user: user)
+		VDDataManager.sharedManager.updateCourseBD()
+	}
+
+	func changeCoursesForLearningOfStud(checkedCourses: [Bool]) {
+		let ID = getCurrentUserID()
 		for index in 0 ..< checkedCourses.count {
 			if checkedCourses[index] == false {
-				VDDataManager.sharedManager.resignUserAsStudent(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
+				VDDataManager.sharedManager.resignUserAsStudent(with: ID, fromCourseWith: VDCourseSpecial.courses[index].ID!)
 			}
 			else {
-				VDDataManager.sharedManager.assignUserAsStudent(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
+				VDDataManager.sharedManager.assignUserAsStudent(with: ID, onCourseWith: VDCourseSpecial.courses[index].ID!)
 			}
 		}
+
 	}
 
 	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
+		let ID = getCurrentUserID()
 		for index in 0 ..< checkedCourses.count {
 			if checkedCourses[index] == false {
-				VDDataManager.sharedManager.resignUserAsTeacher(with: user!.ID!, fromCourseWith: VDCourseSpecial.courses[index].ID!)
+				VDDataManager.sharedManager.resignUserAsTeacher(with: ID, fromCourseWith: VDCourseSpecial.courses[index].ID!)
 			}
 			else {
-				VDDataManager.sharedManager.assignUserAsTeacher(with: user!.ID!, onCourseWith: VDCourseSpecial.courses[index].ID!)
+				VDDataManager.sharedManager.assignUserAsTeacher(with: ID, onCourseWith: VDCourseSpecial.courses[index].ID!)
 			}
 		}
 	}

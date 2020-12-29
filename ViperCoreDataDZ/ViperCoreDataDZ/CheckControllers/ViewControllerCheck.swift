@@ -39,7 +39,7 @@ class ViewControllerCheck: ViewController {
 		
 		switch type {
 		case .learning:
-			output?.changeCoursesOfStud(checkedCourses: checked!)
+			output?.changeCoursesForLearningOfStud(checkedCourses: checked!)
 			break
 		case .teaching:
 			output?.changeCoursesForTeachingOfStud(checkedCourses: checked!)

@@ -8,10 +8,7 @@
 
 import UIKit
 protocol InteractorOutput {
-	func getStudentsCount() -> Int
-	func getNameDataCount()
 	func deleteTemporaryCourseFromDB()
-	func getTemporaryCourseID()
 }
 
 class PresenterDetailCourse: NSObject, AssignmentProtocol {
@@ -28,6 +25,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 
 	func changeStudsOfCourse( checkedStudents: [Bool]) {
 		interactor!.changeStudsOfCourse(checkedStudents:checkedStudents)
+		
 	}
 
 	func updateDBAndGetCourseViewModel() -> CourseViewModel {
@@ -41,12 +39,9 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		interactor!.changePrepodOfCourse(checkedStudent: checkedStudent)
 	}
 
-	func getStudentsCount() -> Int {
-		return interactor!.course!.students.count
-	}
 
 	func isTemporaryCourse() -> Bool {
-		if interactor!.temporaryCourseID != nil {
+		if interactor!.isTemporaryCourse == true {
 			return true
 		}
 		return false
@@ -73,7 +68,7 @@ class PresenterDetailCourse: NSObject, AssignmentProtocol {
 		interactor!.updateCourseWithObject(name: viewModel.name, prepod: viewModel.prepod, predmet: viewModel.predmet)
 	}
 
-	func changePrepodOfCourse(prepod: String) {
+	func changePrepodOfCourseForUI(prepod: String) {
 		viewModelForCourse.prepod = prepod
 		viewController?.changePrepodOfCourse(prepod: prepod)
 	}

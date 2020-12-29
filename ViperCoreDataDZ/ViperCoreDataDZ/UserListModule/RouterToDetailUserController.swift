@@ -17,10 +17,19 @@ class RouterToDetailUserController: NSObject {
 		let vc = storyBoard.instantiateViewController(withIdentifier: "detailUserID") as! ViewControllerDetailUser
 
 		let interactor: InteractorDetailUser = InteractorDetailUser()
-		if isTemporary {
+		/*if isTemporary {
 			interactor.temporaryUserID = user.ID
 		}
-		interactor.user = user
+		else {
+			interactor.userID = user.ID
+		}*/
+		interactor.userID = user.ID
+		if isTemporary {
+			interactor.isTemporaryUser = true
+		}
+		else {
+			interactor.isTemporaryUser = false
+		}
 		let presenter: PresenterDetailUser = PresenterDetailUser()
 		vc.output = presenter
 		presenter.viewController = vc

@@ -50,6 +50,15 @@ class VDUserSpecial: Special {
 		return false
 	}
 
+	static func getUserByID(id: NSManagedObjectID) -> VDUserSpecial? {
+		for i in 0 ..< VDUserSpecial.users.count {
+			if VDUserSpecial.users[i].ID == id {
+				return VDUserSpecial.users[i]
+			}
+		}
+		return nil
+	}
+
 	func deleteCourseById(id: NSManagedObjectID) ->  Bool  {
 		for i in 0 ..< (self.courses.count) {
 			if courses[i].ID == id {

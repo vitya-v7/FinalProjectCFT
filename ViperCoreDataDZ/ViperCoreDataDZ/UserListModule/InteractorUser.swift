@@ -23,13 +23,13 @@ protocol InteractorUserListProtocol {
 
 class InteractorUser: NSObject, InteractorUserListProtocol {
 
-	var users = [VDUserSpecial]()
+
 
 	func getUserAtIndex(indexPath: IndexPath?) -> VDUserSpecial? {
 		if indexPath == nil {
 			return nil
 		}
-		return users[indexPath!.row]
+		return VDUserSpecial.users[indexPath!.row]
 	}
 
 	func updateDataBase() {
@@ -38,19 +38,18 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 	}
 
 	func updateModels() -> [VDUserSpecial] {
-		users = VDUserSpecial.users
-		return users
+		return VDUserSpecial.users
 	}
 	
 	func returnData() -> [VDUserSpecial]{
-		users = VDUserSpecial.users
+		var users = VDUserSpecial.users
 		users.sortingBy(parameters: ["firstName", "lastName"])
 		return users
 	}
 
 	func getTeachersObject(object: String) -> [VDUserSpecial] {
 		var teachers = [VDUserSpecial]()
-		for user in users {
+		for user in VDUserSpecial.users {
 			for course in user.coursesForTeaching {
 				if course.predmet!.capitalized == object.capitalized {
 					teachers.append(user)
@@ -92,7 +91,7 @@ class InteractorUser: NSObject, InteractorUserListProtocol {
 	}
 	
 	func deleteObjectFromDB(indexPath: IndexPath) {
-		guard let id = users[indexPath.row].ID else {
+		guard let id = VDUserSpecial.users[indexPath.row].ID else {
 			return
 		}
 		VDDataManager.sharedManager.deleteByID(id: id)

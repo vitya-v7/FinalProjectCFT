@@ -70,8 +70,8 @@ class PresenterCourse: PresenterGeneralCheck {
 		viewController?.navigationController?.popViewController(animated: true)
 	}
 	
-	override func changeCoursesOfStud(checkedCourses: [Bool]) {
-		delegate?.changeCoursesOfStud?(checkedCourses: checkedCourses)
+	override func changeCoursesForLearningOfStud(checkedCourses: [Bool]) {
+		delegate?.changeCoursesForLearningOfStud?(checkedCourses: checkedCourses)
 	}
 	
 	override func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
