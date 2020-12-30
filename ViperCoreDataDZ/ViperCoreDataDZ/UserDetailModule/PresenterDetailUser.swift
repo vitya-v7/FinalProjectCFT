@@ -1,0 +1,130 @@
+//
+//  PresenterDetailUser.swift
+//  ViperCoreDataDZ
+//
+//  Created by Viktor Deryabin on 17.12.2020.
+//  Copyright © 2020 Viktor Deryabin. All rights reserved.
+//
+
+import UIKit
+
+class PresenterDetailUser: NSObject,AssignmentProtocol {
+	weak var viewController: ViewControllerDetailUser?
+	var interactor: InteractorDetailUser?
+	var wireFrame: RouterToCheckController?
+
+	var viewModelForUser = UserViewModel()
+	var viewModelsForCoursesForLearning = [CourseViewModel]()
+	var viewModelsForCoursesForTeaching = [CourseViewModel]()
+
+
+	func isTemporaryUser() -> Bool {
+		return interactor!.isTemporaryUser
+	}
+	
+	func deleteTemporaryUser() {
+		interactor!.deleteTemporaryUserFromDB()
+	}
+
+	func changeCoursesForLearningOfStud(checkedCourses: [Bool]) {
+		interactor!.changeCoursesForLearningOfStud(checkedCourses: checkedCourses)
+		interactor!.updateUserInDB()
+		self.viewModelsForCoursesForLearning = convertModelsToViewModels(models: interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]())
+		viewController?.setViewModelsForLearningCourses(courses: self.viewModelsForCoursesForLearning)
+		viewController?.tableView?.reloadData()
+	}
+
+	func changeCoursesForTeachingOfStud(checkedCourses: [Bool]) {
+		interactor!.changeCoursesForTeachingOfStud(checkedCourses: checkedCourses)
+		interactor!.updateUserInDB()
+		self.viewModelsForCoursesForTeaching = convertModelsToViewModels(models: interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]())
+		viewController?.setViewModelsForTeachingCourses(courses: self.viewModelsForCoursesForTeaching)
+		viewController?.tableView?.reloadData()
+	}
+
+	func getCoursesVMForLearning() -> [CourseViewModel] {
+		let modelsForCoursesForLearning = interactor!.getCoursesOfUserForLearning() ?? [VDCourseSpecial]()
+		viewModelsForCoursesForLearning = convertModelsToViewModels(models: modelsForCoursesForLearning)
+		return viewModelsForCoursesForLearning
+	}
+
+	func getCoursesVMForTeaching() -> [CourseViewModel] {
+		let modelsForCoursesForTeaching = interactor!.getCoursesOfUserForTeaching() ?? [VDCourseSpecial]()
+		viewModelsForCoursesForTeaching = convertModelsToViewModels(models: modelsForCoursesForTeaching)
+		return viewModelsForCoursesForTeaching
+	}
+
+	func callCheckViewController( myIndexPath: IndexPath?) {
+		var type: typeOfCourse = .learning
+		var boolArray = [Bool](repeating: false, count: interactor!.getAllCourses()?.count ?? 0)
+		if myIndexPath?.row == 0 {
+			if myIndexPath!.section == 1 {
+				let courses = interactor!.getCoursesOfUserForLearning()
+				if courses != nil {
+					for obj in courses! {
+						if let index = interactor!.getCourseIndexByID(id: obj.ID) {
+							boolArray[index] = true
+						}
+					}
+				}
+				type = .learning
+				let viewModels = convertModelsToViewModels(models:  interactor!.getAllCourses() ?? [VDCourseSpecial]())
+				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModels, checked: boolArray, type: type, fromView: viewController!)
+			}
+			if myIndexPath!.section == 2 {
+				let courses = interactor!.getCoursesOfUserForTeaching()
+				if courses != nil {
+					for obj in courses! {
+						if let index = interactor!.getCourseIndexByID(id: obj.ID) {
+							boolArray[index] = true
+						}
+					}
+				}
+				type = .teaching
+				let viewModels = convertModelsToViewModels(models:  interactor!.getAllCourses() ?? [VDCourseSpecial]())
+				wireFrame?.presentParticipantChecksModule(delegate: self, viewModels: viewModels, checked: boolArray, type: type, fromView: viewController!)
+			}
+		}
+	}
+
+	func updateUser(viewModel: UserViewModel) {
+		self.viewModelForUser = viewModel
+		interactor!.updateUserWithObject(firstName: viewModel.firstName,
+											  lastName: viewModel.lastName,
+											  adress: viewModel.adress)
+	}
+
+	func modelToViewModel(model: VDUserSpecial) -> UserViewModel {
+		let userVM = UserViewModel(adress: model.adress ?? "", firstName: model.firstName ?? "", lastName: model.lastName ?? "")
+		return userVM
+	}
+
+	func updateModelByViewModel(model: VDUserSpecial, viewModel: UserViewModel) {
+		model.adress = viewModel.adress
+		model.firstName = viewModel.firstName
+		model.lastName = viewModel.lastName
+	}
+
+	func convertModelsToViewModels(models: [VDCourseSpecial]) -> [CourseViewModel] {
+		var viewModels = [CourseViewModel]()
+		for item in models {
+			let vm = CourseViewModel()
+			vm.name = item.name ?? ""
+			vm.prepod = (item.prepod?.firstName ?? "") + " " + (item.prepod?.lastName ?? "")
+			vm.predmet = item.predmet ?? ""
+			viewModels.append(vm)
+		}
+		return viewModels
+	}
+
+	func getUserViewModel() -> UserViewModel {
+		interactor!.updateDataBase()
+		let tempModel = interactor!.getUserModel()
+		self.viewModelForUser = modelToViewModel(model: tempModel)
+		return self.viewModelForUser
+	}
+
+	func dismissView() {
+		viewController?.navigationController?.popViewController(animated: true)
+	}
+}

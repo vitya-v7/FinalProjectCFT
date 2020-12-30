@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="VDCourse" representedClassName=".VDCourse" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="predmet" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="prepod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="coursesForTeaching" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUser" inverseName="courses" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDUser" representedClassName=".VDUser" syncable="YES">
+        <attribute name="adress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDCourse" inverseName="students" inverseEntity="VDCourse" syncable="YES"/>
+        <relationship name="coursesForTeaching" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDCourse" inverseName="prepod" inverseEntity="VDCourse" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="VDCourse" positionX="-137" positionY="23" width="128" height="103"/>
+        <element name="VDUser" positionX="-405" positionY="9" width="128" height="118"/>
+    </elements>
+</model>

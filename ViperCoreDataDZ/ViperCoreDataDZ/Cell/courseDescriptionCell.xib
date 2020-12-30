@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="495" id="h4O-3g-kL4" customClass="VDMyCourseCell" customModule="ViperCoreDataDZ" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="767" height="495"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h4O-3g-kL4" id="vhb-Lr-umU">
+                <rect key="frame" x="0.0" y="0.0" width="767" height="495"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q49-66-vj6">
+                        <rect key="frame" x="21" y="16" width="422" height="226.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="prepod" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goj-69-VRS">
+                        <rect key="frame" x="477.5" y="134.5" width="268.5" height="226.5"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                        <color key="textColor" red="0.48621015099999998" green="0.44276950500000001" blue="0.82904257550000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="predmet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BpQ-C9-4Go">
+                        <rect key="frame" x="21" y="252" width="422" height="226.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Q49-66-vj6" firstAttribute="height" secondItem="BpQ-C9-4Go" secondAttribute="height" id="0Xv-Ik-vhe"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BpQ-C9-4Go" secondAttribute="bottom" constant="5" id="18E-IA-KRb"/>
+                    <constraint firstItem="BpQ-C9-4Go" firstAttribute="width" secondItem="Q49-66-vj6" secondAttribute="width" id="2hP-Gi-1sc"/>
+                    <constraint firstItem="goj-69-VRS" firstAttribute="width" secondItem="vhb-Lr-umU" secondAttribute="width" multiplier="0.35" id="9hx-E6-FRv"/>
+                    <constraint firstItem="goj-69-VRS" firstAttribute="centerY" secondItem="vhb-Lr-umU" secondAttribute="centerY" id="IM5-tb-8OA"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="Q49-66-vj6" secondAttribute="leading" constant="-5" id="QhR-x2-cqz"/>
+                    <constraint firstItem="Q49-66-vj6" firstAttribute="top" secondItem="vhb-Lr-umU" secondAttribute="topMargin" constant="5" id="Se8-yA-fvI"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="BpQ-C9-4Go" secondAttribute="leading" constant="-5" id="UrC-xu-ORW"/>
+                    <constraint firstItem="goj-69-VRS" firstAttribute="height" secondItem="Q49-66-vj6" secondAttribute="height" id="bD6-Bg-VTh"/>
+                    <constraint firstItem="BpQ-C9-4Go" firstAttribute="top" secondItem="Q49-66-vj6" secondAttribute="bottom" constant="10" id="eOw-4j-MfY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="goj-69-VRS" secondAttribute="trailing" constant="5" id="rap-Hi-197"/>
+                    <constraint firstItem="Q49-66-vj6" firstAttribute="width" secondItem="vhb-Lr-umU" secondAttribute="width" multiplier="0.55" id="zdS-my-zyB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="name" destination="Q49-66-vj6" id="wu4-UT-wVD"/>
+                <outlet property="predmet" destination="BpQ-C9-4Go" id="IyA-T4-bmO"/>
+                <outlet property="prepod" destination="goj-69-VRS" id="FYp-Qq-ZVZ"/>
+            </connections>
+            <point key="canvasLocation" x="191.5" y="177.5"/>
+        </tableViewCell>
+    </objects>
+</document>
